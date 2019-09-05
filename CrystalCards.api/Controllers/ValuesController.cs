@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CrystalCards.Api.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrystalCards.api.Controllers
@@ -26,7 +27,7 @@ namespace CrystalCards.api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] NewCardRequest request)
         {
         }
 
