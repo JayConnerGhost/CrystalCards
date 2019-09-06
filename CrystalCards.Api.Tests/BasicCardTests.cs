@@ -2,6 +2,8 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using CrystalCards.api;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -15,8 +17,9 @@ namespace CrystalCards.Api.Tests
                 => new StringContent(JsonConvert.SerializeObject(obj), Encoding.Default, "application/json");
         }
     
-    public class BasicCardTests : CrystalCards.Api.Tests.HttpTestBase
+    public class BasicCardTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
+        private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
         public BasicCardTests() : base()
         {
         }
@@ -35,15 +38,16 @@ namespace CrystalCards.Api.Tests
                    Description="Test Card 1 description"
                 }
             };
+            var Client = _factory.CreateClient();
             //Set up the base class to host the http in memory
             var response = await Client.PostAsync(request.Url,ContentHelper.GetStringContent(request.Body));
             //Act
             //HttpStatusCode receivedStatusCode;
 
-            var stringResponse =  response.StatusCode;
+            var statusCode =  response.StatusCode;
             //Assert
 
-
+            Assert.Equal(HttpStatusCode.Created,statusCode);
         }
     }
 }
