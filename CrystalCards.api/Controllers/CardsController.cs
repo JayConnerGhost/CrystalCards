@@ -23,10 +23,11 @@ namespace CrystalCards.Api.Controllers
         }
 
         [HttpPost]
-        public StatusCodeResult Post([FromBody] NewCardRequest request)
+        public async Task<StatusCodeResult> Post([FromBody] NewCardRequest request)
         {
             
-            _context.Cards.Add(new Card(){Description=request.Description, Title = request.Title});
+            await _context.Cards.AddAsync(new Card(){Description=request.Description, Title = request.Title});
+            _context.SaveChanges();
             return StatusCode(201);
         }
     }
