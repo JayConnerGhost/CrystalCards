@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrystalCards.Api", "CrystalCards.Api.csproj", "{2D57C39E-836B-4553-8C22-0A4D503469C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrystalCards.Api", "CrystalCards.Api.csproj", "{2D57C39E-836B-4553-8C22-0A4D503469C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrystalCards.Data", "..\CrystalCards.Data\CrystalCards.Data.csproj", "{90E59842-9A79-4BA1-A7A7-34C2D78C3428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrystalCards.Data", "..\CrystalCards.Data\CrystalCards.Data.csproj", "{90E59842-9A79-4BA1-A7A7-34C2D78C3428}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrystalCards.Services", "..\CrystalCards.Services\CrystalCards.Services.csproj", "{01B7E0E9-396A-47CA-9F17-0984BFFFBF93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrystalCards.Services", "..\CrystalCards.Services\CrystalCards.Services.csproj", "{01B7E0E9-396A-47CA-9F17-0984BFFFBF93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrystalCards.Api.Tests", "..\CrystalCards.Api.Tests\CrystalCards.Api.Tests.csproj", "{BD50C4BF-75FD-4481-88F1-CF96C0646568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrystalCards.Api.Tests", "..\CrystalCards.Api.Tests\CrystalCards.Api.Tests.csproj", "{BD50C4BF-75FD-4481-88F1-CF96C0646568}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrystalCards.Models", "..\CrystalCards.Models\CrystalCards.Models.csproj", "{7386A8D7-D81C-43DB-9938-BB16EB4CC199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BD50C4BF-75FD-4481-88F1-CF96C0646568}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD50C4BF-75FD-4481-88F1-CF96C0646568}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD50C4BF-75FD-4481-88F1-CF96C0646568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7386A8D7-D81C-43DB-9938-BB16EB4CC199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7386A8D7-D81C-43DB-9938-BB16EB4CC199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7386A8D7-D81C-43DB-9938-BB16EB4CC199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7386A8D7-D81C-43DB-9938-BB16EB4CC199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
