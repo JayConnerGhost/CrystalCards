@@ -1,8 +1,10 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CrystalCards.api;
+using CrystalCards.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using Xunit;
@@ -23,6 +25,34 @@ namespace CrystalCards.Api.Tests
         public BasicCardTests() : base()
         {
         }
+
+        [Fact]
+        public async Task Retrieve_a_card()
+        {
+            //Arrange
+            var testCardTitle = "Test Card 2";
+            var testCardDescription = "Test Card 2 description";
+            var request = new
+            {
+                Url = "api/cards",
+                Body = new
+                {
+                    Title = testCardTitle,
+                    Description = testCardDescription
+                }
+            };
+            var Client = _factory.CreateClient();
+
+            //Act
+            var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+
+
+            //Assert
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(card.Title,testCardTitle);
+            Assert.Equal(card.Description,testCardDescription);
+        }
+
 
         [Fact]
         public async Task Receive_a_created_status_code_adding_card()

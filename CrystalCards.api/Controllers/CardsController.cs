@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Data;
@@ -23,12 +24,19 @@ namespace CrystalCards.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<StatusCodeResult> Post([FromBody] NewCardRequest request)
+        public async Task<CreatedResult> Post([FromBody] NewCardRequest request)
         {
             
-            await _context.Cards.AddAsync(new Card(){Description=request.Description, Title = request.Title});
+           var entry= await _context.Cards.AddAsync(new Card(){Description=request.Description, Title = request.Title});
             _context.SaveChanges();
-            return StatusCode(201);
+            return Created(Url.RouteUrl(entry.Entity.Id),entry.Entity);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<OkObjectResult> Get(int id)
+        {
+            var result=await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
+            return Ok(result);
         }
     }
 }
