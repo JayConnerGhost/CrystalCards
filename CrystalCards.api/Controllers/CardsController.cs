@@ -32,6 +32,13 @@ namespace CrystalCards.Api.Controllers
             return Created(Url.RouteUrl(entry.Entity.Id),entry.Entity);
         }
 
+        [HttpGet]
+        public async Task<OkObjectResult> Get()
+        {
+            var result = await _context.Cards.ToListAsync();
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<OkObjectResult> Get(int id)
         {
