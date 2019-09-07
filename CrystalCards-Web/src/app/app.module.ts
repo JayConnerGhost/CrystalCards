@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from 'src/MaterialModule';
 import { AppRoutingModule } from './app-routing.module';
 import { CardListComponent } from './cards/card-list/card-list.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +16,7 @@ import { CardListComponent } from './cards/card-list/card-list.component';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    FlexLayoutModule
    ],
   providers: [],
   bootstrap: [AppComponent]
