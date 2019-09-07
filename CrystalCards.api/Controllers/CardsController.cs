@@ -24,11 +24,18 @@ namespace CrystalCards.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<CreatedResult> Post([FromBody] NewCardRequest request)
+        public async Task<IActionResult> Post([FromBody] NewCardRequest request)
         {
-            
-           var entry= await _context.Cards.AddAsync(new Card(){Description=request.Description, Title = request.Title});
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            var entry= await _context.Cards.AddAsync(new Card(){Description=request.Description, Title = request.Title});
             _context.SaveChanges();
+
+
             return Created(Url.RouteUrl(entry.Entity.Id),entry.Entity);
         }
 

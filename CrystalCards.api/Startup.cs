@@ -31,6 +31,15 @@ namespace CrystalCards.api
 
               services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("CardDatabase")));
+
+              services.AddCors(options =>
+              {
+                  options.AddPolicy("CorsPolicy",
+                      builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials());
+              });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +57,8 @@ namespace CrystalCards.api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors("CorsPolicy");
+            
         }
     }
 }
