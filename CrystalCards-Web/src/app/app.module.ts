@@ -6,6 +6,8 @@ import { MaterialModule } from 'src/MaterialModule';
 import { AppRoutingModule } from './app-routing.module';
 import { CardListComponent } from './cards/card-list/card-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
    ],
   providers: [],
   bootstrap: [AppComponent]
