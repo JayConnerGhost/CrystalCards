@@ -1,3 +1,13 @@
-.columnContainer{
-    width:100%
+.cardContainer{
+    width:100%;
+    border: red 1px solid;
+}
+.cardContainer > li{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.card-token
+{
+    width:200px;
 }
