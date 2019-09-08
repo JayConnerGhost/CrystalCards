@@ -1,11 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="flex-start flex-start" class="columnContainer" fxLayoutAlign="space-between" >
-    <div fxLayout="column" >
-        <span>Todo</span>
-    </div>
-    <div fxLayout="column" >
-        <span>Doing</span>
-    </div>
-    <div fxLayout="column" >
-        <span>Done</span>
-    </div>
+<div fxLayout="row" fxLayoutAlign="flex-start flex-start" class="columnContainer" fxLayoutAlign="space-between" *ngFor="let card of cards">
+    {{card.title}}
+    {{card.description}}
+   
 </div>
