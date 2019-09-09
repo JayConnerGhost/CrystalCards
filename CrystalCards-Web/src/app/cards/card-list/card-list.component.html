@@ -1,11 +1,11 @@
 <div  class="cardContainer" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
    <li  *ngFor="let card of cards">
        <ul>
-    <mat-card class="card-token">
+    <mat-card class="card-token" (click)="cardTokenClicked()">
         <mat-card-title>{{card.title}}</mat-card-title>
-        <mat-card-content> {{card.description}}</mat-card-content>
+        <mat-card-content > {{card.description}}</mat-card-content>
     </mat-card>
 </ul>
 </li>
-   
+
 </div>

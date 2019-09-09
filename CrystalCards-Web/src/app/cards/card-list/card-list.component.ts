@@ -16,7 +16,11 @@ export class CardListComponent implements OnInit {
     this.apiService.getCards().subscribe((res)=>{
         this.cards=res;
         console.log(res);
-      });  
+      });
   }
+
+cardTokenClicked(){
+  alert("cardClicked");
+}
 
 }
