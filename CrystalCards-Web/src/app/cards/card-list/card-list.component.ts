@@ -19,8 +19,8 @@ export class CardListComponent implements OnInit {
       });
   }
 
-cardTokenClicked(){
-  alert("cardClicked");
+cardTokenClicked(card: Card){
+  alert(card.id);
 }
 
 }
