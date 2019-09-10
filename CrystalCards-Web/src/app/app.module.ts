@@ -8,12 +8,14 @@ import { CardListComponent } from './cards/card-list/card-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { CardTokenComponent } from './cards/card-token/card-token.component';
+import { OpenCardComponent } from './cards/open-card/open-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardListComponent,
-    CardTokenComponent
+    CardTokenComponent,
+    OpenCardComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,10 @@ import { CardTokenComponent } from './cards/card-token/card-token.component';
     FlexLayoutModule,
     HttpClientModule
    ],
+   entryComponents: [
+    OpenCardComponent
+  ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,8 @@
-import { Component, OnInit, EventEmitter, Output} from '@angular/core';
-import { ApiService} from '../../api.service';
+import { Component, OnInit} from '@angular/core';
+import { ApiService } from '../../api.service';
 import { Card } from 'src/app/card';
+import { OpenCardComponent } from '../open-card/open-card.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-card-list',
@@ -8,21 +10,24 @@ import { Card } from 'src/app/card';
   styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
-@Output() CardSelected = new EventEmitter<number>();
+
 
   cards: Card[];
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.apiService.getCards().subscribe((res)=>{
-        this.cards=res;
-        console.log(res);
-      });
+    this.apiService.getCards().subscribe((res) => {
+      this.cards = res;
+      console.log(res);
+    });
+  }
+  DisplayCard(event) {
+    let dialogRef = this.dialog.open(OpenCardComponent, {
+      height: '400px',
+      width: '600px',
+    });
   }
 
-cardTokenClicked(card: Card){
-  alert(card.id);
-  this.CardSelected.emit(card.id);
-}
+
 
 }
