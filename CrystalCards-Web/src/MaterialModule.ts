@@ -4,6 +4,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import {OpenCardComponent } from './app/cards/open-card/open-card.component';
 @NgModule({
@@ -13,6 +14,7 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
        MatToolbarModule,
        MatCardModule,
        MatDialogModule,
+       MatTabsModule
 
     ],
   exports: [
@@ -21,6 +23,7 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
     MatToolbarModule,
     MatCardModule,
     MatDialogModule,
+    MatTabsModule
 
 ],
 

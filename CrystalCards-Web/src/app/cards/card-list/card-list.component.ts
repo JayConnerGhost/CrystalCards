@@ -23,8 +23,8 @@ export class CardListComponent implements OnInit {
   }
   DisplayCard(event) {
     let dialogRef = this.dialog.open(OpenCardComponent, {
-      height: '400px',
-      width: '600px',
+      height: '600px',
+      width: '800px',
     });
   }
 
