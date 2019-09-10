@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { CardListComponent } from './cards/card-list/card-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { CardTokenComponent } from './cards/card-token/card-token.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardListComponent
+    CardListComponent,
+    CardTokenComponent
   ],
   imports: [
     BrowserModule,

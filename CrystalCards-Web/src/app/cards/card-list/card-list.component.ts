@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { ApiService} from '../../api.service';
 import { Card } from 'src/app/card';
 
@@ -8,6 +8,7 @@ import { Card } from 'src/app/card';
   styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
+@Output() CardSelected = new EventEmitter<number>();
 
   cards: Card[];
   constructor(private apiService: ApiService) { }
@@ -21,6 +22,7 @@ export class CardListComponent implements OnInit {
 
 cardTokenClicked(card: Card){
   alert(card.id);
+  this.CardSelected.emit(card.id);
 }
 
 }
