@@ -22,9 +22,20 @@ export class CardListComponent implements OnInit {
     });
   }
   DisplayCard(event) {
-    let dialogRef = this.dialog.open(OpenCardComponent, {
+    //Here 
+    let card = this.cards.find(x=>x.id==event);
+    
+    let dialogRef = this.dialog.open(OpenCardComponent,
+    
+      {
       height: '600px',
       width: '800px',
+      data:{
+        //Card data to go in here 
+          id:event,
+          title:card.title,
+          description:card.description   
+      },
     });
   }
 

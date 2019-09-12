@@ -9,13 +9,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { CardTokenComponent } from './cards/card-token/card-token.component';
 import { OpenCardComponent } from './cards/open-card/open-card.component';
+import { IdeaComponent } from './cards/open-card/elements/idea/idea.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardListComponent,
     CardTokenComponent,
-    OpenCardComponent
+    OpenCardComponent,
+    IdeaComponent
   ],
   imports: [
     BrowserModule,

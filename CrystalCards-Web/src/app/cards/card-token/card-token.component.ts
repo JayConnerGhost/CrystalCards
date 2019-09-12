@@ -23,7 +23,6 @@ export class CardTokenComponent implements OnInit {
     }
 
       cardTokenClicked(){
-        alert(this.Id);
         this.CardSelected.emit(this.Id);
       }
 }

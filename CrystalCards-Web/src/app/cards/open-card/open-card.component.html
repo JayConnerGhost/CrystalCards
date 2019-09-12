@@ -2,8 +2,11 @@
 <mat-dialog-content>
 <mat-tab-group>
   <mat-tab label="Idea">
-    <h1>Some tab content</h1>
-    <p>...</p>
+    <app-idea 
+    [Title]=data.title
+    [Description]=data.description
+    [Id]=data.Id
+    ></app-idea>    
   </mat-tab>
     <mat-tab label="Pros and Cons">
     <h1>Some tab content</h1>
