@@ -5,7 +5,9 @@ import {MatToolbarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
-
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
 import {OpenCardComponent } from './app/cards/open-card/open-card.component';
 @NgModule({
   imports: [
@@ -14,16 +16,23 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
        MatToolbarModule,
        MatCardModule,
        MatDialogModule,
-       MatTabsModule
+       MatTabsModule,
+       MatGridListModule,
+      MatFormFieldModule,
+      MatInputModule
 
     ],
   exports: [
-      MatButtonModule,
+    MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
     MatCardModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule
+  
 
 ],
 

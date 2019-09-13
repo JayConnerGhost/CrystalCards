@@ -1,2 +1,14 @@
+<mat-grid-list cols="1" rowHeight="100px">
+    <mat-grid-tile>
+        <mat-form-field>
+                <input matInput placeholder="Name"  [value]="Title" required/>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="4" >
+            <textarea matInput placeholder="Description"  [value]="Description" required></textarea>
 
-{{Title}}{{Description}}{{Id}}
+</mat-grid-tile>
+
+</mat-grid-list>
+
+
