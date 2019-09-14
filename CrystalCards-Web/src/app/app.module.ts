@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardTokenComponent } from './cards/card-token/card-token.component';
 import { OpenCardComponent } from './cards/open-card/open-card.component';
 import { IdeaComponent } from './cards/open-card/elements/idea/idea.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { IdeaComponent } from './cards/open-card/elements/idea/idea.component';
     MaterialModule,
     AppRoutingModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
    ],
    entryComponents: [
     OpenCardComponent

@@ -8,3 +8,16 @@ html{
 body{
     margin:0;
 }
+textarea {
+    resize: none;
+  }
+
+  .formFieldWidth550 .mat-form-field-infix {
+    width: 550px;
+ }
+ .ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }

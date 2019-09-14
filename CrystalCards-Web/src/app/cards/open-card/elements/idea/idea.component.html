@@ -1,11 +1,19 @@
 
-        <mat-form-field>
-                <input matInput placeholder="Name"  [value]="Title" required/>
+<form validate #f="ngForm" (ngSubmit)="onSubmit(f)">
+<div>
+       <mat-form-field class="mat-form-field-infix">
+                <input matInput placeholder="Name" name="Title" [(ngModel)]="Title"  required/>
         </mat-form-field>
- 
-        <mat-form-field>
-            <textarea matInput placeholder="Description"  [value]="Description" required></textarea>
+</div>
+<div>
+        <mat-form-field  class="mat-form-field-infix">
+            <textarea matInput placeholder="Description" name="Description" [(ngModel)]="Description"  required class="taDescription"></textarea>
         </mat-form-field>
-
-
+</div>
+<div>
+        <div class="form-controls">
+                <button matRaisedButton type="submit" [disabled]="!f.valid">Save</button>
+        </div>
+</div>
+</form>
 

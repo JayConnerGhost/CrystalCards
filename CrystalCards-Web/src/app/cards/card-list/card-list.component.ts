@@ -36,6 +36,7 @@ export class CardListComponent implements OnInit {
           title:card.title,
           description:card.description   
       },
+      panelClass : "formFieldWidth550"
     });
   }
 

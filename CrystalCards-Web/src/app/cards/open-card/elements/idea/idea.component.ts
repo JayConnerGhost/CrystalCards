@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {NgForm }from '@angular/forms';
 
 @Component({
   selector: 'app-idea',
@@ -14,4 +15,8 @@ export class IdeaComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(f)
+  {
+    console.log(f);
+  }
 }
