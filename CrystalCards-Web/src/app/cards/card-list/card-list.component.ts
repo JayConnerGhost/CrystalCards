@@ -24,17 +24,18 @@ export class CardListComponent implements OnInit {
   DisplayCard(event) {
     //Here 
     let card = this.cards.find(x=>x.id==event);
-    
+  
     let dialogRef = this.dialog.open(OpenCardComponent,
-    
+   
       {
       height: '600px',
       width: '800px',
       data:{
         //Card data to go in here 
-          id:event,
+          id:card.id,
           title:card.title,
           description:card.description   
+        
       },
       panelClass : "formFieldWidth550"
     });
