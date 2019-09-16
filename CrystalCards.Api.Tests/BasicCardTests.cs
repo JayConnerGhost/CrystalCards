@@ -28,6 +28,40 @@ namespace CrystalCards.Api.Tests
         }
 
         [Fact]
+        public async Task Update_a_card()
+        {
+            //arrange 
+            string testEditedCardTitle="Edited Title";
+            string testEditedCardDescription="Edited Description";
+            var Client = _factory.CreateClient();
+            var id = SetupACardReturnId("test", "test");
+            var request = new
+            {
+                Url = $"api/cards/{id}",
+            };
+            var updateRequest = new
+            {
+                Body = new
+                {
+                    Title = testEditedCardTitle,
+                    Description = testEditedCardDescription
+                }
+            };
+            //act
+
+            //Perform card update 
+            await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+
+
+            //assert
+            var response = await Client.GetAsync(request.Url);
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(card.Title, testEditedCardTitle);
+            Assert.Equal(card.Description, testEditedCardDescription);
+        }
+
+
+        [Fact]
         public async Task Retrieve_a_card()
         {
             //Arrange
