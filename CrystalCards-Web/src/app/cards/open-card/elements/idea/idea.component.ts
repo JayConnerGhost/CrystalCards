@@ -11,14 +11,14 @@ export class IdeaComponent implements OnInit {
   @Input() Title;
   @Input() Description;
   @Input() Id;
-  constructor(private apiService :ApiService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
   }
 
   onSubmit(f)
   {
-    console.log(f);
-    this.apiService.updateIdea(this.Title,this.Description,this.Id);
+
+      this.apiService.updateIdea(this.Title, this.Description, this.Id).subscribe();
   }
 }
