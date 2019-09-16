@@ -126,5 +126,29 @@ namespace CrystalCards.Api.Tests
             List<Card> returnedCardCollection = JsonConvert.DeserializeObject<List<Card>>(await response.Content.ReadAsStringAsync());
             Assert.Equal(returnedCardCollection.Count,expectedCount);
         }
+
+        public async Task<int> SetupACardReturnId(string description , string title)
+        {
+            //Arrange
+        
+            var request = new
+            {
+                Url = "api/cards",
+                Body = new
+                {
+                    Title = title,
+                    Description = description
+                }
+            };
+            var Client = _factory.CreateClient();
+
+            //Act
+            var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+
+
+            //Assert
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            return card.Id;
+        }
     }
 }
