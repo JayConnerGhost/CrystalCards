@@ -34,7 +34,7 @@ namespace CrystalCards.Api.Tests
             string testEditedCardTitle="Edited Title";
             string testEditedCardDescription="Edited Description";
             var Client = _factory.CreateClient();
-            var id = SetupACardReturnId("test", "test");
+            var id = await SetupACardReturnId("test", "test");
             var request = new
             {
                 Url = $"api/cards/{id}",
@@ -43,6 +43,7 @@ namespace CrystalCards.Api.Tests
             {
                 Body = new
                 {
+                  
                     Title = testEditedCardTitle,
                     Description = testEditedCardDescription
                 }
@@ -50,7 +51,7 @@ namespace CrystalCards.Api.Tests
             //act
 
             //Perform card update 
-            await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+            var updateResult=await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
 
 
             //assert

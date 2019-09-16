@@ -25,7 +25,23 @@ namespace CrystalCards.Api.Controllers
         {
             _context = context;
         }
-      
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateCardRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var entry = await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
+            _context.Cards.Update(entry);
+            entry.Description = request.Description;
+            entry.Title = request.Title;
+            await _context.SaveChangesAsync();
+            return Ok(entry);
+
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] NewCardRequest request)
