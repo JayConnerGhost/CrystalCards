@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) {}
 
-public getCards(){
+public getCards(): Observable<Card[]>{
   return this.httpClient.get<Card[]>(`${this.apiURL}/cards`);
 }
 

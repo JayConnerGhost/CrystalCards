@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {NgForm }from '@angular/forms';
 import { ApiService } from '../../../../api.service';
 
@@ -11,6 +11,7 @@ export class IdeaComponent implements OnInit {
   @Input() Title;
   @Input() Description;
   @Input() Id;
+  @Output() UpdatePerformed = new EventEmitter();
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -18,7 +19,7 @@ export class IdeaComponent implements OnInit {
 
   onSubmit(f)
   {
-
       this.apiService.updateIdea(this.Title, this.Description, this.Id).subscribe();
+      this.UpdatePerformed.emit();
   }
 }

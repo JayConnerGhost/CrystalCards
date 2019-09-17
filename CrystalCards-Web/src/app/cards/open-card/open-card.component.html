@@ -2,11 +2,12 @@
 <mat-dialog-content>
 <mat-tab-group>
   <mat-tab label="Idea">
-    <app-idea 
+    <app-idea
     [Title]=data.title
     [Description]=data.description
     [Id]=data.id
-    ></app-idea>    
+    (UpdatePerformed)='CardUpdated()'
+    ></app-idea>
   </mat-tab>
     <mat-tab label="Pros and Cons">
     <h1>Some tab content</h1>
@@ -29,6 +30,9 @@
     <p>...</p>
   </mat-tab>
 </mat-tab-group>
-
 </mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)='CloseDialog()'>Close</button>
+</mat-dialog-actions>
 

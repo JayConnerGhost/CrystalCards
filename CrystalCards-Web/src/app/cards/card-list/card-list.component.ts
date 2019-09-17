@@ -21,24 +21,40 @@ export class CardListComponent implements OnInit {
       console.log(res);
     });
   }
+  RefreshCardList()
+  {
+
+    this.apiService.getCards().subscribe((res) => {
+      this.cards = res;
+
+    });
+  }
+
+
   DisplayCard(event) {
-    //Here 
+    //Here
     let card = this.cards.find(x=>x.id==event);
-  
+
     let dialogRef = this.dialog.open(OpenCardComponent,
-   
+
       {
       height: '600px',
       width: '800px',
       data:{
-        //Card data to go in here 
+        //Card data to go in here
           id:card.id,
           title:card.title,
-          description:card.description   
-        
+          description:card.description
+
       },
       panelClass : "formFieldWidth550"
     });
+    dialogRef.afterClosed().subscribe(
+      data => {
+
+        this.RefreshCardList();
+      }
+  );
   }
 
 

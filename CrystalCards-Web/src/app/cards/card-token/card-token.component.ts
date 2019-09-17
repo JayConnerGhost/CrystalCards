@@ -18,7 +18,7 @@ export class CardTokenComponent implements OnInit {
   ngOnInit() {
     this.apiService.getCards().subscribe((res)=>{
         this.cards=res;
-        console.log(res);
+  
       });
     }
 
