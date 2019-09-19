@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Models;
@@ -13,13 +11,6 @@ using Xunit;
 
 namespace CrystalCards.Api.Tests
 {
-   
-        public static class ContentHelper
-        {
-            public static StringContent GetStringContent(object obj)
-                => new StringContent(JsonConvert.SerializeObject(obj), Encoding.Default, "application/json");
-        }
-    
     public class BasicCardTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
@@ -34,7 +25,7 @@ namespace CrystalCards.Api.Tests
             string testEditedCardTitle="Edited Title";
             string testEditedCardDescription="Edited Description";
             var Client = _factory.CreateClient();
-            var id = await SetupACardReturnId("test", "test");
+            var id = await Utilities.SetupACardReturnId("test", "test");
             var request = new
             {
                 Url = $"api/cards/{id}",
@@ -162,28 +153,6 @@ namespace CrystalCards.Api.Tests
             Assert.Equal(returnedCardCollection.Count,expectedCount);
         }
 
-        public async Task<int> SetupACardReturnId(string description , string title)
-        {
-            //Arrange
-        
-            var request = new
-            {
-                Url = "api/cards",
-                Body = new
-                {
-                    Title = title,
-                    Description = description
-                }
-            };
-            var Client = _factory.CreateClient();
-
-            //Act
-            var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
-
-
-            //Assert
-            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            return card.Id;
-        }
+    
     }
 }
