@@ -5,6 +5,10 @@ namespace CrystalCards.Models
 {
     public class Card
     {
+        public Card()
+        {
+            Positives=new List<NPPoint>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

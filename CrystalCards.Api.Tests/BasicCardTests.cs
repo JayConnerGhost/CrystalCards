@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace CrystalCards.Api.Tests
             string testEditedCardTitle="Edited Title";
             string testEditedCardDescription="Edited Description";
             var Client = _factory.CreateClient();
-            var id = await Utilities.SetupACardReturnId("test", "test");
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test",_factory);
             var request = new
             {
                 Url = $"api/cards/{id}",

@@ -5,11 +5,10 @@ using Newtonsoft.Json;
 
 namespace CrystalCards.Api.Tests
 {
-    public static class Utilities
+    public static class Utilities<T> where T :class
     {
-        private static readonly CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
-
-        public static async Task<int> SetupACardReturnId(string description, string title)
+        
+        public static async Task<int> SetupACardReturnId(string description, string title, CustomWebApplicationFactory<T> factory)
         {
             var request = new
             {
@@ -20,7 +19,7 @@ namespace CrystalCards.Api.Tests
                     Description = description
                 }
             };
-            var Client = _factory.CreateClient();
+            var Client = factory.CreateClient();
             
             var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
             

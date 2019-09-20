@@ -16,7 +16,7 @@ namespace CrystalCards.Api.Tests
             //Arrange 
             int expectedCount=1;
             var Client = _factory.CreateClient();
-            var id = await Utilities.SetupACardReturnId("test", "test");
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
             var cardRequest = new
             {
                 Url = $"api/cards/{id}",
@@ -30,13 +30,13 @@ namespace CrystalCards.Api.Tests
                     Direction=$"{NPPointDirection.Positive}"
                 }
             };
-            await Client.PostAsync(NPPointRequest.Url, ContentHelper.GetStringContent(NPPointRequest.Body));
+            var response=await Client.PostAsync(NPPointRequest.Url, ContentHelper.GetStringContent(NPPointRequest.Body));
 
 
             //Assert
             var updatedCardResponse = await Client.GetAsync(cardRequest.Url);
             var card = JsonConvert.DeserializeObject<Card>(await updatedCardResponse.Content.ReadAsStringAsync());
-            Assert.Equal(card.Positives.Count,expectedCount);
+            Assert.Equal(expectedCount,card.Positives.Count);
         }
     }
 }
