@@ -14,14 +14,4 @@ namespace CrystalCards.Api.Dtos
         public string Description { get; set; }
 
     }
-
-    public class UpdateCardRequest
-    {
-        [Required]
-        public int Id { get; set; }
-        
-        public string Title { get; set; }
-        
-        public string Description { get; set; }
-    }
 }

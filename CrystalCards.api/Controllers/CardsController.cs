@@ -38,9 +38,26 @@ namespace CrystalCards.Api.Controllers
             _context.Cards.Update(entry);
             entry.Description = request.Description;
             entry.Title = request.Title;
+            await ProcessNPPoints(_context, request.NPPoints, entry);
             await _context.SaveChangesAsync();
             return Ok(entry);
 
+        }
+
+        private async Task ProcessNPPoints(ApplicationDbContext context, IList<NPPoint> requestNpPoints, Card entry)
+        {
+            foreach (var point in requestNpPoints)
+            {
+                if (entry.Positives.FirstOrDefault(x => x.Id == point.Id) == null)
+                {
+                    entry.Positives.Add(point);
+                }
+                else
+                {
+                    var positiveToUpdate = entry.Positives.FirstOrDefault(x => x.Id == point.Id);
+                    positiveToUpdate.Direction = point.Direction;
+                }
+            }
         }
 
         [HttpPost]
