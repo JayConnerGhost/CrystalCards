@@ -14,28 +14,12 @@ namespace CrystalCards.Api.Tests
         public async Task Can_add_a_Pro_to_a_card()
         {
             //Arrange 
-            int expectedCount=1;
-            var Client = _factory.CreateClient();
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
-            var cardRequest = new
-            {
-                Url = $"api/cards/{id}",
-            };
-            //Act
-            var NPPointRequest=new 
-            {
-                Url=$"api/nppoint",
-                Body =new {
-                    CardId=$"{id}",
-                    Direction=$"{NPPointDirection.Positive}"
-                }
-            };
-            var response=await Client.PostAsync(NPPointRequest.Url, ContentHelper.GetStringContent(NPPointRequest.Body));
+
+            
+            //act
 
 
             //Assert
-            var updatedCardResponse = await Client.GetAsync(cardRequest.Url);
-            var card = JsonConvert.DeserializeObject<Card>(await updatedCardResponse.Content.ReadAsStringAsync());
             Assert.Equal(expectedCount,card.Positives.Count);
         }
     }
