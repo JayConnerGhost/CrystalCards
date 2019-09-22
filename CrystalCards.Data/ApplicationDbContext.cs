@@ -14,6 +14,6 @@ namespace CrystalCards.Data
             
         }
 
-        public DbSet<Card> Cards { get; set; }
+        public virtual DbSet<Card> Cards { get; set; }
     }
 }

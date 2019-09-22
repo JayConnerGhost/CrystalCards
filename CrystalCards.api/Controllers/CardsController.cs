@@ -44,9 +44,11 @@ namespace CrystalCards.Api.Controllers
 
         }
 
-        private async Task ProcessNPPoints(ApplicationDbContext context, IList<NPPoint> requestNpPoints, Card entry)
+        private async Task ProcessNPPoints(ApplicationDbContext context, IList<NPPointRequest> requestNpPoints, Card entry)
         {
-            foreach (var point in requestNpPoints)
+            var points=ConvertPointRequests(requestNpPoints);
+
+            foreach (var point in points)
             {
                 if (entry.Positives.FirstOrDefault(x => x.Id == point.Id) == null)
                 {
@@ -58,6 +60,11 @@ namespace CrystalCards.Api.Controllers
                     positiveToUpdate.Direction = point.Direction;
                 }
             }
+        }
+
+        private IEnumerable<NPPoint> ConvertPointRequests(IList<NPPointRequest> requestNpPoints)
+        {
+            return requestNpPoints.Select(npPointRequest => new NPPoint {Id = npPointRequest.Id, Direction = Enum.Parse<NPPointDirection>(npPointRequest.Direction), Description = npPointRequest.Description}).ToList();
         }
 
         [HttpPost]
