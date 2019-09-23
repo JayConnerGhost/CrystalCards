@@ -75,12 +75,13 @@ namespace CrystalCards.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-
-            var entry= await _context.Cards.AddAsync(new Card(){Description=request.Description, Title = request.Title});
+            var entity = new Card(){Description=request.Description, Title = request.Title};
+            await ProcessNPPoints(_context, request.NPPoints, entity);
+            var card= await _context.Cards.AddAsync(entity);
             _context.SaveChanges();
 
 
-            return Created(Url.RouteUrl(entry.Entity.Id),entry.Entity);
+            return Created(Url.RouteUrl(card.Entity.Id),card.Entity);
         }
 
         [HttpGet]
