@@ -6,19 +6,17 @@ import { MaterialModule } from 'src/MaterialModule';
 import { AppRoutingModule } from './app-routing.module';
 import { CardListComponent } from './cards/card-list/card-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardTokenComponent } from './cards/card-token/card-token.component';
 import { OpenCardComponent } from './cards/open-card/open-card.component';
-import { IdeaComponent } from './cards/open-card/elements/idea/idea.component';
 import { FormsModule } from '@angular/forms';
-
+import { HttpErrorInterceptor } from './httpErrorIntercepter';
 @NgModule({
   declarations: [
     AppComponent,
     CardListComponent,
     CardTokenComponent,
     OpenCardComponent,
-    IdeaComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +31,13 @@ import { FormsModule } from '@angular/forms';
     OpenCardComponent
   ],
 
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+     useClass: HttpErrorInterceptor,
+     multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

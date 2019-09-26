@@ -1,6 +1,7 @@
 import { Component, OnInit ,EventEmitter,Output} from '@angular/core';
 import {Inject} from '@angular/core';
 import {MAT_DIALOG_DATA,  MatDialogRef} from '@angular/material/dialog';
+import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-open-card',
   templateUrl: './open-card.component.html',
@@ -8,8 +9,11 @@ import {MAT_DIALOG_DATA,  MatDialogRef} from '@angular/material/dialog';
 })
 export class OpenCardComponent implements OnInit {
   @Output() UpdatePerformed= new EventEmitter();
-  constructor(  public dialogRef: MatDialogRef<OpenCardComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private apiService: ApiService,  public dialogRef: MatDialogRef<OpenCardComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
 
+   Description= this.data.description;
+   Title=this.data.title;
+   Id=this.data.id;
   ngOnInit() {
   }
 
@@ -22,5 +26,12 @@ export class OpenCardComponent implements OnInit {
   {
     //code in here to close dialog
     this.dialogRef.close();
+  }
+
+  onSubmit(f)
+  {
+    console.log("Save");
+    console.log(f);
+    this.apiService.updateIdea(this.Title,this.Description,this.Id).subscribe();
   }
 }
