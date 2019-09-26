@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA,  MatDialogRef} from '@angular/material/dialog';
 export class OpenCardComponent implements OnInit {
   @Output() UpdatePerformed= new EventEmitter();
   constructor(  public dialogRef: MatDialogRef<OpenCardComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
-m
+
   ngOnInit() {
   }
 
