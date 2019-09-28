@@ -12,6 +12,41 @@ namespace CrystalCards.Api.Tests
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
 
         [Fact]
+        public async Task Create_a_card_with_negatives()
+        {
+            //arrange 
+            int expectedNegativeCount = 2;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var request = new
+            {
+                Url = $"api/cards",
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new[]{
+                        new NPPointRequest(){Direction="Negative", Description = "test negative"},
+                        new NPPointRequest(){Direction="Negative", Description = "test negative2"}
+                    }
+                }
+            };
+
+            //act
+            var result = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+            var newCard = JsonConvert.DeserializeObject<Card>(await result.Content.ReadAsStringAsync());
+
+            //Assert
+            var response = await Client.GetAsync(request.Url + "/" + newCard.Id);
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+
+            Assert.Equal(expectedNegativeCount, card.Negatives.Count);
+        }
+
+        [Fact]
         public async Task Add_negative_to_card()
         {
             int expectedNegativeCount = 2;
@@ -46,7 +81,57 @@ namespace CrystalCards.Api.Tests
             Assert.Equal(expectedNegativeCount, card.Negatives.Count);
 
         }
+        [Fact]
+        public async Task Delete_negative_from_card()
+        {
+            //arrange 
+            int expectedNegativeCount = 1;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var newRequest = new
+            {
+                Url = $"api/cards",
+                Body = new
+                {
 
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new[]{
+                        new NPPointRequest(){Direction="Negative", Description = "test negative"},
+                        new NPPointRequest(){Direction="Negative", Description = "test negative"}
+                    }
+                }
+            };
+            var newResult = await Client.PostAsync(newRequest.Url, ContentHelper.GetStringContent(newRequest.Body));
+            var newCard = JsonConvert.DeserializeObject<Card>(await newResult.Content.ReadAsStringAsync());
+            var request = new
+            {
+                Url = $"api/cards/{newCard.Id}",
+            };
+
+            var updateRequest = new
+            {
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new[]{
+                        new NPPointRequest(){Id= 1,Direction = "Negative", Description = "test negative"},
+                    }
+                }
+            };
+            //act
+            var updateResult = await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+
+            //assert
+            var response = await Client.GetAsync(request.Url);
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedNegativeCount, card.Negatives.Count);
+        }
 
         [Fact]
         public async Task Delete_positive_from_card()
