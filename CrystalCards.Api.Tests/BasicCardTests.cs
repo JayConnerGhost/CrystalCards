@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using CrystalCards.api;
+using CrystalCards.Api.Dtos;
 using CrystalCards.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
@@ -18,6 +19,79 @@ namespace CrystalCards.Api.Tests
         public BasicCardTests() : base()
         {
         }
+
+        [Fact]
+        public async Task Add_positive_to_card()
+        {
+            //arrange 
+            int expectedPositiveCount = 2;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
+            var request = new
+            {
+                Url = $"api/cards/{id}",
+            };
+            var updateRequest = new
+            {
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new[]{
+                        new NPPointRequest(){Direction="Positive", Description = "test positive"},
+                        new NPPointRequest(){Direction="Positive", Description = "test positive2"}
+                    }
+                }
+            };
+            //act
+            var updateResult = await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+
+            //Assert
+            var response = await Client.GetAsync(request.Url);
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedPositiveCount, card.Positives.Count);
+        }
+
+
+        [Fact]
+        public async Task Create_a_card_with_positives()
+        {
+            //arrange 
+            int expectedPositiveCount=2;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var request = new
+            {
+                Url = $"api/cards",
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new []{
+                                    new NPPointRequest(){Direction="Positive", Description = "test positive"},
+                                    new NPPointRequest(){Direction="Positive", Description = "test positive2"}
+                                }
+                }
+            };
+
+            //act
+            var result = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+            var newCard = JsonConvert.DeserializeObject<Card>(await result.Content.ReadAsStringAsync());
+
+            //Assert
+            var response = await Client.GetAsync(request.Url+"/"+newCard.Id);
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+
+            Assert.Equal(expectedPositiveCount,card.Positives.Count);
+        }
+
 
         [Fact]
         public async Task Update_a_card()

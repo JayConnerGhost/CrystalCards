@@ -11,6 +11,7 @@ import { CardTokenComponent } from './cards/card-token/card-token.component';
 import { OpenCardComponent } from './cards/open-card/open-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorInterceptor } from './httpErrorIntercepter';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { HttpErrorInterceptor } from './httpErrorIntercepter';
     AppRoutingModule,
     FlexLayoutModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
    ],
    entryComponents: [
     OpenCardComponent

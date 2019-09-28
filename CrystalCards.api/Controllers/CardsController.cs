@@ -50,7 +50,8 @@ namespace CrystalCards.Api.Controllers
 
             foreach (var point in points)
             {
-                if (entry.Positives.FirstOrDefault(x => x.Id == point.Id) == null)
+                var noIdAssignedNewPoint = 0;
+                if (point.Id==noIdAssignedNewPoint || entry.Positives.FirstOrDefault(x => x.Id == point.Id) == null)
                 {
                     entry.Positives.Add(point);
                 }
@@ -87,14 +88,14 @@ namespace CrystalCards.Api.Controllers
         [HttpGet]
         public async Task<OkObjectResult> Get()
         {
-            var result = await _context.Cards.ToListAsync();
+            var result = await _context.Cards.Include(x=>x.Positives).ToListAsync();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<OkObjectResult> Get(int id)
         {
-            var result=await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
+            var result=await _context.Cards.Include(x=>x.Positives).FirstOrDefaultAsync(x => x.Id == id);
             return Ok(result);
         }
     }

@@ -8,7 +8,7 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
-  apiURL: string = 'http://localhost:55265/api';
+  apiURL: string = 'http://localhost:60885/api';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -24,7 +24,6 @@ public updateIdea(title, description, id): Observable<Card> {
   card.id = id;
 
   return this.httpClient.put<Card>(`${this.apiURL}/cards/${id}`, card);
-
 }
 
 }
