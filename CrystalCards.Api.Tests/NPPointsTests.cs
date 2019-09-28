@@ -10,6 +10,44 @@ namespace CrystalCards.Api.Tests
     public class NPPointsTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
+
+        [Fact]
+        public async Task Add_negative_to_card()
+        {
+            int expectedNegativeCount = 2;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
+            var request = new
+            {
+                Url = $"api/cards/{id}",
+            };
+            var updateRequest = new
+            {
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new[]{
+                        new NPPointRequest(){Direction="Negative", Description = "test negative"},
+                        new NPPointRequest(){Direction="Negative", Description = "test negative"}
+                    }
+                }
+            };
+            //act
+            var updateResult = await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+
+            //Assert
+            var response = await Client.GetAsync(request.Url);
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedNegativeCount, card.Negatives.Count);
+
+        }
+
+
         [Fact]
         public async Task Delete_positive_from_card()
         {
