@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
 using CrystalCards.Api.Dtos;
@@ -9,6 +10,7 @@ using CrystalCards.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace CrystalCards.Api.Controllers
@@ -34,33 +36,52 @@ namespace CrystalCards.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var entry = await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
+            var entry = await _context.Cards.Include(x=>x.Positives).FirstOrDefaultAsync(x => x.Id == id);
             _context.Cards.Update(entry);
             entry.Description = request.Description;
             entry.Title = request.Title;
-            await ProcessNPPoints(_context, request.NPPoints, entry);
+            ProcessNPPoints(_context, request.NPPoints, entry);
             await _context.SaveChangesAsync();
             return Ok(entry);
 
         }
 
-        private async Task ProcessNPPoints(ApplicationDbContext context, IList<NPPointRequest> requestNpPoints, Card entry)
+        private void ProcessNPPoints(ApplicationDbContext context, IList<NPPointRequest> requestNpPoints, Card entry)
         {
             var points=ConvertPointRequests(requestNpPoints);
+            //if exists on card but not in points 
+            //do find on points if not there then zap on card
+            var idPointToRemove = new List<int>();
+            foreach (var entryPoints in entry.Positives)
+            {
+               
+                if (points.FirstOrDefault(x => x.Id == entryPoints.Id) == null)
+                {
+                    idPointToRemove.Add(entryPoints.Id);
+                }
+            }
+
+            foreach (var id in idPointToRemove)
+            {
+                entry.Positives.Remove(entry.Positives.FirstOrDefault(x => x.Id == id));
+            }
 
             foreach (var point in points)
             {
                 var noIdAssignedNewPoint = 0;
-                if (point.Id==noIdAssignedNewPoint || entry.Positives.FirstOrDefault(x => x.Id == point.Id) == null)
+                //if new point
+                if (point.Id==noIdAssignedNewPoint )
                 {
                     entry.Positives.Add(point);
                 }
                 else
+                //if point edited
                 {
                     var positiveToUpdate = entry.Positives.FirstOrDefault(x => x.Id == point.Id);
                     positiveToUpdate.Direction = point.Direction;
                 }
             }
+
         }
 
         private IEnumerable<NPPoint> ConvertPointRequests(IList<NPPointRequest> requestNpPoints)
@@ -77,7 +98,7 @@ namespace CrystalCards.Api.Controllers
             }
 
             var entity = new Card(){Description=request.Description, Title = request.Title};
-            await ProcessNPPoints(_context, request.NPPoints, entity);
+             ProcessNPPoints(_context, request.NPPoints, entity);
             var card= await _context.Cards.AddAsync(entity);
             _context.SaveChanges();
 

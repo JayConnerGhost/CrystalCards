@@ -21,6 +21,59 @@ namespace CrystalCards.Api.Tests
         }
 
         [Fact]
+        public async Task Delete_positive_from_card()
+        {
+            //arrange 
+            int expectedPositiveCount = 1;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var newRequest = new
+            {
+                Url = $"api/cards",
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new[]{
+                        new NPPointRequest(){Direction="Positive", Description = "test positive"},
+                        new NPPointRequest(){Direction="Positive", Description = "test positive2"}
+                    }
+                }
+            };
+            var newResult = await Client.PostAsync(newRequest.Url, ContentHelper.GetStringContent(newRequest.Body));
+            var newCard = JsonConvert.DeserializeObject<Card>(await newResult.Content.ReadAsStringAsync());
+            var request = new
+            {
+                Url = $"api/cards/{newCard.Id}",
+            };
+
+            var updateRequest = new
+            {
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    NPPoints = new[]{
+                        new NPPointRequest(){Id= 1,Direction = "Positive", Description = "test positive"},
+                    }
+                }
+            };
+            //act
+            var updateResult = await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+          
+            //assert
+            var response = await Client.GetAsync(request.Url);
+             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedPositiveCount, card.Positives.Count);
+        }
+
+
+        [Fact]
         public async Task Add_positive_to_card()
         {
             //arrange 
