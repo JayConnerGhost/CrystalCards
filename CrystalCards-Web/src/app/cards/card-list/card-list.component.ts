@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CardListComponent implements OnInit {
 
-
   cards: Card[];
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
@@ -44,7 +43,7 @@ export class CardListComponent implements OnInit {
         //Card data to go in here
           id:card.id,
           title:card.title,
-          description:card.description
+          description:card.description,
 
       },
       panelClass : "formFieldWidth550"

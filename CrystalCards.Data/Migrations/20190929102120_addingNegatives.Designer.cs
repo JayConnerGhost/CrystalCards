@@ -4,14 +4,16 @@ using CrystalCards.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CrystalCards.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190929102120_addingNegatives")]
+    partial class addingNegatives
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +44,8 @@ namespace CrystalCards.Data.Migrations
 
                     b.Property<int?>("CardId");
 
+                    b.Property<int?>("CardId1");
+
                     b.Property<string>("Description");
 
                     b.Property<int>("Direction");
@@ -50,14 +54,20 @@ namespace CrystalCards.Data.Migrations
 
                     b.HasIndex("CardId");
 
+                    b.HasIndex("CardId1");
+
                     b.ToTable("NPPoint");
                 });
 
             modelBuilder.Entity("CrystalCards.Models.NPPoint", b =>
                 {
                     b.HasOne("CrystalCards.Models.Card")
-                        .WithMany("Points")
+                        .WithMany("Negatives")
                         .HasForeignKey("CardId");
+
+                    b.HasOne("CrystalCards.Models.Card")
+                        .WithMany("Positives")
+                        .HasForeignKey("CardId1");
                 });
 #pragma warning restore 612, 618
         }

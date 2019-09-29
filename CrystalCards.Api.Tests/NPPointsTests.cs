@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Models;
@@ -43,7 +44,7 @@ namespace CrystalCards.Api.Tests
             var response = await Client.GetAsync(request.Url + "/" + newCard.Id);
             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
 
-            Assert.Equal(expectedNegativeCount, card.Negatives.Count);
+            Assert.Equal(expectedNegativeCount, card.Points.Where(x=>x.Direction==NPPointDirection.Negative).ToList().Count);
         }
 
         [Fact]
@@ -78,7 +79,7 @@ namespace CrystalCards.Api.Tests
             //Assert
             var response = await Client.GetAsync(request.Url);
             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedNegativeCount, card.Negatives.Count);
+            Assert.Equal(expectedNegativeCount, card.Points.Where(x=>x.Direction==NPPointDirection.Negative).ToList().Count);
 
         }
         [Fact]
@@ -130,7 +131,7 @@ namespace CrystalCards.Api.Tests
             //assert
             var response = await Client.GetAsync(request.Url);
             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedNegativeCount, card.Negatives.Count);
+            Assert.Equal(expectedNegativeCount, card.Points.Where(x=>x.Direction==NPPointDirection.Negative).ToList().Count);
         }
 
         [Fact]
@@ -182,7 +183,7 @@ namespace CrystalCards.Api.Tests
             //assert
             var response = await Client.GetAsync(request.Url);
             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedPositiveCount, card.Positives.Count);
+            Assert.Equal(expectedPositiveCount, card.Points.Where(x=>x.Direction==NPPointDirection.Positive).ToList().Count);
         }
 
 
@@ -219,7 +220,7 @@ namespace CrystalCards.Api.Tests
             //Assert
             var response = await Client.GetAsync(request.Url);
             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedPositiveCount, card.Positives.Count);
+            Assert.Equal(expectedPositiveCount, card.Points.Where(x => x.Direction == NPPointDirection.Positive).ToList().Count);
         }
 
 
@@ -255,7 +256,7 @@ namespace CrystalCards.Api.Tests
             var response = await Client.GetAsync(request.Url + "/" + newCard.Id);
             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
 
-            Assert.Equal(expectedPositiveCount, card.Positives.Count);
+            Assert.Equal(expectedPositiveCount, card.Points.Where(x => x.Direction == NPPointDirection.Positive).ToList().Count);
         }
 
     }
