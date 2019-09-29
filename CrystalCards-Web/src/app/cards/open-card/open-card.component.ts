@@ -11,27 +11,25 @@ export class OpenCardComponent implements OnInit {
   @Output() UpdatePerformed= new EventEmitter();
   constructor(private apiService: ApiService,  public dialogRef: MatDialogRef<OpenCardComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
 
-   Description= this.data.description;
-   Title=this.data.title;
-   Id=this.data.id;
+   Description = this.data.description;
+   Title = this.data.title;
+   Id = this.data.id;
+   Points = this.data.points;
   ngOnInit() {
   }
 
-  CardUpdated()
-  {
+  CardUpdated()  {
     this.UpdatePerformed.emit();
   }
 
-  CloseDialog()
-  {
+  CloseDialog()  {
     //code in here to close dialog
     this.dialogRef.close();
   }
 
-  onSubmit(f)
-  {
+  onSubmit(f)  {
     console.log("Save");
     console.log(f);
-    this.apiService.updateIdea(this.Title,this.Description,this.Id).subscribe();
+    this.apiService.update(this.Title, this.Description, this.Id, this.Points).subscribe();
   }
 }

@@ -33,7 +33,7 @@ export class CardListComponent implements OnInit {
   DisplayCard(event) {
     //Here
     let card = this.cards.find(x=>x.id==event);
-
+console.log("pre-dialog", card);
     let dialogRef = this.dialog.open(OpenCardComponent,
 
       {
@@ -44,6 +44,7 @@ export class CardListComponent implements OnInit {
           id:card.id,
           title:card.title,
           description:card.description,
+          points:card.nppoints
 
       },
       panelClass : "formFieldWidth550"
