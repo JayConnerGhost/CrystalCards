@@ -20,3 +20,4 @@ namespace CrystalCards.Api.Dtos
         public IList<NPPointRequest> NPPoints { get; set; }
     }
 }
+

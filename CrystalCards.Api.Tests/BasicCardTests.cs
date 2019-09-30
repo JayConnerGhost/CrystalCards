@@ -19,9 +19,6 @@ namespace CrystalCards.Api.Tests
         {
         }
 
-        
-
-
         [Fact]
         public async Task Update_a_card()
         {

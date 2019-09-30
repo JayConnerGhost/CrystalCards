@@ -38,13 +38,13 @@ namespace CrystalCards.Api.Tests
 
             //act
             var result = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
-            var newCard = JsonConvert.DeserializeObject<Card>(await result.Content.ReadAsStringAsync());
+            var newCard = JsonConvert.DeserializeObject<CardResponse>(await result.Content.ReadAsStringAsync());
 
             //Assert
             var response = await Client.GetAsync(request.Url + "/" + newCard.Id);
-            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
 
-            Assert.Equal(expectedNegativeCount, card.Points.Where(x=>x.Direction==NPPointDirection.Negative).ToList().Count);
+            Assert.Equal(expectedNegativeCount, card.NPPoints.Where(x=>x.Direction=="Negative").ToList().Count);
         }
 
         [Fact]
@@ -78,8 +78,8 @@ namespace CrystalCards.Api.Tests
 
             //Assert
             var response = await Client.GetAsync(request.Url);
-            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedNegativeCount, card.Points.Where(x=>x.Direction==NPPointDirection.Negative).ToList().Count);
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedNegativeCount, card.NPPoints.Where(x=>x.Direction=="Negative").ToList().Count);
 
         }
         [Fact]
@@ -130,8 +130,8 @@ namespace CrystalCards.Api.Tests
 
             //assert
             var response = await Client.GetAsync(request.Url);
-            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedNegativeCount, card.Points.Where(x=>x.Direction==NPPointDirection.Negative).ToList().Count);
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedNegativeCount, card.NPPoints.Where(x=>x.Direction=="Negative").ToList().Count);
         }
 
         [Fact]
@@ -182,8 +182,8 @@ namespace CrystalCards.Api.Tests
 
             //assert
             var response = await Client.GetAsync(request.Url);
-            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedPositiveCount, card.Points.Where(x=>x.Direction==NPPointDirection.Positive).ToList().Count);
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedPositiveCount, card.NPPoints.Where(x=>x.Direction=="Positive").ToList().Count);
         }
 
 
@@ -219,8 +219,8 @@ namespace CrystalCards.Api.Tests
 
             //Assert
             var response = await Client.GetAsync(request.Url);
-            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
-            Assert.Equal(expectedPositiveCount, card.Points.Where(x => x.Direction == NPPointDirection.Positive).ToList().Count);
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedPositiveCount, card.NPPoints.Where(x => x.Direction == "Positive").ToList().Count);
         }
 
 
@@ -250,13 +250,13 @@ namespace CrystalCards.Api.Tests
 
             //act
             var result = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
-            var newCard = JsonConvert.DeserializeObject<Card>(await result.Content.ReadAsStringAsync());
+            var newCard = JsonConvert.DeserializeObject<CardResponse>(await result.Content.ReadAsStringAsync());
 
             //Assert
             var response = await Client.GetAsync(request.Url + "/" + newCard.Id);
-            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
 
-            Assert.Equal(expectedPositiveCount, card.Points.Where(x => x.Direction == NPPointDirection.Positive).ToList().Count);
+            Assert.Equal(expectedPositiveCount, card.NPPoints.Where(x => x.Direction == "Positive").ToList().Count);
         }
 
     }

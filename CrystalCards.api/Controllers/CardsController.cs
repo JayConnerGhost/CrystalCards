@@ -44,7 +44,7 @@ namespace CrystalCards.Api.Controllers
             entry.Title = request.Title;
             ProcessPoints(_context, request.NPPoints, entry);
             await _context.SaveChangesAsync();
-            return Ok(entry);
+            return Ok(ConvertResponse(entry));
 
         }
 
@@ -63,7 +63,7 @@ namespace CrystalCards.Api.Controllers
             _context.SaveChanges();
 
 
-            return Created(Url.RouteUrl(card.Entity.Id),card.Entity);
+            return Created(Url.RouteUrl(card.Entity.Id), ConvertResponse(card.Entity));
         }
 
         [HttpGet]
@@ -72,7 +72,8 @@ namespace CrystalCards.Api.Controllers
             var result = await _context.Cards
                 .Include(x=>x.Points)
                 .ToListAsync();
-            return Ok(result);
+            var resultConverted = ConvertResponses(result);
+            return Ok(resultConverted);
         }
 
         [HttpGet("{id}")]
@@ -81,10 +82,10 @@ namespace CrystalCards.Api.Controllers
             var result=await _context.Cards
                 .Include(x=>x.Points)
                 .FirstOrDefaultAsync(x => x.Id == id);
-            return Ok(result);
+            var resultConverted = ConvertResponse(result);
+            return Ok(resultConverted);
         }
 
-       
 
         private void ProcessPoints(ApplicationDbContext context, IList<NPPointRequest> requestNpPoints, Card entry)
         {
@@ -124,10 +125,48 @@ namespace CrystalCards.Api.Controllers
             }
         }
 
+        private List<CardResponse> ConvertResponses(List<Card> result)
+        {
+            var convertedResponses = new List<CardResponse>();
+            foreach (var card in result)
+            {
+                convertedResponses.Add(ConvertResponse(card));
+            }
+           return convertedResponses;
+        }
+
+        private IList<NPPointResponse> ConvertPoints(IList<NPPoint> cardPoints)
+        {
+            var convertedResponses = new List<NPPointResponse>();
+            foreach (var point in cardPoints)
+            {
+                var npPointResponse = new NPPointResponse()
+                {
+                    Description = point.Description,
+                    Id=point.Id,
+                };
+                npPointResponse.Direction = point.Direction == 0 ? "Positive" : "Negative";
+                convertedResponses.Add(npPointResponse);
+            }
+
+            return convertedResponses;
+        }
+
+        private CardResponse ConvertResponse(Card result)
+        {
+            return new CardResponse()
+            {
+                Description = result.Description,
+                Title = result.Title,
+                Id = result.Id,
+                NPPoints = ConvertPoints(result.Points)
+
+            };
+        }
+
         private IEnumerable<NPPoint> ConvertPointRequests(IList<NPPointRequest> requestNpPoints)
         {
             return requestNpPoints.Select(npPointRequest => new NPPoint { Id = npPointRequest.Id, Direction = Enum.Parse<NPPointDirection>(npPointRequest.Direction), Description = npPointRequest.Description }).ToList();
         }
-
     }
 }
