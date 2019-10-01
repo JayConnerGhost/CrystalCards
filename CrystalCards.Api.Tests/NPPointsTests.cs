@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
@@ -234,7 +235,7 @@ namespace CrystalCards.Api.Tests
             var Client = _factory.CreateClient();
             var request = new
             {
-                Url = $"api/cards",
+                Url = "api/cards",
                 Body = new
                 {
 

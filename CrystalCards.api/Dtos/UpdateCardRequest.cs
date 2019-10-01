@@ -18,5 +18,6 @@ namespace CrystalCards.Api.Dtos
         public string Description { get; set; }
 
         public IList<NPPointRequest> NPPoints { get; set; }
+        public int Order { get; set; }
     }
 }

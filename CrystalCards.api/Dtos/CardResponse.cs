@@ -15,5 +15,6 @@ namespace CrystalCards.Api.Dtos
 
         public IList<NPPointResponse> NPPoints { get; set; }
         public int Id { get; set; }
+        public int Order { get; set; }
     }
 }

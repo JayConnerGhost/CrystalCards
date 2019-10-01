@@ -42,6 +42,7 @@ namespace CrystalCards.Api.Controllers
             _context.Cards.Update(entry);
             entry.Description = request.Description;
             entry.Title = request.Title;
+            entry.Order = request.Order;
             ProcessPoints(_context, request.NPPoints, entry);
             await _context.SaveChangesAsync();
             return Ok(ConvertResponse(entry));
@@ -57,7 +58,7 @@ namespace CrystalCards.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var entity = new Card(){Description=request.Description, Title = request.Title};
+            var entity = new Card(){Description=request.Description, Title = request.Title,Order=request.Order};
              ProcessPoints(_context, request.NPPoints, entity);
             var card= await _context.Cards.AddAsync(entity);
             _context.SaveChanges();
@@ -159,6 +160,7 @@ namespace CrystalCards.Api.Controllers
                 Description = result.Description,
                 Title = result.Title,
                 Id = result.Id,
+                Order = result.Order,
                 NPPoints = ConvertPoints(result.Points)
 
             };
