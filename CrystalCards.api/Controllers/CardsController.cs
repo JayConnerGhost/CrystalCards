@@ -122,6 +122,7 @@ namespace CrystalCards.Api.Controllers
                     var positiveToUpdate = entry.Points.FirstOrDefault(x => x.Id == point.Id);
                     positiveToUpdate.Direction = point.Direction;
                     positiveToUpdate.Description = point.Description;
+                    positiveToUpdate.Order = point.Order;
                 }
             }
         }
@@ -141,12 +142,13 @@ namespace CrystalCards.Api.Controllers
             var convertedResponses = new List<NPPointResponse>();
             foreach (var point in cardPoints)
             {
-                var npPointResponse = new NPPointResponse()
+                var npPointResponse = new NPPointResponse
                 {
                     Description = point.Description,
-                    Id=point.Id,
+                    Id = point.Id,
+                    Order = point.Order,
+                    Direction = point.Direction == 0 ? "Positive" : "Negative"
                 };
-                npPointResponse.Direction = point.Direction == 0 ? "Positive" : "Negative";
                 convertedResponses.Add(npPointResponse);
             }
 
@@ -168,7 +170,7 @@ namespace CrystalCards.Api.Controllers
 
         private IEnumerable<NPPoint> ConvertPointRequests(IList<NPPointRequest> requestNpPoints)
         {
-            return requestNpPoints.Select(npPointRequest => new NPPoint { Id = npPointRequest.Id, Direction = Enum.Parse<NPPointDirection>(npPointRequest.Direction), Description = npPointRequest.Description }).ToList();
+            return requestNpPoints.Select(npPointRequest => new NPPoint { Id = npPointRequest.Id, Direction = Enum.Parse<NPPointDirection>(npPointRequest.Direction), Description = npPointRequest.Description,Order=npPointRequest.Order }).ToList();
         }
     }
 }

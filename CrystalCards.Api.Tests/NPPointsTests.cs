@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CrystalCards.api;
@@ -12,6 +13,45 @@ namespace CrystalCards.Api.Tests
     public class NPPointsTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
+
+        [Fact]
+        public async Task Set_order_on_point()
+        {
+            //arrange
+            int point1ExpectedOrder=1;
+            int point2ExpectedOrder=3;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var request = new
+            {
+                Url = $"api/cards",
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+                    Order=1,
+                    NPPoints = new[]
+                    {
+                        new NPPointRequest() {Direction = "Negative", Description = "test negative",Order=1},
+                        new NPPointRequest() {Direction = "Negative", Description = "test negative2", Order=3}
+                    }
+                }
+            };
+            //act
+            var result = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+            var newCard = JsonConvert.DeserializeObject<CardResponse>(await result.Content.ReadAsStringAsync());
+
+            //assert
+            var response = await Client.GetAsync(request.Url + "/" + newCard.Id);
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
+
+
+            Assert.Equal(point1ExpectedOrder,card.NPPoints[0].Order);
+            Assert.Equal(point2ExpectedOrder,card.NPPoints[1].Order);
+        }
+
 
         [Fact]
         public async Task Create_a_card_with_negatives()
