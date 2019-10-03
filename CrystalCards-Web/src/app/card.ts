@@ -3,6 +3,7 @@ export class Card {
     id:number;
     title: string;
     description: string;
-    nppoints: NPPoint[];
+    npPoints: NPPoint[];
+    order: number;
 }
 

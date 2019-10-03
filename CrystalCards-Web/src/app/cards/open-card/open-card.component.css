@@ -1,5 +1,21 @@
-.taDescription{
-    min-width:400px;
+.taDescription {
+    min-width: 400px;
     min-height: 100px;
-    
+}
+
+.points-list {}
+
+.point-item {
+    height: 100px;
+}
+
+.points-list-content-text {}
+
+button {
+    outline: none;
+}
+
+.point-selection-button {
+    padding: 2px;
+    margin-left: 20px;
 }

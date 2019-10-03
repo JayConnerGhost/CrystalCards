@@ -18,8 +18,28 @@
 </div>
   </mat-tab>
     <mat-tab label="Pros and Cons">
-    <h1>Some tab content</h1>
-    <p>...</p>
+    <div class="row">
+        <div class="col-xs-6 col-md-4 col-lg-12">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="enter Negative" ngModel name="NegativePoints" #negative/>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button" (click)="addNegative(negative)">
+        <span class="glyphicon glyphicon-ok"></span>
+        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+      <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                  <li *ngFor="let point of NegativePoints" class="list-group-item ">
+                        <span> {{ point.description }} </span>
+                        <span>  <button class="btn btn-primary" type="button" (click)="onClick()">
+                               <span class="glyphicon glyphicon-remove"></span>
+                              </button>
+                        </span>
+                  <li>
+      </ul>
+
   </mat-tab>
     <mat-tab label="Action Points">
     <h1>Some tab content</h1>
@@ -41,8 +61,8 @@
 </mat-dialog-content>
 
 <mat-dialog-actions fxLayoutAlign="end">
-  <button mat-raised-button (click)='CloseDialog()' >Close</button>
-  <button mat-raised-button type="submit" >Save</button>
+  <button mat-raised-button (click)='CloseDialog()' class="background-primary-color white-text" >Close</button>
+  <button mat-raised-button type="submit" class="background-primary-color white-text">Save</button>
 
 </mat-dialog-actions>
 </form>

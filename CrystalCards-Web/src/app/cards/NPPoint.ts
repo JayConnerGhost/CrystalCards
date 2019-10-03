@@ -1,5 +1,5 @@
 export class NPPoint{
   public id: number;
-  public direction: number;
+  public direction: string;
   public description: string;
 }

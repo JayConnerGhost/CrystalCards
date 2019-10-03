@@ -22,7 +22,7 @@ public update(title, description, id, points): Observable<Card> {
   card.description = description;
   card.title = title;
   card.id = id;
-  card.nppoints = points;
+  card.npPoints = points;
 
   return this.httpClient.put<Card>(`${this.apiURL}/cards/${id}`, card);
 }

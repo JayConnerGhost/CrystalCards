@@ -44,8 +44,8 @@ console.log("pre-dialog", card);
           id:card.id,
           title:card.title,
           description:card.description,
-          points:card.nppoints
-
+          points:card.npPoints,
+          order:card.order
       },
       panelClass : "formFieldWidth550"
     });
