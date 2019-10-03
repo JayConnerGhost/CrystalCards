@@ -9,8 +9,6 @@
     height: 100px;
 }
 
-.points-list-content-text {}
-
 button {
     outline: none;
 }
@@ -18,4 +16,36 @@ button {
 .point-selection-button {
     padding: 2px;
     margin-left: 20px;
+}
+
+.mat-dialog-content {
+    max-height: initial !important;
+}
+
+.mat-dialog-content {
+    height: 75%;
+}
+
+.mat-tab-group {
+    height: 300%;
+}
+
+.mat-tab-body-wrapper {
+    flex-grow: 1;
+}
+
+#wrapper {
+    padding: 16px;
+    min-height: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    /*new*/
+}
+
+#tab-group {
+    height: 400px;
+}
+
+#tab-group mat-tab-body {
+    flex-grow: 1;
 }

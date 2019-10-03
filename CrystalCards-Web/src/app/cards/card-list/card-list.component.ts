@@ -37,8 +37,7 @@ console.log("pre-dialog", card);
     let dialogRef = this.dialog.open(OpenCardComponent,
 
       {
-      height: '600px',
-      width: '800px',
+       width: '800px',
       data:{
         //Card data to go in here
           id:card.id,
