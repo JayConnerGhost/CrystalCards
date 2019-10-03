@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/api.service';
+import { NPPoint } from '../NPPoint';
 @Component({
   selector: 'app-open-card',
   templateUrl: './open-card.component.html',
@@ -35,12 +36,17 @@ export class OpenCardComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addNegative(newNegative){
-console.log(newNegative.value);
+  addNegative(newNegative) {
+
+    var newPoint = new NPPoint();
+    newPoint.description = newNegative.value;
+    newPoint.direction = "Negative";
+    this.NegativePoints.push(newPoint);
   }
 
   onSubmit(f) {
-    this.apiService.update(this.Title, this.Description, this.Id, this.Points).subscribe();
+    const editedPoints = this.NegativePoints.concat(this.PositivePoints);
+    this.apiService.update(this.Title, this.Description, this.Id, editedPoints).subscribe();
   }
 
   splitPointsToLists(points) {
