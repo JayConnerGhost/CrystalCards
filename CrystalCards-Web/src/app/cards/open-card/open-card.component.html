@@ -39,8 +39,32 @@
                         </span>
                   <li>
       </ul>
+<!---positve-->
+ 
+<div class="row">
+  <div class="col-xs-6 col-md-4 col-lg-12">
+      <div class="input-group">
+          <input type="text" class="form-control" placeholder="enter Positive" ngModel name="PositivePoints" #positive/>
+          <div class="input-group-btn">
+              <button class="btn btn-primary" type="button" (click)="addPositive(positive)">
+  <span class="glyphicon glyphicon-ok"></span>
+  </button>
+          </div>
+      </div>
+  </div>
+</div>
+<ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+            <li *ngFor="let point of PositivePoints" class="list-group-item ">
+                  <span> {{ point.description }} </span>
+                  <span>  <button class="btn btn-primary" type="button" (click)="onClick()">
+                         <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                  </span>
+            <li>
+</ul>
 
-  </mat-tab>
+
+</mat-tab>
     <mat-tab label="Action Points">
     <h1>Some tab content</h1>
     <p>...</p>

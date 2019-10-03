@@ -35,7 +35,12 @@ export class OpenCardComponent implements OnInit {
   CloseDialog() {
     this.dialogRef.close();
   }
-
+  addPositive(newPositive){
+    var newPoint = new NPPoint();
+    newPoint.description = newPositive.value;
+    newPoint.direction = "Positive";
+    this.PositivePoints.push(newPoint)
+  }
   addNegative(newNegative) {
 
     var newPoint = new NPPoint();
@@ -45,7 +50,7 @@ export class OpenCardComponent implements OnInit {
   }
 
   onSubmit(f) {
-    const editedPoints = this.NegativePoints.concat(this.PositivePoints);
+    const editedPoints = (this.NegativePoints.concat(this.PositivePoints));
     this.apiService.update(this.Title, this.Description, this.Id, editedPoints).subscribe();
   }
 

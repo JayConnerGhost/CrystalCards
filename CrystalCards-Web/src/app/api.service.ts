@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {Card } from './card';
+import { Card } from './card';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -9,22 +9,23 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class ApiService {
   apiURL: string = 'http://localhost:60885/api';
+  apiURL2: string = "http://localhost:55265/api"
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
-public getCards(): Observable<Card[]>{
-  return this.httpClient.get<Card[]>(`${this.apiURL}/cards`);
-}
+  public getCards(): Observable<Card[]> {
+    return this.httpClient.get<Card[]>(`${this.apiURL2}/cards`);
+  }
 
-public update(title, description, id, points): Observable<Card> {
-  console.log(title,description, id, points);
-  let card = new Card();
-  card.description = description;
-  card.title = title;
-  card.id = id;
-  card.npPoints = points;
+  public update(title, description, id, points): Observable<Card> {
+    console.log(title, description, id, points);
+    let card = new Card();
+    card.description = description;
+    card.title = title;
+    card.id = id;
+    card.npPoints = points;
 
-  return this.httpClient.put<Card>(`${this.apiURL}/cards/${id}`, card);
-}
+    return this.httpClient.put<Card>(`${this.apiURL2}/cards/${id}`, card);
+  }
 
 }
