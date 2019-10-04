@@ -25,4 +25,10 @@
     <ProjectReference Include="..\CrystalCards.Models\CrystalCards.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CrystalCards.Api.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
