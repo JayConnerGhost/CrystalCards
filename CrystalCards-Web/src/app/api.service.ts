@@ -14,7 +14,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getCards(): Observable<Card[]> {
-    return this.httpClient.get<Card[]>(`${this.apiURL}/cards`);
+    return this.httpClient.get<Card[]>(`${this.apiURL2}/cards`);
   }
 
   public update(title, description, id, points): Observable<Card> {
@@ -25,7 +25,7 @@ export class ApiService {
     card.id = id;
     card.npPoints = points;
 
-    return this.httpClient.put<Card>(`${this.apiURL}/cards/${id}`, card);
+    return this.httpClient.put<Card>(`${this.apiURL2}/cards/${id}`, card);
   }
 
 }
