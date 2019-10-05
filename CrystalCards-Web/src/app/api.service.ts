@@ -8,17 +8,25 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
+ 
   apiURL: string = 'http://localhost:60885/api';
   apiURL2: string = "http://localhost:55265/api";
   apiUR_staging: string = "https://crystalcardsapi20191004033914.azurewebsites.net/api";
 
   constructor(private httpClient: HttpClient) { }
 
+  NewBasic(Id: number, Title: any, Description: any): Observable<Card>  {
+    let card = new Card();
+    card.description = Description;
+    card.title = Title;
+    card.id = Id;
+    return this.httpClient.post<Card>(`${this.apiUR_staging}/cards`, card);
+  }
   public getCards(): Observable<Card[]> {
     return this.httpClient.get<Card[]>(`${this.apiUR_staging}/cards`);
   }
 
-  public update(title, description, id, points): Observable<Card> {
+    public update(title, description, id, points): Observable<Card> {
     console.log(title, description, id, points);
     let card = new Card();
     card.description = description;

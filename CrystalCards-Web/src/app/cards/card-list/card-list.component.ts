@@ -3,6 +3,7 @@ import { ApiService } from '../../api.service';
 import { Card } from 'src/app/card';
 import { OpenCardComponent } from '../open-card/open-card.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CardsService } from 'src/app/cards.service';
 
 @Component({
   selector: 'app-card-list',
@@ -12,17 +13,24 @@ import { MatDialog } from '@angular/material/dialog';
 export class CardListComponent implements OnInit {
 
   cards: Card[];
-  constructor(private apiService: ApiService, public dialog: MatDialog) { }
+  constructor(private apiService: ApiService,private cardService: CardsService, public dialog: MatDialog) { 
+
+  }
 
   ngOnInit() {
     this.apiService.getCards().subscribe((res) => {
       this.cards = res;
       console.log(res);
     });
+
+    this.cardService.refreshEvent.subscribe(c=>{
+      this.RefreshCardList();
+      console.log("refreshing cards");
+    })
   }
   RefreshCardList()
   {
-
+    console.log('getting cards ');
     this.apiService.getCards().subscribe((res) => {
       this.cards = res;
 

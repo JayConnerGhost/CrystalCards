@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { MatDialog } from '@angular/material';
 import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-card.component';
+import { CardsService } from './cards.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-
 })
 export class AppComponent  implements OnInit {
   title = 'Crystal Ideas';
-  constructor(private apiService: ApiService, public dialog: MatDialog) { }
+  constructor(private apiService: ApiService,private cardService: CardsService, public dialog: MatDialog) { }
 
 
   ngOnInit(): void {}
@@ -25,7 +26,10 @@ export class AppComponent  implements OnInit {
       data:{},
       panelClass : "formFieldWidth550"
     });
-
+    dialogRef.afterClosed().subscribe(result => {
+      //refresh list data .
+      this.cardService.refreshData();
+    });
 
 
   }

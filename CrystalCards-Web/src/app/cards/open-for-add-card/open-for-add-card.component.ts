@@ -7,12 +7,22 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./open-for-add-card.component.css']
 })
 export class OpenForAddCardComponent implements OnInit {
-
+Id=0;
+Title=null;
+Description=null;
   constructor(private apiService: ApiService,
               public dialogRef: MatDialogRef<OpenForAddCardComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+  }
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
+  onSubmit(f){
+    this.apiService.NewBasic(this.Id, this.Title, this.Description).subscribe();
+    this.closeDialog();
   }
 
 }
