@@ -9,12 +9,13 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class ApiService {
   apiURL: string = 'http://localhost:60885/api';
-  apiURL2: string = "http://localhost:55265/api"
+  apiURL2: string = "http://localhost:55265/api";
+  apiUR_staging: string = "https://crystalcardsapi20191004033914.azurewebsites.net/api";
 
   constructor(private httpClient: HttpClient) { }
 
   public getCards(): Observable<Card[]> {
-    return this.httpClient.get<Card[]>(`${this.apiURL2}/cards`);
+    return this.httpClient.get<Card[]>(`${this.apiUR_staging}/cards`);
   }
 
   public update(title, description, id, points): Observable<Card> {
@@ -25,7 +26,7 @@ export class ApiService {
     card.id = id;
     card.npPoints = points;
 
-    return this.httpClient.put<Card>(`${this.apiURL2}/cards/${id}`, card);
+    return this.httpClient.put<Card>(`${this.apiUR_staging}/cards/${id}`, card);
   }
 
 }

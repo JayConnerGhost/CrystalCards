@@ -28,6 +28,7 @@ button {
 
 .mat-tab-group {
     height: 300%;
+    
 }
 
 .mat-tab-body-wrapper {
@@ -40,6 +41,10 @@ button {
     height: 100%;
     box-sizing: border-box;
     /*new*/
+}
+
+.list-group-item{
+    background:#424242;
 }
 
 #tab-group {

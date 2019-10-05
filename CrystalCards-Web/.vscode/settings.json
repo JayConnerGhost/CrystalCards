@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/fe07fe40-d74d-445c-8486-c8d4d3b46084/resourceGroups/CrystalCardsApi20191004033914ResourceGroup/providers/Microsoft.Web/sites/IdeasDevelopment",
+    "appService.deploySubpath": "dist\\CrystalCards-Web"
+}
