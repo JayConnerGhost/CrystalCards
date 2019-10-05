@@ -57,7 +57,6 @@ namespace CrystalCards.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             var entity = new Card(){Description=request.Description, Title = request.Title,Order=request.Order};
              ProcessPoints(_context, request.NPPoints, entity);
             var card= await _context.Cards.AddAsync(entity);
