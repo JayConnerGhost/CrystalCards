@@ -47,3 +47,12 @@ textarea {
 .white-text {
     color: #FFF!important;
 }
+
+.iconButton{
+    border: none;
+    outline:none !important;
+}
+.iconButton:focus,active {
+    border: none;
+    outline:none !important;
+}

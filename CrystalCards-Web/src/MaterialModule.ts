@@ -10,7 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatListModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatButtonToggleModule} from '@angular/material';
 import {OpenCardComponent } from './app/cards/open-card/open-card.component';
 @NgModule({
   imports: [
@@ -24,7 +24,8 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
       MatFormFieldModule,
       MatInputModule,
       MatListModule,
-      MatIconModule
+      MatIconModule,
+      MatButtonToggleModule
     ],
   exports: [
     MatButtonModule,
@@ -37,7 +38,8 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonToggleModule
 
 ],
 

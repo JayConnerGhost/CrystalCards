@@ -1,9 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <mat-toolbar  color="primary">
-    Welcome to {{ title }}!
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span> {{ title }}</span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <app-add-card></app-add-card>     
+    </mat-toolbar-row>
+
   </mat-toolbar>
- 
-  <router-outlet ></router-outlet>
 
-
+  <router-outlet></router-outlet>

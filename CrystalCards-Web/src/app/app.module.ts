@@ -12,12 +12,16 @@ import { OpenCardComponent } from './cards/open-card/open-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorInterceptor } from './httpErrorIntercepter';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AddCardComponent } from './cards/add-card/add-card.component';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
     CardListComponent,
     CardTokenComponent,
     OpenCardComponent,
+    AddCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    ToastrModule.forRoot()
    ],
    entryComponents: [
     OpenCardComponent
