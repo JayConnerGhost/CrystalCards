@@ -14,6 +14,7 @@ import { HttpErrorInterceptor } from './httpErrorIntercepter';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddCardComponent } from './cards/add-card/add-card.component';
 import { ToastrModule } from 'ngx-toastr';
+import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
     CardTokenComponent,
     OpenCardComponent,
     AddCardComponent,
+    OpenForAddCardComponent,
   ],
   imports: [
     BrowserModule,
