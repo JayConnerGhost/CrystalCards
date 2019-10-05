@@ -1,0 +1,17 @@
+.mat-dialog-content {
+    max-height: initial !important;
+}
+
+.mat-dialog-content {
+    height: 75%;
+}
+
+.taDescription {
+    min-width: 400px;
+    min-height: 100px;
+}
+
+.wrapper {
+    min-width: 600px;
+    min-height: 400px;
+}

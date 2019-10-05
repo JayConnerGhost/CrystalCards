@@ -37,7 +37,8 @@ import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-
     ToastrModule.forRoot()
    ],
    entryComponents: [
-    OpenCardComponent
+    OpenCardComponent,
+    OpenForAddCardComponent
   ],
 
   providers: [

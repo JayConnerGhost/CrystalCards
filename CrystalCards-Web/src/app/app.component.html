@@ -5,7 +5,7 @@
       <span> {{ title }}</span>
     </mat-toolbar-row>
     <mat-toolbar-row>
-      <app-add-card></app-add-card>     
+      <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)"></app-add-card>
     </mat-toolbar-row>
 
   </mat-toolbar>

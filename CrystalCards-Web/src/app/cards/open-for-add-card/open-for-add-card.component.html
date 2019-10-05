@@ -1,1 +1,24 @@
-<p>open-for-add-card works!</p>
+<h2 mat-dialog-title>Idea Editor</h2>
+<form validate #f="ngForm" (ngSubmit)="onSubmit(f)">
+<mat-dialog-content >
+<div class="wrapper">
+<div>
+      <mat-form-field class="mat-form-field-infix">
+               <input matInput placeholder="Id" name="Id" [(ngModel)]="Id" readonly />
+       </mat-form-field>
+     <mat-form-field class="mat-form-field-infix">
+              <input matInput placeholder="Name" name="Title" [(ngModel)]="Title"  required/>
+      </mat-form-field>
+</div>
+<div>
+      <mat-form-field  class="mat-form-field-infix">
+          <textarea matInput placeholder="Description" name="Description" [(ngModel)]="Description"  required class="taDescription"></textarea>
+      </mat-form-field>
+</div>
+</div>
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayoutAlign="end">
+  <button mat-raised-button type="submit" class="background-primary-color white-text">Save</button>
+</mat-dialog-actions>
+</form>

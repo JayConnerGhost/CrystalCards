@@ -9,8 +9,8 @@ import { ApiService } from 'src/app/api.service';
 export class OpenForAddCardComponent implements OnInit {
 
   constructor(private apiService: ApiService,
-    public dialogRef: MatDialogRef<OpenForAddCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+              public dialogRef: MatDialogRef<OpenForAddCardComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
