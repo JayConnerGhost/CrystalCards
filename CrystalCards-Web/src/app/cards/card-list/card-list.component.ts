@@ -26,6 +26,7 @@ export class CardListComponent implements OnInit {
     this.cardService.refreshEvent.subscribe(c=>{
       this.RefreshCardList();
       console.log("refreshing cards");
+      console.log(this.cards);
     })
   }
   RefreshCardList()
