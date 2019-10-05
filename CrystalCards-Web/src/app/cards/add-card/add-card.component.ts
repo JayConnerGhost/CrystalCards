@@ -32,6 +32,10 @@ export class AddCardComponent implements OnInit {
             },
         panelClass : "formFieldWidth550"
       });
+      dialogRef.afterClosed().subscribe((result: string) => {
+        // do something 
+        dialogRef = null;
+    });
 
     }
   }
