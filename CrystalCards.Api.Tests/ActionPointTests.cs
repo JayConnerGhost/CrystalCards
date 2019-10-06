@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
+using CrystalCards.Models;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -10,6 +11,60 @@ namespace CrystalCards.Api.Tests
     public class ActionPointTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
+
+        [Fact]
+        public async Task Can_delete_a_actionPoint_from_a_card()
+        {
+            //arrange
+            int expectedActionPointCount = 1;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var newRequest = new
+            {
+                Url = $"api/cards",
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    ActionPoints = new[]{
+                        new NPPointRequest(){Description = "test actionPoint"},
+                        new NPPointRequest(){Description = "test actionPoint"}
+                    }
+                }
+            };
+
+            var newResult = await Client.PostAsync(newRequest.Url, ContentHelper.GetStringContent(newRequest.Body));
+            var newCard = JsonConvert.DeserializeObject<Card>(await newResult.Content.ReadAsStringAsync());
+
+            var request = new
+            {
+                Url = $"api/cards/{newCard.Id}",
+            };
+            var updateRequest = new
+            {
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    ActionPoints = new[]{
+                        new NPPointRequest(){Id= 1, Description = "test actionPoint"},
+                    }
+                }
+            };
+            //act
+            var updateResult = await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+
+            //assert
+            var response = await Client.GetAsync(request.Url);
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedActionPointCount, card.ActionPoints.Count);
+
+        }
 
         [Fact]
         public async Task Can_add_a_actionPoint_to_a_card()
