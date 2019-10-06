@@ -35,18 +35,18 @@ export class OpenCardComponent implements OnInit {
   CloseDialog() {
     this.dialogRef.close();
   }
-  addPositive(newPositive){
+  addPositive(newPositive) {
     var newPoint = new NPPoint();
     newPoint.description = newPositive.value;
     newPoint.direction = "Positive";
     this.PositivePoints.push(newPoint)
   }
 
-  onPositivePointRemove(id){
-    const target= this.PositivePoints.find(x=>x.id===id);
-    const index=this.PositivePoints.indexOf(target);
-    if(index > -1){
-      this.PositivePoints.splice(index,1);
+  onPositivePointRemove(id) {
+    const target = this.PositivePoints.find(x => x.id === id);
+    const index = this.PositivePoints.indexOf(target);
+    if (index > -1) {
+      this.PositivePoints.splice(index, 1);
     }
   }
 
@@ -57,12 +57,12 @@ export class OpenCardComponent implements OnInit {
     newPoint.direction = "Negative";
     this.NegativePoints.push(newPoint);
   }
-  onNegativePointRemove(id){
-   const target= this.NegativePoints.find(x=>x.id===id);
-   const index=this.NegativePoints.indexOf(target);
-   if(index > -1){
-     this.NegativePoints.splice(index,1);
-   }
+  onNegativePointRemove(id) {
+    const target = this.NegativePoints.find(x => x.id === id);
+    const index = this.NegativePoints.indexOf(target);
+    if (index > -1) {
+      this.NegativePoints.splice(index, 1);
+    }
 
   }
 
