@@ -3,6 +3,7 @@ import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/api.service';
 import { NPPoint } from '../NPPoint';
+import { ActionPoint } from '../ActionPoint';
 @Component({
   selector: 'app-open-card',
   templateUrl: './open-card.component.html',
@@ -21,12 +22,14 @@ export class OpenCardComponent implements OnInit {
   Points = this.data.points;
   NegativePoints = null;
   PositivePoints = null;
+  ActionPoints = this.data.actionPoints;
   Order = this.data.order;
 
 
   ngOnInit() {
     this.splitPointsToLists(this.Points);
   }
+
 
   CardUpdated() {
     this.UpdatePerformed.emit();
@@ -66,10 +69,24 @@ export class OpenCardComponent implements OnInit {
 
   }
 
+  addActionPoint(actionPoint){
+    var newActionPoint=new ActionPoint();
+    newActionPoint.description=actionPoint.value;
+    this.ActionPoints.push(newActionPoint);
+  }
+
+  onActionPointRemove(id){
+    const target = this.ActionPoints.find(x=>x.id===id);
+    const index = this.ActionPoints.indexOf(target);
+    if(index >-1)
+    {
+      this.ActionPoints.splice(index,1);
+    }
+  }
 
   onSubmit(f) {
     const editedPoints = (this.NegativePoints.concat(this.PositivePoints));
-    this.apiService.update(this.Title, this.Description, this.Id, editedPoints).subscribe();
+    this.apiService.update(this.Title, this.Description, this.Id, editedPoints, this.ActionPoints).subscribe();
   }
 
   splitPointsToLists(points) {

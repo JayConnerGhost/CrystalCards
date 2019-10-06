@@ -53,6 +53,7 @@ console.log("pre-dialog", card);
           title:card.title,
           description:card.description,
           points:card.npPoints,
+          actionPoints:card.actionPoints,
           order:card.order
       },
       panelClass : "formFieldWidth550"

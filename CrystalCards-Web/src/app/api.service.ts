@@ -26,13 +26,14 @@ export class ApiService {
     return this.httpClient.get<Card[]>(`${this.apiUR_staging}/cards`);
   }
 
-    public update(title, description, id, points): Observable<Card> {
+    public update(title, description, id, points, actionPoints): Observable<Card> {
     console.log(title, description, id, points);
     let card = new Card();
     card.description = description;
     card.title = title;
     card.id = id;
     card.npPoints = points;
+    card.actionPoints=actionPoints;
 
     return this.httpClient.put<Card>(`${this.apiUR_staging}/cards/${id}`, card);
   }

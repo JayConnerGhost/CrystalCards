@@ -1,7 +1,4 @@
-export class NPPoint{
+export class ActionPoint {
   public id: number;
-  public direction: string;
   public description: string;
 }
-
-
