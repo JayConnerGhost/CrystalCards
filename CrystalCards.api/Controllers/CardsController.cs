@@ -46,6 +46,7 @@ namespace CrystalCards.Api.Controllers
             entry.Title = request.Title;
             entry.Order = request.Order;
             ProcessPoints(_context, request.NPPoints, entry);
+            ProcessActionPoints(_context,request.ActionPoints,entry);
             await _context.SaveChangesAsync();
             return Ok(ConvertResponse(entry));
 

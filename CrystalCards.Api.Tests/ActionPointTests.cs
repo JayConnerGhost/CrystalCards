@@ -12,6 +12,46 @@ namespace CrystalCards.Api.Tests
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
 
         [Fact]
+        public async Task Can_add_a_actionPoint_to_a_card()
+        {
+            //arrange
+            int expectedActionPointCount = 2;
+            string testCardTitle = "Edited Title";
+            string testCardDescription = "Edited Description";
+            var Client = _factory.CreateClient();
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
+
+            var request = new
+            {
+                Url = $"api/cards/{id}",
+            };
+            var updateRequest = new
+            {
+                Body = new
+                {
+
+                    Title = testCardTitle,
+                    Description = testCardDescription,
+
+                    ActionPoints = new[]
+                    {
+                        new ActionPointRequest() {Description = "test actionPoint"},
+                        new ActionPointRequest() {Description = "test actionPoint2"}
+                    }
+                }
+            };
+            //act
+            var updateResult = await Client.PutAsync(request.Url, ContentHelper.GetStringContent(updateRequest.Body));
+            
+            //Assert
+            var response = await Client.GetAsync(request.Url);
+            var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(expectedActionPointCount, card.ActionPoints.Count);
+
+        }
+
+
+        [Fact]
         public async Task Can_create_a_card_with_a_actionPoint()
         {
             //arrange 
@@ -24,13 +64,13 @@ namespace CrystalCards.Api.Tests
                 Url = $"api/cards",
                 Body = new
                 {
-
                     Title = testCardTitle,
                     Description = testCardDescription,
 
-                    ActionPoints = new[]{
-                        new ActionPointRequest(){Description = "test actionPoint"},
-                        new ActionPointRequest(){Description = "test actionPoint2"}
+                    ActionPoints = new[]
+                    {
+                        new ActionPointRequest() {Description = "test actionPoint"},
+                        new ActionPointRequest() {Description = "test actionPoint2"}
                     }
                 }
             };
@@ -45,8 +85,6 @@ namespace CrystalCards.Api.Tests
             var card = JsonConvert.DeserializeObject<CardResponse>(await response.Content.ReadAsStringAsync());
 
             Assert.Equal(expectedActionPointCount, card.ActionPoints.Count);
-
         }
-
     }
 }
