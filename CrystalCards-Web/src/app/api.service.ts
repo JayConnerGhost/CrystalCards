@@ -20,10 +20,10 @@ export class ApiService {
     card.description = Description;
     card.title = Title;
     card.id = Id;
-    return this.httpClient.post<Card>(`${this.apiUR_staging}/cards`, card);
+    return this.httpClient.post<Card>(`${this.apiURL2}/cards`, card);
   }
   public getCards(): Observable<Card[]> {
-    return this.httpClient.get<Card[]>(`${this.apiUR_staging}/cards`);
+    return this.httpClient.get<Card[]>(`${this.apiURL2}/cards`);
   }
 
     public update(title, description, id, points, actionPoints): Observable<Card> {
@@ -35,7 +35,7 @@ export class ApiService {
     card.npPoints = points;
     card.actionPoints=actionPoints;
 
-    return this.httpClient.put<Card>(`${this.apiUR_staging}/cards/${id}`, card);
+    return this.httpClient.put<Card>(`${this.apiURL2}/cards/${id}`, card);
   }
 
 }
