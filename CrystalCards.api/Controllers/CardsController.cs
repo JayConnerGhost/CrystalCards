@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
@@ -38,6 +39,7 @@ namespace CrystalCards.Api.Controllers
 
             var entry = await _context.Cards
                 .Include(x=>x.Points)
+                .Include(x=>x.ActionPoints)
                 .FirstOrDefaultAsync(x => x.Id == id);
             _context.Cards.Update(entry);
             entry.Description = request.Description;
@@ -59,10 +61,9 @@ namespace CrystalCards.Api.Controllers
             }
             var entity = new Card(){Description=request.Description, Title = request.Title,Order=request.Order};
              ProcessPoints(_context, request.NPPoints, entity);
+             ProcessActionPoints(_context, request.ActionPoints, entity);
             var card= await _context.Cards.AddAsync(entity);
-            _context.SaveChanges();
-
-
+            await _context.SaveChangesAsync();
             return Created(Url.RouteUrl(card.Entity.Id), ConvertResponse(card.Entity));
         }
 
@@ -71,6 +72,7 @@ namespace CrystalCards.Api.Controllers
         {
             var result = await _context.Cards
                 .Include(x=>x.Points)
+                .Include(x=>x.ActionPoints)
                 .ToListAsync();
             var resultConverted = ConvertResponses(result);
             return Ok(resultConverted);
@@ -81,11 +83,48 @@ namespace CrystalCards.Api.Controllers
         {
             var result=await _context.Cards
                 .Include(x=>x.Points)
+                .Include(x=>x.ActionPoints)
                 .FirstOrDefaultAsync(x => x.Id == id);
             var resultConverted = ConvertResponse(result);
             return Ok(resultConverted);
         }
 
+
+        private void ProcessActionPoints(ApplicationDbContext context, IList<ActionPointRequest> requestActionPoints, Card entity)
+        {
+            var actionPoints = ConvertActionPointRequests(requestActionPoints);
+            var idPointToRemove = new List<int>();
+            foreach (var entryPoints in entity.ActionPoints)
+            {
+
+                if (actionPoints.FirstOrDefault(x => x.Id == entryPoints.Id) == null)
+                {
+                    idPointToRemove.Add(entryPoints.Id);
+                }
+            }
+            foreach (var id in idPointToRemove)
+            {
+                entity.ActionPoints.Remove(entity.ActionPoints.FirstOrDefault(x => x.Id == id));
+            }
+
+            //TODO...
+            foreach (var point in actionPoints)
+            {
+                var noIdAssignedNewPoint = 0;
+                //if new point
+                if (point.Id == noIdAssignedNewPoint)
+                {
+                    entity.ActionPoints.Add(point);
+                }
+                else
+                    //if point edited
+                {
+                    var positiveToUpdate = entity.ActionPoints.FirstOrDefault(x => x.Id == point.Id);
+                    positiveToUpdate.Description = point.Description;
+                }
+            }
+
+        }
 
         private void ProcessPoints(ApplicationDbContext context, IList<NPPointRequest> requestNpPoints, Card entry)
         {
@@ -126,6 +165,21 @@ namespace CrystalCards.Api.Controllers
             }
         }
 
+        private List<ActionPoint> ConvertActionPointRequests(IList<ActionPointRequest> requestActionPoints)
+        {
+            var actionPoints = new List<ActionPoint>();
+            foreach (var request in requestActionPoints)
+            {
+                actionPoints.Add(new ActionPoint()
+                {
+                    Id=request.Id,
+                    Description = request.Description
+                });
+            }
+
+            return actionPoints;
+        }
+
         private List<CardResponse> ConvertResponses(List<Card> result)
         {
             var convertedResponses = new List<CardResponse>();
@@ -162,9 +216,25 @@ namespace CrystalCards.Api.Controllers
                 Title = result.Title,
                 Id = result.Id,
                 Order = result.Order,
+                ActionPoints=ConvertActionPoints(result.ActionPoints),
                 NPPoints = ConvertPoints(result.Points)
 
             };
+        }
+
+        private IList<ActionPointResponse> ConvertActionPoints(IList<ActionPoint> resultActionPoints)
+        {
+            var responses = new List<ActionPointResponse>();
+            foreach (var actionPoint in resultActionPoints)
+            {
+                responses.Add(new ActionPointResponse()
+                {
+                    Id = actionPoint.Id,
+                    Description=actionPoint.Description
+                });
+            }
+
+            return responses;
         }
 
         private IEnumerable<NPPoint> ConvertPointRequests(IList<NPPointRequest> requestNpPoints)

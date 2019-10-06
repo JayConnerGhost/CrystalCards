@@ -11,6 +11,7 @@ namespace CrystalCards.Api.Dtos
         public NewCardRequest()
         {
             NPPoints=new List<NPPointRequest>();
+            ActionPoints=new List<ActionPointRequest>();
         }
         [Required]
         public string Title { get; set; }
@@ -18,6 +19,7 @@ namespace CrystalCards.Api.Dtos
         public string Description { get; set; }
         public int Order { get; set; }
         public IList<NPPointRequest> NPPoints { get; set; }
+        public IList<ActionPointRequest> ActionPoints { get; set; }
     }
 }
 
