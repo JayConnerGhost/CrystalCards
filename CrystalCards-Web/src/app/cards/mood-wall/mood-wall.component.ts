@@ -2,8 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { HttpEventType, HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
 import { ConfigService } from 'src/app/config.service';
-import { FilePreviewOverleyService } from 'src/app/file-preview-overley.service';
-import { FilePreviewOverlayRef } from 'src/app/FilePreviewOverlayRef';
 
 
 @Component({
@@ -25,7 +23,6 @@ export class MoodWallComponent implements OnInit {
     private http: HttpClient,
     private apiService: ApiService,
     private configService: ConfigService,
-    private filePreviewOverlayService: FilePreviewOverleyService
     ) {}
 
   ngOnInit() {
@@ -41,12 +38,8 @@ export class MoodWallComponent implements OnInit {
 
   ImageClicked(url){
     console.log(url);
-    let dialogRef: FilePreviewOverlayRef = this.filePreviewOverlayService.open();
 
-       // Close overlay after 2 seconds
-    setTimeout(() => {
-        dialogRef.close();
-      }, 2000);
+
   }
 
   public uploadFile = files => {
