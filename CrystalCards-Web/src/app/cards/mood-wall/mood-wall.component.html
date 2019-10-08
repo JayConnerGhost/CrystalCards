@@ -13,9 +13,9 @@
     </div>
 </div>
 <div>
-    <ul>
+    <ul class="imageList">
         <li *ngFor="let imageurl of images">
-            {{imageurl}}
+            <img src={{imageurl}} alt="thumbnail" class="img-thumbnail" style="width: 200px">
         </li>
     </ul>
 </div>
