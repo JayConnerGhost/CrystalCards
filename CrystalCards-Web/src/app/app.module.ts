@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-card.component';
 import { MoodWallComponent } from './cards/mood-wall/mood-wall.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { FilePreviewOverleyComponent } from './file-preview-overley/file-preview-overley.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AddCardComponent,
     OpenForAddCardComponent,
     MoodWallComponent,
+    FilePreviewOverleyComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
    entryComponents: [
     OpenCardComponent,
     OpenForAddCardComponent,
+    FilePreviewOverleyComponent
   ],
 
   providers: [

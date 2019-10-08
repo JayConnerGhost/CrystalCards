@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { HttpEventType, HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
 import { ConfigService } from 'src/app/config.service';
+import { FilePreviewOverleyService } from 'src/app/file-preview-overley.service';
+import { FilePreviewOverlayRef } from 'src/app/FilePreviewOverlayRef';
 
 
 @Component({
@@ -19,7 +21,12 @@ export class MoodWallComponent implements OnInit {
 
   @Output() public UploadFinished = new EventEmitter();
 
-  constructor(private http: HttpClient, private apiService: ApiService, private configService: ConfigService) {}
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService,
+    private configService: ConfigService,
+    private filePreviewOverlayService: FilePreviewOverleyService
+    ) {}
 
   ngOnInit() {
     this.getImageURLs();
@@ -28,12 +35,18 @@ export class MoodWallComponent implements OnInit {
   getImageURLs() {
     this.apiService.GetImageURLs().subscribe(res => {
       this.images = res.map(x=> `${this.configService.Images}/${x}`);
+
     });
   }
 
   ImageClicked(url){
     console.log(url);
+    let dialogRef: FilePreviewOverlayRef = this.filePreviewOverlayService.open();
 
+       // Close overlay after 2 seconds
+    setTimeout(() => {
+        dialogRef.close();
+      }, 2000);
   }
 
   public uploadFile = files => {
