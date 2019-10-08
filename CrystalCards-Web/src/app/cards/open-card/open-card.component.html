@@ -1,113 +1,114 @@
 <h2 mat-dialog-title>Idea Editor</h2>
 <form validate #f="ngForm" (ngSubmit)="onSubmit(f)">
-<mat-dialog-content >
-<mat-tab-group id="tab-group">
-  <mat-tab label="Idea">
-    <div>
-      <mat-form-field class="mat-form-field-infix">
-               <input matInput placeholder="Id" name="Id" [(ngModel)]="Id" readonly />
-       </mat-form-field>
-     <mat-form-field class="mat-form-field-infix">
-              <input matInput placeholder="Name" name="Title" [(ngModel)]="Title"  required/>
-      </mat-form-field>
-</div>
-<div>
-      <mat-form-field  class="mat-form-field-infix">
-          <textarea matInput placeholder="Description" name="Description" [(ngModel)]="Description"  required class="taDescription"></textarea>
-      </mat-form-field>
-</div>
-  </mat-tab>
-    <mat-tab label="Pros and Cons">
-    <div class="row">
-        <div class="col-xs-6 col-md-4 col-lg-12">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="enter Negative" ngModel name="NegativePoints" #negative/>
-                <div class="input-group-btn">
-                    <button class="btn btn-primary" type="button" (click)="addNegative(negative)">
+    <mat-dialog-content>
+        <mat-tab-group id="tab-group">
+            <mat-tab label="Idea">
+                <div>
+                    <mat-form-field class="mat-form-field-infix">
+                        <input matInput placeholder="Id" name="Id" [(ngModel)]="Id" readonly />
+                    </mat-form-field>
+                    <mat-form-field class="mat-form-field-infix">
+                        <input matInput placeholder="Name" name="Title" [(ngModel)]="Title" required/>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="mat-form-field-infix">
+                        <textarea matInput placeholder="Description" name="Description" [(ngModel)]="Description" required class="taDescription"></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+            <mat-tab label="Pros and Cons">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4 col-lg-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="enter Negative" ngModel name="NegativePoints" #negative/>
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary" type="button" (click)="addNegative(negative)">
         <span class="glyphicon glyphicon-ok"></span>
         </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-      <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
-                  <li *ngFor="let point of NegativePoints" class="list-group-item ">
+                <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                    <li *ngFor="let point of NegativePoints" class="list-group-item ">
                         <span> {{ point.description }} </span>
                         <span>  <button class="btn btn-primary" type="button" (click)="onNegativePointRemove(point.id)">
                                <span class="glyphicon glyphicon-remove"></span>
-                              </button>
+                        </button>
                         </span>
-                  <li>
-      </ul>
-<!---positve-->
+                        <li>
+                </ul>
+                <!---positve-->
 
-<div class="row">
-  <div class="col-xs-6 col-md-4 col-lg-12">
-      <div class="input-group">
-          <input type="text" class="form-control" placeholder="enter Positive" ngModel name="PositivePoints" #positive/>
-          <div class="input-group-btn">
-              <button class="btn btn-primary" type="button" (click)="addPositive(positive)">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4 col-lg-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="enter Positive" ngModel name="PositivePoints" #positive/>
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary" type="button" (click)="addPositive(positive)">
   <span class="glyphicon glyphicon-ok"></span>
   </button>
-          </div>
-      </div>
-  </div>
-</div>
-<ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
-            <li *ngFor="let point of PositivePoints" class="list-group-item ">
-                  <span> {{ point.description }} </span>
-                  <span>  <button class="btn btn-primary" type="button" (click)="onPositivePointRemove(point.id)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                    <li *ngFor="let point of PositivePoints" class="list-group-item ">
+                        <span> {{ point.description }} </span>
+                        <span>  <button class="btn btn-primary" type="button" (click)="onPositivePointRemove(point.id)">
                          <span class="glyphicon glyphicon-remove"></span>
                         </button>
-                  </span>
-            <li>
-</ul>
+                        </span>
+                        <li>
+                </ul>
 
 
-</mat-tab>
-    <mat-tab label="Action Points">
-      <div class="row">
-        <div class="col-xs-6 col-md-4 col-lg-12">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter ActionPoint" ngModel name="ActionPoints" #ActionPoint/>
-                <div class="input-group-btn">
-                    <button class="btn btn-primary" type="button" (click)="addActionPoint(ActionPoint)">
+            </mat-tab>
+            <mat-tab label="Action Points">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4 col-lg-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter ActionPoint" ngModel name="ActionPoints" #ActionPoint/>
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary" type="button" (click)="addActionPoint(ActionPoint)">
         <span class="glyphicon glyphicon-ok"></span>
         </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-      </div>
-      <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
-                  <li *ngFor="let point of ActionPoints" class="list-group-item ">
+                <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                    <li *ngFor="let point of ActionPoints" class="list-group-item ">
                         <span> {{ point.description }} </span>
                         <span>  <button class="btn btn-primary" type="button" (click)="onActionPointRemove(point.id)">
                                <span class="glyphicon glyphicon-remove"></span>
-                              </button>
+                        </button>
                         </span>
-                  <li>
-      </ul>
-      
-      
-  </mat-tab>
-    <mat-tab label="Attachments">
-    <h1>Some tab content</h1>
-    <p>...</p>
-  </mat-tab>
-    <mat-tab label="Moodwall">
-    <h1>Some tab content</h1>
-    <p>...</p>
-  </mat-tab>
-  <mat-tab label="Links">
-    <h1>Some tab content</h1>
-    <p>...</p>
-  </mat-tab>
-</mat-tab-group>
-</mat-dialog-content>
+                        <li>
+                </ul>
 
-<mat-dialog-actions fxLayoutAlign="end">
-  <button mat-raised-button (click)='CloseDialog()' class="background-primary-color white-text" >Close</button>
-  <button mat-raised-button type="submit" class="background-primary-color white-text">Save</button>
 
-</mat-dialog-actions>
+            </mat-tab>
+
+            <mat-tab label="Moodwall">
+                <!--//add modewall component , functionality seperate from the containing form KM-->
+                <app-mood-wall></app-mood-wall>
+            </mat-tab>
+            <mat-tab label="Attachments">
+                <h1>Some tab content</h1>
+                <p>...</p>
+            </mat-tab>
+            <mat-tab label="Links">
+                <h1>Some tab content</h1>
+                <p>...</p>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-dialog-content>
+
+    <mat-dialog-actions fxLayoutAlign="end">
+        <button mat-raised-button (click)='CloseDialog()' class="background-primary-color white-text">Close</button>
+        <button mat-raised-button type="submit" class="background-primary-color white-text">Save</button>
+
+    </mat-dialog-actions>
 </form>

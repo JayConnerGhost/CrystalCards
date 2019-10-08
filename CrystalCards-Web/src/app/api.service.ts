@@ -8,8 +8,8 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
- 
-  apiURL: string = 'http://localhost:60885/api';
+
+  apiURL: string = 'http://localhost:50872/api';
   apiURL2: string = "http://localhost:55265/api";
   apiUR_staging: string = "https://crystalcardsapi20191004033914.azurewebsites.net/api";
 
@@ -20,10 +20,10 @@ export class ApiService {
     card.description = Description;
     card.title = Title;
     card.id = Id;
-    return this.httpClient.post<Card>(`${this.apiURL2}/cards`, card);
+    return this.httpClient.post<Card>(`${this.apiURL}/cards`, card);
   }
   public getCards(): Observable<Card[]> {
-    return this.httpClient.get<Card[]>(`${this.apiURL2}/cards`);
+    return this.httpClient.get<Card[]>(`${this.apiURL}/cards`);
   }
 
     public update(title, description, id, points, actionPoints): Observable<Card> {
@@ -35,7 +35,7 @@ export class ApiService {
     card.npPoints = points;
     card.actionPoints=actionPoints;
 
-    return this.httpClient.put<Card>(`${this.apiURL2}/cards/${id}`, card);
+    return this.httpClient.put<Card>(`${this.apiURL}/cards/${id}`, card);
   }
 
 }
