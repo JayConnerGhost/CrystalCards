@@ -16,6 +16,7 @@ import { AddCardComponent } from './cards/add-card/add-card.component';
 import { ToastrModule } from 'ngx-toastr';
 import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-card.component';
 import { MoodWallComponent } from './cards/mood-wall/mood-wall.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -36,11 +37,12 @@ import { MoodWallComponent } from './cards/mood-wall/mood-wall.component';
     HttpClientModule,
     FormsModule,
     DragDropModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+
    ],
    entryComponents: [
     OpenCardComponent,
-    OpenForAddCardComponent
+    OpenForAddCardComponent,
   ],
 
   providers: [

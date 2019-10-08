@@ -3,6 +3,7 @@ import { HttpEventType, HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
 import { ConfigService } from 'src/app/config.service';
 
+
 @Component({
   selector: "app-mood-wall",
   templateUrl: "./mood-wall.component.html",
@@ -28,6 +29,11 @@ export class MoodWallComponent implements OnInit {
     this.apiService.GetImageURLs().subscribe(res => {
       this.images = res.map(x=> `${this.configService.Images}/${x}`);
     });
+  }
+
+  ImageClicked(url){
+    console.log(url);
+
   }
 
   public uploadFile = files => {
