@@ -17,6 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-card.component';
 import { MoodWallComponent } from './cards/mood-wall/mood-wall.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { FilePreviewOverlayComponent } from './file-preview-overlay.component';
+import { FilePreviewOverlayService } from './file-preview-overlay.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AddCardComponent,
     OpenForAddCardComponent,
     MoodWallComponent,
+    FilePreviewOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +46,11 @@ import { OverlayModule } from '@angular/cdk/overlay';
    entryComponents: [
     OpenCardComponent,
     OpenForAddCardComponent,
+    FilePreviewOverlayComponent
   ],
 
   providers: [
+    FilePreviewOverlayService,
     {
     provide: HTTP_INTERCEPTORS,
      useClass: HttpErrorInterceptor,

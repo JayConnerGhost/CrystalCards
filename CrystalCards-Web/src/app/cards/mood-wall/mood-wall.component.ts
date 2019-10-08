@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { HttpEventType, HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
 import { ConfigService } from 'src/app/config.service';
+import { FilePreviewOverlayRef } from 'src/app/file-preview-overlay-ref';
+import { FilePreviewOverlayService } from 'src/app/file-preview-overlay.service';
 
 
 @Component({
@@ -23,6 +25,7 @@ export class MoodWallComponent implements OnInit {
     private http: HttpClient,
     private apiService: ApiService,
     private configService: ConfigService,
+    private previewDialog: FilePreviewOverlayService
     ) {}
 
   ngOnInit() {
@@ -38,7 +41,12 @@ export class MoodWallComponent implements OnInit {
 
   ImageClicked(url){
     console.log(url);
-
+    var selectedImage=new Image();
+    selectedImage.url=url;
+    selectedImage.name="test";
+    let dialogRef: FilePreviewOverlayRef = this.previewDialog.open({
+      image: selectedImage
+    });
 
   }
 
