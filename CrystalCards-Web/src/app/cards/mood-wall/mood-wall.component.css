@@ -4,3 +4,14 @@
     margin-left: 15px;
     line-height: 36px;
 }
+
+ul {
+    list-style: none;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul>li {
+    display: inline;
+}

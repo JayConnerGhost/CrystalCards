@@ -6,12 +6,17 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
 
   constructor() { }
-  apiURL: string = 'http://localhost:50872/api';
-  apiURL2: string = "http://localhost:55265/api";
-  apiUR_staging: string = "https://crystalcardsapi20191004033914.azurewebsites.net/api";
+  Url:string ='http://localhost:50872';
+  Url2:string ='http://localhost:55265';
+  Url3:string ='https://crystalcardsapi20191004033914.azurewebsites.net';
+
+
+  apiURL: string = `${this.Url}/api`;
+  apiURL2: string = `${this.Url2}/api`;
+  apiUR_staging: string = `${this.Url3}/api`;
 
   public master_apiURL: string =`${this.apiURL}`;
-  public Resources: string=`/${this.master_apiURL}/Resources`;
+  public Resources: string=`${this.Url}/Resources`;
   public Images: string=`${this.Resources}/Images`;
 
 }
