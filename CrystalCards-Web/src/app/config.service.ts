@@ -11,7 +11,7 @@ export class ConfigService {
   apiUR_staging: string = "https://crystalcardsapi20191004033914.azurewebsites.net/api";
 
   public master_apiURL: string =`${this.apiURL}`;
-  public Resources: string=`${this.master_apiURL}\Resources`;
-  public Images: string=`${this.Resources}\Images`
+  public Resources: string=`/${this.master_apiURL}/Resources`;
+  public Images: string=`${this.Resources}/Images`;
 
 }

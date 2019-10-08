@@ -26,7 +26,7 @@ export class MoodWallComponent implements OnInit {
 
   getImageURLs() {
     this.apiService.GetImageURLs().subscribe(res => {
-      this.images = res;
+      this.images = res.map(x=> `${this.configService.Images}/${x}`);
     });
   }
 
