@@ -94,17 +94,20 @@ namespace CrystalCards.api
                 RequestPath=new PathString("/Resources")
 
             });
+            //This line enables the app to use Swagger, with the configuration in the ConfigureServices method.
+            app.UseSwagger();
+
+            app.UseSwaggerUI(s => {
+                s.RoutePrefix = "help";
+                s.SwaggerEndpoint("../swagger/v1/swagger.json", "Crystal Cards Documentation v0.2");
+                s.InjectStylesheet("../css/swagger.min.css");
+            });
 
 
             //This line enables the app to use Swagger, with the configuration in the ConfigureServices method.
             app.UseSwagger();
 
-            //This line enables Swagger UI, which provides us with a nice, simple UI with which we can view our API calls.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Crystal Cards Documentation v0.2");
-            });
-
+          
         }
     }
 }

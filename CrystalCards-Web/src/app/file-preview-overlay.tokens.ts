@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-import { Image } from './file-preview-overlay.service';
+import { Image2 } from './file-preview-overlay.service';
 
-export const FILE_PREVIEW_DIALOG_DATA = new InjectionToken<Image>('FILE_PREVIEW_DIALOG_DATA');
+export const FILE_PREVIEW_DIALOG_DATA = new InjectionToken<Image2>('FILE_PREVIEW_DIALOG_DATA');

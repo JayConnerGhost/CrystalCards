@@ -8,15 +8,15 @@ export class ConfigService {
   constructor() { }
   Url:string ='http://localhost:50872';
   Url2:string ='http://localhost:55265';
-  Url3:string ='https://crystalcardsapi20191004033914.azurewebsites.net';
+  Url3:string ='http://www.katiekatcoder.co.uk/ideas';
 
 
   apiURL: string = `${this.Url}/api`;
   apiURL2: string = `${this.Url2}/api`;
   apiUR_staging: string = `${this.Url3}/api`;
 
-  public master_apiURL: string =`${this.apiURL}`;
-  public Resources: string=`${this.Url}/Resources`;
+  public master_apiURL: string =`${this.apiUR_staging}`;
+  public Resources: string=`${this.Url3}/Resources`;
   public Images: string=`${this.Resources}/Images`;
 
 }
