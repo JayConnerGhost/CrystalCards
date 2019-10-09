@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace CrystalCards.Api.Controllers
 {
@@ -23,19 +24,22 @@ namespace CrystalCards.Api.Controllers
     {
 
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<CardsController> _logger;
 
-        public CardsController(ApplicationDbContext context)
+        public CardsController(ApplicationDbContext context, ILogger<CardsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] UpdateCardRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            _logger.LogInformation($"in put controller {request} ");
+           // if (!ModelState.IsValid)
+           // {
+           //     return BadRequest(ModelState);
+           // }
 
             var entry = await _context.Cards
                 .Include(x=>x.Points)

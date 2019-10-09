@@ -8,7 +8,7 @@ export class ConfigService {
   constructor() { }
   Url:string ='http://localhost:50872';
   Url2:string ='http://localhost:55265';
-  Url3:string ='http://www.katiekatcoder.co.uk/ideas';
+  Url3:string ='http://ideas-api00.azurewebsites.net';
 
 
   apiURL: string = `${this.Url}/api`;
