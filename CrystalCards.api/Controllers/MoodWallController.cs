@@ -25,10 +25,10 @@ namespace CrystalCards.Api.Controllers
 
         //this will eventually take a user id KM
 
-        [HttpGet]
-        public IActionResult ReturnImageUrl()
+        [HttpGet("{cardId}")]
+        public IActionResult ReturnImageUrl(int cardId)
         {   
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources\images");
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $@"Resources\images\{cardId.ToString()}");
             var fileNames = Directory.EnumerateFiles((folderPath)).Select(Path.GetFileName).ToList();
             return Ok(fileNames);
         }
@@ -40,9 +40,11 @@ namespace CrystalCards.Api.Controllers
             {
                 //Work to be done here once authentication is inplace to make a path per user, for now doing simplist thing possible.
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("Resources", "Images");
+                var cardId = Request.Form["cardId"];
+                var folderName = Path.Combine("Resources", "Images",cardId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                
+                Directory.CreateDirectory(pathToSave);
+
                 //better safe guarding to go in here including but not limited to file extension checking
                 if (file.Length > 0)
                 {

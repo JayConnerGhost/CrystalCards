@@ -35,8 +35,9 @@ export class ApiService {
     return this.httpClient.put<Card>(`${this.configService.master_apiURL}/cards/${id}`, card);
   }
 
-  GetImageURLs(): any {
-    return this.httpClient.get<string[]>(`${this.configService.master_apiURL}/moodwall`);
+  GetImageURLs(cardId): any {
+    console.log(cardId);
+    return this.httpClient.get<string[]>(`${this.configService.master_apiURL}/moodwall/${cardId}`);
   }
 
 }

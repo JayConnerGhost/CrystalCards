@@ -24,7 +24,7 @@ export class OpenCardComponent implements OnInit {
   PositivePoints = null;
   ActionPoints = this.data.actionPoints;
   Order = this.data.order;
-
+@Output() id=this.Id;
 
   ngOnInit() {
     this.splitPointsToLists(this.Points);

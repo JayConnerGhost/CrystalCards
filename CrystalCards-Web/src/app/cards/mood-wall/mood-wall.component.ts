@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { HttpEventType, HttpClient } from "@angular/common/http";
 import { ApiService } from "src/app/api.service";
 import { ConfigService } from 'src/app/config.service';
@@ -19,7 +19,7 @@ export class MoodWallComponent implements OnInit {
   public progress: number;
   public message: string;
   public images: string[];
-
+  @Input() cardId: string;
   @Output() public UploadFinished = new EventEmitter();
 
   constructor(
@@ -31,11 +31,13 @@ export class MoodWallComponent implements OnInit {
 
   ngOnInit() {
     this.getImageURLs();
+
   }
 
   getImageURLs() {
-    this.apiService.GetImageURLs().subscribe(res => {
-      this.images = res.map(x=> `${this.configService.Images}/${x}`);
+    console.log(this.cardId);
+    this.apiService.GetImageURLs(this.cardId).subscribe(res => {
+      this.images = res.map(x=> `${this.configService.Images}/${this.cardId}/${x}`);
 
     });
   }
@@ -58,7 +60,7 @@ export class MoodWallComponent implements OnInit {
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
-
+    formData.append("cardId",this.cardId)
     //horrible
     this.http
       .post(`${this.configService.master_apiURL}/MoodWall`, formData, {

@@ -36,12 +36,6 @@
     <None Update="CrystalCards.Api.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Images\cool-black-backgrounds-lhkiki-high-resolution-images-free-stock-photos-desktop-images-desktop-images-for-mac-amazing-widescreen-hd-digital-1920x1080.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\Images\RIXKyv.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
