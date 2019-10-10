@@ -15,8 +15,8 @@ export class ConfigService {
   apiURL2: string = `${this.Url2}/api`;
   apiUR_staging: string = `${this.Url3}/api`;
 
-  public master_apiURL: string =`${this.apiURL}`;
-  public Resources: string=`${this.Url}/Resources`;
+  public master_apiURL: string =`${this.apiUR_staging}`;
+  public Resources: string=`${this.Url3}/Resources`;
   public Images: string=`${this.Resources}/Images`;
 
 }

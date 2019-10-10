@@ -36,10 +36,10 @@ namespace CrystalCards.Api.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] UpdateCardRequest request)
         {
             _logger.LogInformation($"in put controller {request} ");
-           // if (!ModelState.IsValid)
-           // {
-           //     return BadRequest(ModelState);
-           // }
+           if (!ModelState.IsValid)
+           {
+               return BadRequest(ModelState);
+           }
 
             var entry = await _context.Cards
                 .Include(x=>x.Points)

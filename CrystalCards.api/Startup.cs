@@ -46,7 +46,10 @@ namespace CrystalCards.api
               services.AddCors(options =>
               {
                   options.AddPolicy("CorsPolicy",
-                      builder => builder.AllowAnyOrigin()
+                      builder => builder.WithOrigins(
+                              "http://ideas-web0.azurewebsites.net",
+                              "http://localhost:4200/"
+                              )
                           .AllowAnyMethod()
                           .AllowAnyHeader()
                           .AllowCredentials());
