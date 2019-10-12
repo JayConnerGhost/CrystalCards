@@ -20,6 +20,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { FilePreviewOverlayComponent } from './file-preview-overlay.component';
 import { FilePreviewOverlayService } from './services/file-preview-overlay.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     FormsModule,
     DragDropModule,
     ToastrModule.forRoot(),
-
+    FontAwesomeModule
    ],
    entryComponents: [
     OpenCardComponent,
