@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { HttpEventType, HttpClient } from "@angular/common/http";
-import { ApiService } from "src/app/api.service";
-import { ConfigService } from 'src/app/config.service';
+import { ApiService } from "../../services/api.service";
+import { ConfigService } from 'src/app/services/config.service';
 import { FilePreviewOverlayRef } from 'src/app/file-preview-overlay-ref';
-import { FilePreviewOverlayService, Image2 } from 'src/app/file-preview-overlay.service';
+import { FilePreviewOverlayService, Image2 } from 'src/app/services/file-preview-overlay.service';
 
 
 

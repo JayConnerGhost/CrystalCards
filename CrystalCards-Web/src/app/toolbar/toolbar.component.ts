@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { CardsService } from '../cards.service';
+import { ApiService } from '../services/api.service';
+import { CardsService } from '../services/cards.service';
 import { MatDialog } from '@angular/material';
 import { OpenForAddCardComponent } from '../cards/open-for-add-card/open-for-add-card.component';
 
@@ -10,11 +10,17 @@ import { OpenForAddCardComponent } from '../cards/open-for-add-card/open-for-add
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
+ model:any = {};
 
   constructor(private apiService: ApiService, private cardService: CardsService, public dialog: MatDialog) { }
-
+  title = 'Crystal Ideas';
   ngOnInit() {
   }
+
+ login(){
+   console.log(this.model);
+ }
+
 
   openAddDialogBrainStorming(event){
 

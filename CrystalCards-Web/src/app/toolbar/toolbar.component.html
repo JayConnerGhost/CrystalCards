@@ -7,15 +7,15 @@
         <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)"></app-add-card>
 
         <div class="LoginContainer" fxLayoutAlign="end">
-            <form class="login-form">
+            <form #loginForm="ngForm" class="login-form" (ngSubmit)="login()">
                 <mat-form-field>
-                    <input matInput placeholder="username" value="">
+                    <input matInput placeholder="username" value="" required name="username" [(ngModel)]="model.username">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="password" value="" type="password">
+                    <input matInput placeholder="password" value="" type="password" required name="password" [(ngModel)]="model.password">
                 </mat-form-field>
 
-                <button mat-raised-button>Login</button>
+                <button mat-raised-button type="submit" [disabled]="!loginForm.valid">Login</button>
             </form>
         </div>
     </mat-toolbar-row>

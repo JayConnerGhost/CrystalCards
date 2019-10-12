@@ -1,9 +1,9 @@
 import { Component, OnInit} from '@angular/core';
-import { ApiService } from '../../api.service';
+import { ApiService } from '../../services/api.service';
 import { Card } from 'src/app/card';
 import { OpenCardComponent } from '../open-card/open-card.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CardsService } from 'src/app/cards.service';
+import { CardsService } from 'src/app/services/cards.service';
 
 @Component({
   selector: 'app-card-list',
@@ -13,7 +13,7 @@ import { CardsService } from 'src/app/cards.service';
 export class CardListComponent implements OnInit {
 
   cards: Card[];
-  constructor(private apiService: ApiService,private cardService: CardsService, public dialog: MatDialog) { 
+  constructor(private apiService: ApiService,private cardService: CardsService, public dialog: MatDialog) {
 
   }
 

@@ -18,7 +18,7 @@ import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-
 import { MoodWallComponent } from './cards/mood-wall/mood-wall.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FilePreviewOverlayComponent } from './file-preview-overlay.component';
-import { FilePreviewOverlayService } from './file-preview-overlay.service';
+import { FilePreviewOverlayService } from './services/file-preview-overlay.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({

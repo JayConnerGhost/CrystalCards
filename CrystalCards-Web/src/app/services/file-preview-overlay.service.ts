@@ -1,9 +1,9 @@
 import { Injectable, Inject, OnInit, Injector, ComponentRef } from '@angular/core';
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { FILE_PREVIEW_DIALOG_DATA } from './file-preview-overlay.tokens';
-import { FilePreviewOverlayRef } from './file-preview-overlay-ref';
-import { FilePreviewOverlayComponent } from './file-preview-overlay.component';
+import { FILE_PREVIEW_DIALOG_DATA } from '../file-preview-overlay.tokens';
+import { FilePreviewOverlayRef } from '../file-preview-overlay-ref';
+import { FilePreviewOverlayComponent } from '../file-preview-overlay.component';
 
 
 export class Image2 {

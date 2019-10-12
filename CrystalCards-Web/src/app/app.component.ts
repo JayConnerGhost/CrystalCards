@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './api.service';
+import { ApiService } from './services/api.service';
 import { MatDialog } from '@angular/material';
 import { OpenForAddCardComponent } from './cards/open-for-add-card/open-for-add-card.component';
-import { CardsService } from './cards.service';
+import { CardsService } from './services/cards.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { CardsService } from './cards.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit {
-  title = 'Crystal Ideas';
+
   constructor(private apiService: ApiService,private cardService: CardsService, public dialog: MatDialog) { }
 
 

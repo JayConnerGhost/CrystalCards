@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
-import { ApiService} from '../../api.service';
+import { ApiService} from '../../services/api.service';
 import { Card } from 'src/app/card';
 
 @Component({
@@ -18,7 +18,7 @@ export class CardTokenComponent implements OnInit {
   ngOnInit() {
     this.apiService.getCards().subscribe((res)=>{
         this.cards=res;
-  
+
       });
     }
 
