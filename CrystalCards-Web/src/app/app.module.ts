@@ -21,6 +21,8 @@ import { FilePreviewOverlayComponent } from './file-preview-overlay.component';
 import { FilePreviewOverlayService } from './services/file-preview-overlay.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     OpenForAddCardComponent,
     MoodWallComponent,
     FilePreviewOverlayComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

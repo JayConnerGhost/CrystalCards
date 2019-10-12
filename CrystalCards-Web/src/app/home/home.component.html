@@ -1,0 +1,12 @@
+<div class="welcome-container">
+    <H1>Welcome to your ideas composer</H1>,
+    <h2> we hope you love using it as much as i have enjoyed creating it.</h2>
+</div>
+
+<div class="registrationContainer" *ngIf="!loggedIn()">
+    registration
+
+</div>
+<div class="InitialContainer" *ngIf="loggedIn()">
+    <button mat-raised-button>Click to Enter</button>
+</div>
