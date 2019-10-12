@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using CrystalCards.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
@@ -55,6 +58,22 @@ namespace CrystalCards.api
                           .AllowCredentials());
               });
 
+              services.AddScoped<IAuthRepository, AuthRepository>();
+              services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                  .AddJwtBearer(options =>
+                  {
+                      options.TokenValidationParameters = new TokenValidationParameters()
+                      {
+                          ValidateIssuerSigningKey = true,
+                          IssuerSigningKey =
+                              new SymmetricSecurityKey(
+                                  Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+                          ValidateIssuer = false,
+                          ValidateAudience = false
+
+                      };
+                  });
+
               services.AddSwaggerGen(c =>
               {
                   //The generated Swagger JSON file will have these properties.
@@ -87,8 +106,9 @@ namespace CrystalCards.api
             }
 
            // app.UseHttpsRedirection();
+           app.UseCors("CorsPolicy");
+           app.UseAuthentication();
             app.UseMvc();
-            app.UseCors("CorsPolicy");
             app.UseStaticFiles();
             //Supporting file upload.
             app.UseStaticFiles(new StaticFileOptions()

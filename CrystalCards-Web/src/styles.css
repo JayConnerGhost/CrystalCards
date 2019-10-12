@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~@angular/material/prebuilt-themes/purple-green.css";
 html {
     margin: 0;
 }
@@ -48,11 +48,13 @@ textarea {
     color: #FFF!important;
 }
 
-.iconButton{
+.iconButton {
     border: none;
-    outline:none !important;
+    outline: none !important;
 }
-.iconButton:focus,active {
+
+.iconButton:focus,
+active {
     border: none;
-    outline:none !important;
+    outline: none !important;
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Data;
 using CrystalCards.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ using Microsoft.Extensions.Logging;
 namespace CrystalCards.Api.Controllers
 {
     [EnableCors("CorsPolicy")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CardsController : ControllerBase

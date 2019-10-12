@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CrystalCards.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -12,6 +13,7 @@ namespace CrystalCards.Api.Controllers
 {
     //Hack: Manual testing via postman for now, Mech. for automated test for file uploads not fully understood at this time KM 07102019  
     [EnableCors("CorsPolicy")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MoodWallController : ControllerBase

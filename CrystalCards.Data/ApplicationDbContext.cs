@@ -13,13 +13,14 @@ namespace CrystalCards.Data
         {
             
         }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Card>()
-                .HasMany(c => c.Points);
+
         }
+    
 
         public virtual DbSet<Card> Cards { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
