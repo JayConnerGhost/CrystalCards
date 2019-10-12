@@ -1,8 +1,22 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <span> {{ title }}</span>
+
     </mat-toolbar-row>
-    <mat-toolbar-row>
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between">
         <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)"></app-add-card>
+
+        <div class="LoginContainer" fxLayoutAlign="end">
+            <form class="login-form">
+                <mat-form-field>
+                    <input matInput placeholder="username" value="">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="password" value="" type="password">
+                </mat-form-field>
+
+                <button mat-raised-button>Login</button>
+            </form>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
