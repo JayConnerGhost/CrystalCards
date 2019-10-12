@@ -17,21 +17,6 @@ export class AppComponent  implements OnInit {
   ngOnInit(): void {}
 
 
-  openAddDialogBrainStorming(event){
 
-    let dialogRef = this.dialog.open(OpenForAddCardComponent,
-
-      {
-       width: '800px',
-      data:{},
-      panelClass : "formFieldWidth550"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      //refresh list data .
-      this.cardService.refreshData();
-    });
-
-
-  }
 
 }

@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span> {{ title }}</span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)"></app-add-card>
+    </mat-toolbar-row>
+</mat-toolbar>
