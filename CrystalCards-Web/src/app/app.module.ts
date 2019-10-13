@@ -23,7 +23,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter(){
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -49,7 +53,15 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     DragDropModule,
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: tokenGetter,
+        whitelistedDomains:['localhost:50872', 'ideas-web0.azurewebsites.net'],
+        blacklistedRoutes:['localhost:50872/api/auth','ideas-web0.azurewebsites.net/api/auth']
+
+      }
+    })
    ],
    entryComponents: [
     OpenCardComponent,
