@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { OpenForAddCardComponent } from '../cards/open-for-add-card/open-for-add-card.component';
 import { AuthService } from '../services/auth.service';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,7 +17,8 @@ export class ToolbarComponent implements OnInit {
  faSignOutAlt=faSignOutAlt;
   constructor(private apiService: ApiService,
               private cardService: CardsService,
-              private authService: AuthService,
+              public authService: AuthService,
+              private alertify: AlertifyService,
               public dialog: MatDialog) { }
   title = 'Crystal Ideas';
   ngOnInit() {
@@ -24,19 +26,19 @@ export class ToolbarComponent implements OnInit {
 
 loggedIn()
 {
-  const token = localStorage.getItem('token');
-  return !!token;
+ return this.authService.loggedIn();
 }
 logout(){
   localStorage.removeItem('token');
+  this.alertify.message("you were logged out");
 }
 
  login(){
   this.authService.login(this.model).subscribe(next=>{
-    console.log('logged in ');
+   this.alertify.success("successfully logged in ");
   },
   error=>{
-    console.log('failed to login');
+    this.alertify.error("failed to login");
   });
  }
 
