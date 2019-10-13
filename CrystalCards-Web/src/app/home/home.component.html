@@ -9,6 +9,6 @@
 
     </div>
     <div class="InitialContainer" *ngIf="loggedIn()">
-        <button mat-raised-button>Click to Enter</button>
+        <button mat-raised-button [routerLink]="['/cards']">Click to Enter</button>
     </div>
 </div>

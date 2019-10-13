@@ -4,10 +4,10 @@
 
     </mat-toolbar-row>
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between">
-        <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)"></app-add-card>
+        <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)" *ngIf="loggedIn()"></app-add-card>
 
         <div class="WelcomeContainer" *ngIf="loggedIn()">
-            <span>Welcome {{authService.decodedToken?.unique_name | titlecase}}</span>
+            <span class="mr-2">Welcome {{authService.decodedToken?.unique_name | titlecase}}</span>
             <button mat-raised-button (click)="logout()">
                 <fa-icon [icon]="faSignOutAlt"></fa-icon>
               Logout
@@ -15,7 +15,7 @@
 
         </div>
         <!-- bug here n reactive sizing on mobile devices km-->
-        <div class="LoginContainer" fxLayoutAlign="end" *ngIf="!loggedIn()">
+        <div class="LoginContainer" *ngIf="!loggedIn()">
             <form #loginForm="ngForm" class="login-form" (ngSubmit)="login()">
                 <mat-form-field>
                     <input matInput placeholder="username" value="" required name="username" [(ngModel)]="model.username">
