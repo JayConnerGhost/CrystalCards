@@ -57,7 +57,7 @@ export function tokenGetter(){
     JwtModule.forRoot({
       config:{
         tokenGetter: tokenGetter,
-        whitelistedDomains:['localhost:50872', 'ideas-web0.azurewebsites.net'],
+        whitelistedDomains:['localhost:50872', 'ideas-web0.azurewebsites.net','http://ideas-web0.azurewebsites.net'],
         blacklistedRoutes:['localhost:50872/api/auth','ideas-web0.azurewebsites.net/api/auth']
 
       }
