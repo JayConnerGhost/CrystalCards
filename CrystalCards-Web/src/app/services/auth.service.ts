@@ -10,6 +10,10 @@ export class AuthService {
 baseUrl = `${this.config.apiURL}/auth/`;
   constructor(private http:HttpClient, private config:ConfigService) { }
 
+  register(model:any){
+    return this.http.post(this.baseUrl+'register',model);
+  }
+
   login(model:any){
     return this.http.post(this.baseUrl+'login', model)
     .pipe(
