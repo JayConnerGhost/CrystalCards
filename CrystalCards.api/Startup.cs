@@ -40,31 +40,33 @@ namespace CrystalCards.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(joptions =>
-            {
-                joptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                joptions.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            });
-
-              services.AddDbContext<ApplicationDbContext>
+            services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("CardDatabase")));
 
-              services.AddCors(options =>
+            services.AddCors(options =>
               {
                   options.AddPolicy("CorsPolicy",
                       builder => builder.WithOrigins(
                               "http://ideas-web0.azurewebsites.net",
-                              "http://localhost:4200"
+                              "http://localhost:4200",
+                              "http://www.katiekatcoder.co.uk"
                               )
                           .AllowAnyMethod()
                           .AllowAnyHeader()
                           .AllowCredentials());
               });
 
-              services.AddScoped<IAuthRepository, AuthRepository>();
-              services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                  .AddJwtBearer(options =>
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddAuthentication(o =>
+                {
+                    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                    .AddJwtBearer(options =>
                   {
+
+
                       options.TokenValidationParameters = new TokenValidationParameters()
                       {
                           ValidateIssuerSigningKey = true,
@@ -77,7 +79,7 @@ namespace CrystalCards.api
                       };
                   });
 
-              services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(c =>
               {
                   //The generated Swagger JSON file will have these properties.
                   c.SwaggerDoc("v1", new Info
@@ -93,11 +95,17 @@ namespace CrystalCards.api
                   //... and tell Swagger to use those XML comments.
                   c.IncludeXmlComments(xmlPath);
               });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(joptions =>
+            {
+                joptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                joptions.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -121,32 +129,31 @@ namespace CrystalCards.api
                 });
             }
 
-           // app.UseHttpsRedirection();
-           app.UseCors("CorsPolicy");
-           app.UseAuthentication();
-            app.UseMvc();
-            app.UseStaticFiles();
-            //Supporting file upload.
-            app.UseStaticFiles(new StaticFileOptions()
+            // app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
+           app.UseStaticFiles();
+           //Supporting file upload.
+           app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),@"Resources")),
                 RequestPath=new PathString("/Resources")
 
             });
-            //This line enables the app to use Swagger, with the configuration in the ConfigureServices method.
-            app.UseSwagger();
+           //This line enables the app to use Swagger, with the configuration in the ConfigureServices method.
+           app.UseSwagger();
 
-            app.UseSwaggerUI(s => {
+           app.UseSwaggerUI(s => {
                 s.RoutePrefix = "help";
                 s.SwaggerEndpoint("../swagger/v1/swagger.json", "Crystal Cards Documentation v0.2");
                 s.InjectStylesheet("../css/swagger.min.css");
             });
 
 
-            //This line enables the app to use Swagger, with the configuration in the ConfigureServices method.
-            app.UseSwagger();
+           //This line enables the app to use Swagger, with the configuration in the ConfigureServices method.
+           app.UseSwagger();
+            app.UseMvc();
 
-          
+
         }
     }
 }

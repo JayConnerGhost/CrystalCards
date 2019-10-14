@@ -4,13 +4,18 @@ import { Card } from '.././card';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { ConfigService } from './config.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private httpClient: HttpClient,private configService: ConfigService) { }
+  constructor(
+    private httpClient: HttpClient,
+    private configService: ConfigService,
+    private authService: AuthService
+    ) { }
 
   NewBasic(Id: number, Title: any, Description: any): Observable<Card>  {
     let card = new Card();
@@ -37,7 +42,10 @@ export class ApiService {
 
   GetImageURLs(cardId): any {
     console.log(cardId);
+    let userName=this.authService.decodedToken.unique_name;
     return this.httpClient.get<string[]>(`${this.configService.master_apiURL}/moodwall/${cardId}`);
+   // return this.httpClient.get<string[]>(`${this.configService.master_apiURL}/moodwall/${userName}/${cardId}`);
+
   }
 
 }

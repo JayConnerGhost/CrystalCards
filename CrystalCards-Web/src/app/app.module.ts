@@ -24,6 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './AuthIntercepter';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -54,15 +55,7 @@ export function tokenGetter(){
     DragDropModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
-    JwtModule.forRoot({
-      config:{
-        tokenGetter: tokenGetter,
-        whitelistedDomains:['localhost:50872', 'ideas-web0.azurewebsites.net','http://ideas-web0.azurewebsites.net'],
-        blacklistedRoutes:['localhost:50872/api/auth','ideas-web0.azurewebsites.net/api/auth']
-
-      }
-    })
-   ],
+     ],
    entryComponents: [
     OpenCardComponent,
     OpenForAddCardComponent,
@@ -71,6 +64,11 @@ export function tokenGetter(){
 
   providers: [
     FilePreviewOverlayService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     {
     provide: HTTP_INTERCEPTORS,
      useClass: HttpErrorInterceptor,
