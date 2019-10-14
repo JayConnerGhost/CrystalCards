@@ -31,6 +31,7 @@ namespace CrystalCards.Api.Controllers
         public IActionResult ReturnImageUrl(int cardId)
         {   
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), $@"Resources\images\{cardId.ToString()}");
+            Directory.CreateDirectory(folderPath);
             var fileNames = Directory.EnumerateFiles((folderPath)).Select(Path.GetFileName).ToList();
             return Ok(fileNames);
         }

@@ -1,0 +1,40 @@
+2019-10-14 13:43:31.0225 Info Shutdown() called. Logger closing...
+2019-10-14 13:43:31.0225 Info Closing old configuration.
+2019-10-14 13:43:31.0456 Info Logger has been closed down.
+2019-10-14 13:43:31.0456 Info AppDomain Shutting down. Logger closing...
+2019-10-14 13:43:31.0456 Info Logger has been shut down.
+2019-10-14 13:45:14.3945 Info Message Template Auto Format enabled
+2019-10-14 13:45:14.4047 Info Loading assembly: NLog.Web.AspNetCore
+2019-10-14 13:45:14.5021 Info Adding target FileTarget(Name=allfile)
+2019-10-14 13:45:14.5021 Info Adding target FileTarget(Name=ownFile-web)
+2019-10-14 13:45:14.7836 Info Found 45 configuration items
+2019-10-14 16:20:19.2275 Info Shutdown() called. Logger closing...
+2019-10-14 16:20:19.2429 Info Closing old configuration.
+2019-10-14 16:20:19.2628 Info Logger has been closed down.
+2019-10-14 16:20:19.2628 Info AppDomain Shutting down. Logger closing...
+2019-10-14 16:20:19.2728 Info Logger has been shut down.
+2019-10-14 16:30:46.7066 Info Message Template Auto Format enabled
+2019-10-14 16:30:46.7162 Info Loading assembly: NLog.Web.AspNetCore
+2019-10-14 16:30:46.7874 Info Adding target FileTarget(Name=allfile)
+2019-10-14 16:30:46.7874 Info Adding target FileTarget(Name=ownFile-web)
+2019-10-14 16:30:46.8362 Info Found 45 configuration items
+2019-10-14 16:39:29.4193 Info Shutdown() called. Logger closing...
+2019-10-14 16:39:29.4193 Info Closing old configuration.
+2019-10-14 16:39:29.4361 Info Logger has been closed down.
+2019-10-14 16:39:29.4361 Info AppDomain Shutting down. Logger closing...
+2019-10-14 16:39:29.4361 Info Logger has been shut down.
+2019-10-14 16:39:37.7232 Info Message Template Auto Format enabled
+2019-10-14 16:39:37.7380 Info Loading assembly: NLog.Web.AspNetCore
+2019-10-14 16:39:37.8342 Info Adding target FileTarget(Name=allfile)
+2019-10-14 16:39:37.8388 Info Adding target FileTarget(Name=ownFile-web)
+2019-10-14 16:39:37.9012 Info Found 45 configuration items
+2019-10-14 16:39:48.1953 Info Shutdown() called. Logger closing...
+2019-10-14 16:39:48.1953 Info Closing old configuration.
+2019-10-14 16:39:48.2122 Info Logger has been closed down.
+2019-10-14 16:39:48.2122 Info AppDomain Shutting down. Logger closing...
+2019-10-14 16:39:48.2122 Info Logger has been shut down.
+2019-10-14 16:40:32.8258 Info Message Template Auto Format enabled
+2019-10-14 16:40:32.8820 Info Loading assembly: NLog.Web.AspNetCore
+2019-10-14 16:40:32.9973 Info Adding target FileTarget(Name=allfile)
+2019-10-14 16:40:33.0128 Info Adding target FileTarget(Name=ownFile-web)
+2019-10-14 16:40:33.1398 Info Found 45 configuration items
