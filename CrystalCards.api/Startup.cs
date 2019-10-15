@@ -106,6 +106,12 @@ namespace CrystalCards.api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseAuthentication();
+            if (env.IsEnvironment("Test"))
+            {
+                //test code in here 
+            }
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

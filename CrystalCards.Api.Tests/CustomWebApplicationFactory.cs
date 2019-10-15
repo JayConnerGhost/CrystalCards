@@ -78,6 +78,8 @@ namespace CrystalCards.Api.Tests
 
             private void BuildHttpClient()
             {
+                //https://geeklearning.io/how-to-deal-with-identity-when-testing-an-asp-net-core-application/
+                //TODO: refactor this to allow setting the environment to test 
                 Client = _factory.CreateClient();
                 //Create a webapplication host factory and custom start up code include inmemory database. 
 
