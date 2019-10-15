@@ -13,8 +13,8 @@ export class ApiService {
 
   constructor(
     private httpClient: HttpClient,
-    private configService: ConfigService,
-    private authService: AuthService
+    private configService: ConfigService
+
     ) { }
 
   NewBasic(Id: number, Title: any, Description: any): Observable<Card>  {
@@ -40,11 +40,10 @@ export class ApiService {
     return this.httpClient.put<Card>(`${this.configService.master_apiURL}/cards/${id}`, card);
   }
 
-  GetImageURLs(cardId): any {
+  GetImageURLs(userId,cardId): any {
     console.log(cardId);
-    let userName=this.authService.decodedToken.unique_name;
-    return this.httpClient.get<string[]>(`${this.configService.master_apiURL}/moodwall/${cardId}`);
-   // return this.httpClient.get<string[]>(`${this.configService.master_apiURL}/moodwall/${userName}/${cardId}`);
+
+    return this.httpClient.get<string[]>(`${this.configService.master_apiURL}/moodwall/${userId}/${cardId}`);
 
   }
 

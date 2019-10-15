@@ -4,6 +4,7 @@ import { ApiService } from "../../services/api.service";
 import { ConfigService } from 'src/app/services/config.service';
 import { FilePreviewOverlayRef } from 'src/app/file-preview-overlay-ref';
 import { FilePreviewOverlayService, Image2 } from 'src/app/services/file-preview-overlay.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -26,6 +27,7 @@ export class MoodWallComponent implements OnInit {
     private http: HttpClient,
     private apiService: ApiService,
     private configService: ConfigService,
+    private authService: AuthService,
     private previewDialog: FilePreviewOverlayService
     ) {}
 
@@ -36,8 +38,8 @@ export class MoodWallComponent implements OnInit {
 
   getImageURLs() {
     console.log(this.cardId);
-    this.apiService.GetImageURLs(this.cardId).subscribe(res => {
-      this.images = res.map(x=> `${this.configService.Images}/${this.cardId}/${x}`);
+    this.apiService.GetImageURLs(this.authService.decodedToken.unique_name,this.cardId).subscribe(res => {
+      this.images = res.map(x=> `${this.configService.Images}/${this.authService.decodedToken.unique_name}/${this.cardId}/${x}`);
 
     });
   }
@@ -60,7 +62,8 @@ export class MoodWallComponent implements OnInit {
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
-    formData.append("cardId",this.cardId)
+    formData.append("cardId",this.cardId);
+    formData.append("userId",this.authService.decodedToken.unique_name);
     //horrible
     this.http
       .post(`${this.configService.master_apiURL}/MoodWall`, formData, {
