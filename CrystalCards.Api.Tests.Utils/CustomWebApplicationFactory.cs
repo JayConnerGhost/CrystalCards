@@ -1,23 +1,44 @@
-﻿using System;
-using CrystalCards.Data;
+﻿using CrystalCards.Data;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Security.Claims;
+using CrystalCards.api;
+
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 
 namespace CrystalCards.Api.Tests.Utils
 {
+
+  
+
     //public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
+        protected override IWebHostBuilder CreateWebHostBuilder()
+        {
+            return WebHost.CreateDefaultBuilder()
+                .UseStartup<TStartup>();
+        }
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Test");
+
+          
             builder.ConfigureServices(services =>
             {
-                // Create a new service provider.
-                var serviceProvider = new ServiceCollection()
+        
+                //add startup filter 
+
+            // Create a new service provider.
+            var serviceProvider = new ServiceCollection()
                     .AddEntityFrameworkInMemoryDatabase()
                     .BuildServiceProvider();
 

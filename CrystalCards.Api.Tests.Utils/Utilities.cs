@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Models;
-using GST.Fake.Authentication.JwtBearer;
+
 using Newtonsoft.Json;
 
 namespace CrystalCards.Api.Tests.Utils
@@ -32,16 +32,8 @@ namespace CrystalCards.Api.Tests.Utils
         public static HttpClient CreateClient()
         {
          CustomWebApplicationFactory<T> factory = new CustomWebApplicationFactory<T>();
-
-        dynamic token = new System.Dynamic.ExpandoObject();
-            token.sub = "SuperUserName";
-            token.role = new[] { "role1", "role2" };
-            token.email = "superuser@companytest.tld";
-
-            var httpClient = factory.CreateClient();
-            httpClient.SetFakeBearerToken((object)token);
-
-            return httpClient;
+         var httpClient = factory.CreateClient();
+         return httpClient;
         }
     }
 }
