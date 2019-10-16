@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
+using CrystalCards.Api.Tests.Utils;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -8,15 +9,13 @@ namespace CrystalCards.Api.Tests
 {
     public class OrderValueTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
-
         [Fact]
         public async Task Set_order_value_on_card()
         {
             //arrange
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             int testOrder=1;
             var request = new
             {

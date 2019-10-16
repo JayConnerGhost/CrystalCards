@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using CrystalCards.api;
+using CrystalCards.Api.Tests.Utils;
 using CrystalCards.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
@@ -14,6 +16,8 @@ namespace CrystalCards.Api.Tests
 {
     public class BasicCardTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
+        private const string _email = "anthony.giretti@gmail.com";
+
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
         public BasicCardTests() : base()
         {
@@ -25,8 +29,9 @@ namespace CrystalCards.Api.Tests
             //arrange 
             string testEditedCardTitle="Edited Title";
             string testEditedCardDescription="Edited Description";
-            var Client = _factory.CreateClient();
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test",_factory);
+            var Client = Utilities<Startup>.CreateClient();
+            //bug - getting a 401 dispite the fake bearer token , why ? 161019 KM.
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test",Client);
             var request = new
             {
                 Url = $"api/cards/{id}",
@@ -69,7 +74,7 @@ namespace CrystalCards.Api.Tests
                     Description = testCardDescription
                 }
             };
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
 
             //Act
             var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
@@ -95,7 +100,7 @@ namespace CrystalCards.Api.Tests
                    Description="Test Card 1 description"
                 }
             };
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
 
             //Act
             var response = await Client.PostAsync(request.Url,ContentHelper.GetStringContent(request.Body));
@@ -141,10 +146,10 @@ namespace CrystalCards.Api.Tests
                 }
             };
 
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             //Act
-            
-             await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+
+            await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
              await Client.PostAsync(request2.Url, ContentHelper.GetStringContent(request2.Body));
              await Client.PostAsync(request3.Url, ContentHelper.GetStringContent(request3.Body));
             

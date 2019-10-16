@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrystalCards.Api.Tests", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrystalCards.Models", "..\CrystalCards.Models\CrystalCards.Models.csproj", "{7386A8D7-D81C-43DB-9938-BB16EB4CC199}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrystalCards.Api.Tests.Utils", "..\CrystalCards.Api.Tests.Utils\CrystalCards.Api.Tests.Utils.csproj", "{1DD2D1A1-B841-4C2A-A931-64DAF7CFF3B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7386A8D7-D81C-43DB-9938-BB16EB4CC199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7386A8D7-D81C-43DB-9938-BB16EB4CC199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7386A8D7-D81C-43DB-9938-BB16EB4CC199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD2D1A1-B841-4C2A-A931-64DAF7CFF3B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD2D1A1-B841-4C2A-A931-64DAF7CFF3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD2D1A1-B841-4C2A-A931-64DAF7CFF3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD2D1A1-B841-4C2A-A931-64DAF7CFF3B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

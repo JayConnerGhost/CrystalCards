@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
+using CrystalCards.Api.Tests.Utils;
 using CrystalCards.Models;
 using Newtonsoft.Json;
 using Xunit;
@@ -12,7 +14,6 @@ namespace CrystalCards.Api.Tests
 {
     public class NPPointsTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
 
         [Fact]
         public async Task Set_order_on_point()
@@ -22,7 +23,7 @@ namespace CrystalCards.Api.Tests
             int point2ExpectedOrder=3;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             var request = new
             {
                 Url = $"api/cards",
@@ -60,7 +61,7 @@ namespace CrystalCards.Api.Tests
             int expectedNegativeCount = 2;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             var request = new
             {
                 Url = $"api/cards",
@@ -94,8 +95,8 @@ namespace CrystalCards.Api.Tests
             int expectedNegativeCount = 2;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
+            var Client = Utilities<Startup>.CreateClient();
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client);
             var request = new
             {
                 Url = $"api/cards/{id}",
@@ -130,7 +131,7 @@ namespace CrystalCards.Api.Tests
             int expectedNegativeCount = 1;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             var newRequest = new
             {
                 Url = $"api/cards",
@@ -182,7 +183,7 @@ namespace CrystalCards.Api.Tests
             int expectedPositiveCount = 1;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             var newRequest = new
             {
                 Url = $"api/cards",
@@ -235,8 +236,8 @@ namespace CrystalCards.Api.Tests
             int expectedPositiveCount = 2;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
+            var Client = Utilities<Startup>.CreateClient();
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client);
             var request = new
             {
                 Url = $"api/cards/{id}",
@@ -272,7 +273,7 @@ namespace CrystalCards.Api.Tests
             int expectedPositiveCount = 2;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             var request = new
             {
                 Url = "api/cards",

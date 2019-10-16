@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GST.Fake.Authentication.JwtBearer</name>
+    </assembly>
+    <members>
+        <member name="T:GST.Fake.Authentication.JwtBearer.Events.AuthenticationFailedContext">
+            <summary>
+            AuthenticationFailedContext
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.AuthenticationFailedContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Authentication.AuthenticationScheme,GST.Fake.Builder.FakeJwtBearerOptions)">
+            <summary>
+            AuthenticationFailedContext
+            </summary>
+            <param name="context"></param>
+            <param name="scheme"></param>
+            <param name="options"></param>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.AuthenticationFailedContext.Exception">
+            <summary>
+            Exception
+            </summary>
+        </member>
+        <member name="T:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext">
+            <summary>
+            JwtBearerChallengeContext
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Authentication.AuthenticationScheme,GST.Fake.Builder.FakeJwtBearerOptions,Microsoft.AspNetCore.Authentication.AuthenticationProperties)">
+            <summary>
+            JwtBearerChallengeContext
+            </summary>
+            <param name="context"></param>
+            <param name="scheme"></param>
+            <param name="options"></param>
+            <param name="properties"></param>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext.AuthenticateFailure">
+            <summary>
+            Any failures encountered during the authentication process.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext.Error">
+            <summary>
+            Gets or sets the "error" value returned to the caller as part
+            of the WWW-Authenticate header. This property may be null when
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext.ErrorDescription">
+            <summary>
+            Gets or sets the "error_description" value returned to the caller as part
+            of the WWW-Authenticate header. This property may be null when
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext.ErrorUri">
+            <summary>
+            Gets or sets the "error_uri" value returned to the caller as part of the
+            WWW-Authenticate header. This property is always null unless explicitly set.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext.Handled">
+            <summary>
+            If true, will skip any default logic for this challenge.
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext.HandleResponse">
+            <summary>
+            Skips any default logic for this challenge.
+            </summary>
+        </member>
+        <member name="T:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents">
+            <summary>
+            Specifies events which the <see cref="T:GST.Fake.Authentication.JwtBearer.FakeJwtBearerHandler"/> invokes to enable developer control over the authentication process.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.OnAuthenticationFailed">
+            <summary>
+            Invoked if exceptions are thrown during request processing. The exceptions will be re-thrown after this event unless suppressed.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.OnMessageReceived">
+            <summary>
+            Invoked when a protocol message is first received.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.OnTokenValidated">
+            <summary>
+            Invoked after the security token has passed validation and a ClaimsIdentity has been generated.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.OnChallenge">
+            <summary>
+            Invoked before a challenge is sent back to the caller.
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.AuthenticationFailed(GST.Fake.Authentication.JwtBearer.Events.AuthenticationFailedContext)">
+            <summary>
+            Invoked when authentication failed
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.MessageReceived(GST.Fake.Authentication.JwtBearer.Events.MessageReceivedContext)">
+            <summary>
+            Invoked when message is received
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.TokenValidated(GST.Fake.Authentication.JwtBearer.Events.TokenValidatedContext)">
+            <summary>
+            Invoked for token validation
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.JwtBearerEvents.Challenge(GST.Fake.Authentication.JwtBearer.Events.JwtBearerChallengeContext)">
+            <summary>
+            Invoked for challenge
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GST.Fake.Authentication.JwtBearer.Events.MessageReceivedContext">
+            <summary>
+            Context who hold the token
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.MessageReceivedContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Authentication.AuthenticationScheme,GST.Fake.Builder.FakeJwtBearerOptions)">
+            <summary>
+            MessageReceivedContext
+            </summary>
+            <param name="context"></param>
+            <param name="scheme"></param>
+            <param name="options"></param>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.Events.MessageReceivedContext.Token">
+            <summary>
+            Bearer Token. This will give the application an opportunity to retrieve a token from an alternative location.
+            </summary>
+        </member>
+        <member name="T:GST.Fake.Authentication.JwtBearer.Events.TokenValidatedContext">
+            <summary>
+            TokenValidatedContext
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.Events.TokenValidatedContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Authentication.AuthenticationScheme,GST.Fake.Builder.FakeJwtBearerOptions)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="scheme"></param>
+            <param name="options"></param>
+        </member>
+        <member name="T:GST.Fake.Authentication.JwtBearer.FakeJwtBearerDefaults">
+            <summary>
+            Default values used by bearer authentication.
+            </summary>
+        </member>
+        <member name="F:GST.Fake.Authentication.JwtBearer.FakeJwtBearerDefaults.AuthenticationScheme">
+            <summary>
+            Default value for AuthenticationScheme property in the JwtBearerAuthenticationOptions
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Authentication.JwtBearer.FakeJwtBearerHandler.Events">
+            <summary>
+            The handler calls methods on the events which give the application control at certain points where processing is occurring. 
+            If it is not provided a default instance is supplied which does nothing when the methods are called.
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.FakeJwtBearerHandler.HandleAuthenticateAsync">
+            <summary>
+            Searches the 'Authorization' header for a 'Bearer' token.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GST.Fake.Authentication.JwtBearer.FakeJwtBearerPostConfigureOptions">
+            <summary>
+            Used to setup defaults for all <see cref="T:GST.Fake.Builder.FakeJwtBearerOptions"/>.
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.FakeJwtBearerPostConfigureOptions.PostConfigure(System.String,GST.Fake.Builder.FakeJwtBearerOptions)">
+            <summary>
+            Invoked to post configure a JwtBearerOptions instance.
+            </summary>
+            <param name="name">The name of the options instance being configured.</param>
+            <param name="options">The options instance to configure.</param>
+        </member>
+        <member name="T:GST.Fake.Authentication.JwtBearer.HttpClientExtensions">
+            <summary>
+            Allow to set username, roles or anything useful for faking a user
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.HttpClientExtensions.SetFakeBearerToken(System.Net.Http.HttpClient,System.Object)">
+            <summary>
+            Define a Token with a custom object
+            </summary>
+            <param name="client"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.HttpClientExtensions.SetFakeBearerToken(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            Define a Token with juste a Username
+            </summary>
+            <param name="client"></param>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.HttpClientExtensions.SetFakeBearerToken(System.Net.Http.HttpClient,System.String,System.String[])">
+            <summary>
+            Define a Token with a Username and some roles
+            </summary>
+            <param name="client"></param>
+            <param name="username"></param>
+            <param name="roles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.HttpClientExtensions.SetFakeBearerToken(System.Net.Http.HttpClient,System.String,System.String[],System.Object)">
+            <summary>
+            Define a Token with a Username and some roles and otherclaim
+            </summary>
+            <param name="client"></param>
+            <param name="username"></param>
+            <param name="roles"></param>
+            <param name="claim"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GST.Fake.Authentication.JwtBearer.HttpClientExtensions.SetToken(System.Net.Http.HttpClient,System.String,System.String)">
+            <summary>
+            Set Raw Tocken
+            </summary>
+            <param name="client"></param>
+            <param name="scheme"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GST.Fake.Builder.FakeJwtBearerAppBuilderExtensions">
+            <summary>
+            Extension methods to add OpenIdConnect Bearer authentication capabilities to an HTTP application pipeline.
+            </summary>
+        </member>
+        <member name="M:GST.Fake.Builder.FakeJwtBearerAppBuilderExtensions.UseFakeJwtBearerAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Adds the JwtBearerMiddleware middleware to the specified IApplicationBuilder, which enables Bearer token processing capabilities.
+            This middleware understands appropriately
+            formatted and secured tokens which appear in the request header. If the Options.AuthenticationMode is Active, the
+            claims within the bearer token are added to the current request's IPrincipal User. If the Options.AuthenticationMode 
+            is Passive, then the current request is not modified, but IAuthenticationManager AuthenticateAsync may be used at
+            any time to obtain the claims from the request's bearer token.
+            See also http://tools.ietf.org/html/rfc6749
+            </summary>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> to add the middleware to.</param>
+            <returns>A reference to this instance after the operation has completed.</returns>
+        </member>
+        <member name="M:GST.Fake.Builder.FakeJwtBearerAppBuilderExtensions.UseFakeJwtBearerAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder,GST.Fake.Builder.FakeJwtBearerOptions)">
+            <summary>
+            Adds the JwtBearerMiddleware middleware to the specified IApplicationBuilder, which enables Bearer token processing capabilities.
+            This middleware understands appropriately
+            formatted and secured tokens which appear in the request header. If the Options.AuthenticationMode is Active, the
+            claims within the bearer token are added to the current request's IPrincipal User. If the Options.AuthenticationMode 
+            is Passive, then the current request is not modified, but IAuthenticationManager AuthenticateAsync may be used at
+            any time to obtain the claims from the request's bearer token.
+            See also http://tools.ietf.org/html/rfc6749
+            </summary>
+            <param name="app">The IApplicationBuilder to add the middleware to.</param>
+            <param name="options">A JwtBearerOptions that specifies options for the middleware.</param>
+            <returns>A reference to this instance after the operation has completed.</returns>
+        </member>
+        <member name="T:GST.Fake.Builder.FakeJwtBearerOptions">
+            <summary>
+            Options class provides information needed to control Bearer Authentication middleware behavior
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.RequireHttpsMetadata">
+            <summary>
+            Gets or sets if HTTPS is required for the metadata address or authority.
+            The default is true. This should be disabled only in development environments.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.MetadataAddress">
+            <summary>
+            Gets or sets the discovery endpoint for obtaining metadata
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.Authority">
+            <summary>
+            Gets or sets the Authority to use when making OpenIdConnect calls.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.Audience">
+            <summary>
+            Gets or sets the audience for any received OpenIdConnect token.
+            </summary>
+            <value>
+            The expected audience for any received OpenIdConnect token.
+            </value>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.Challenge">
+            <summary>
+            Gets or sets the challenge to put in the "WWW-Authenticate" header.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.SaveToken">
+            <summary>
+            Defines whether the bearer token should be stored in the
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.Events">
+            <summary>
+            The object provided by the application to process events raised by the bearer authentication handler.
+            The application may implement the interface fully, or it may create an instance of JwtBearerEvents
+            and assign delegates only to the events it wants to process.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.BackchannelHttpHandler">
+            <summary>
+            The HttpMessageHandler used to retrieve metadata.
+            This cannot be set at the same time as BackchannelCertificateValidator unless the value
+            is a WebRequestHandler.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.BackchannelTimeout">
+            <summary>
+            Gets or sets the timeout when using the backchannel to make an http call.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.RefreshOnIssuerKeyNotFound">
+            <summary>
+            Gets or sets if a metadata refresh should be attempted after a SecurityTokenSignatureKeyNotFoundException. This allows for automatic
+            recovery in the event of a signature key rollover. This is enabled by default.
+            </summary>
+        </member>
+        <member name="P:GST.Fake.Builder.FakeJwtBearerOptions.IncludeErrorDetails">
+            <summary>
+            Defines whether the token validation errors should be returned to the caller.
+            Enabled by default, this option can be disabled to prevent the JWT handler
+            from returning an error and an error_description in the WWW-Authenticate header.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.FakeJwtBearerExtensions">
+            <summary>
+            FakeJwtBearerExtensions
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FakeJwtBearerExtensions.AddFakeJwtBearer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+            <summary>
+            AuthenticationBuilder
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FakeJwtBearerExtensions.AddFakeJwtBearer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{GST.Fake.Builder.FakeJwtBearerOptions})">
+            <summary>
+            AuthenticationBuilder
+            </summary>
+            <param name="builder"></param>
+            <param name="configureOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FakeJwtBearerExtensions.AddFakeJwtBearer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.Action{GST.Fake.Builder.FakeJwtBearerOptions})">
+            <summary>
+            AuthenticationBuilder
+            </summary>
+            <param name="builder"></param>
+            <param name="authenticationScheme"></param>
+            <param name="configureOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FakeJwtBearerExtensions.AddFakeJwtBearer(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.String,System.String,System.Action{GST.Fake.Builder.FakeJwtBearerOptions})">
+            <summary>
+            AuthenticationBuilder
+            </summary>
+            <param name="builder"></param>
+            <param name="authenticationScheme"></param>
+            <param name="displayName"></param>
+            <param name="configureOptions"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

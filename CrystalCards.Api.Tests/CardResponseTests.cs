@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
+using CrystalCards.Api.Tests.Utils;
 using CrystalCards.Models;
 using Newtonsoft.Json;
 using Xunit;
@@ -19,7 +20,7 @@ namespace CrystalCards.Api.Tests
             string expectedValue="Negative";
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
 
             var request = new
             {
@@ -49,7 +50,7 @@ namespace CrystalCards.Api.Tests
             string expectedValue = "Positive";
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
 
             var request = new
             {

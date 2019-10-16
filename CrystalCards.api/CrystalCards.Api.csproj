@@ -42,4 +42,10 @@
     <Folder Include="Resources\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="GST.Fake.Authentication.JwtBearer">
+      <HintPath>..\libs\GST.Fake.Authentication.JwtBearer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

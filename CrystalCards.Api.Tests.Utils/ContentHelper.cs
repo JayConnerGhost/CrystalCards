@@ -2,7 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace CrystalCards.Api.Tests
+namespace CrystalCards.Api.Tests.Utils
 {
     public static class ContentHelper
     {

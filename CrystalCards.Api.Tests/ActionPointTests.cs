@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
+using CrystalCards.Api.Tests.Utils;
 using CrystalCards.Models;
 using Newtonsoft.Json;
 using Xunit;
@@ -10,7 +12,9 @@ namespace CrystalCards.Api.Tests
 {
     public class ActionPointTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
+     
+
+       
 
         [Fact]
         public async Task Can_delete_a_actionPoint_from_a_card()
@@ -19,7 +23,7 @@ namespace CrystalCards.Api.Tests
             int expectedActionPointCount = 1;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             var newRequest = new
             {
                 Url = $"api/cards",
@@ -73,8 +77,8 @@ namespace CrystalCards.Api.Tests
             int expectedActionPointCount = 2;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", _factory);
+            var Client = Utilities<Startup>.CreateClient();
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client);
 
             var request = new
             {
@@ -113,7 +117,7 @@ namespace CrystalCards.Api.Tests
             int expectedActionPointCount = 2;
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
-            var Client = _factory.CreateClient();
+            var Client = Utilities<Startup>.CreateClient();
             var request = new
             {
                 Url = $"api/cards",
