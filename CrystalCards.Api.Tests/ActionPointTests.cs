@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
@@ -12,10 +13,6 @@ namespace CrystalCards.Api.Tests
 {
     public class ActionPointTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-     
-
-       
-
         [Fact]
         public async Task Can_delete_a_actionPoint_from_a_card()
         {
@@ -24,6 +21,10 @@ namespace CrystalCards.Api.Tests
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
             var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             var newRequest = new
             {
                 Url = $"api/cards",
@@ -78,6 +79,10 @@ namespace CrystalCards.Api.Tests
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
             var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client);
 
             var request = new
@@ -118,6 +123,11 @@ namespace CrystalCards.Api.Tests
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
             var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             var request = new
             {
                 Url = $"api/cards",

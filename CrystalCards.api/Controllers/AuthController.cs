@@ -48,7 +48,7 @@ namespace CrystalCards.Api.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserForLoginRequest userForLogin)
+        public async Task<IActionResult> Login([FromBody]UserForLoginRequest userForLogin)
         {
            
             var userFromRepo = await _repo.Login(userForLogin.Username.ToLower(), userForLogin.Password);

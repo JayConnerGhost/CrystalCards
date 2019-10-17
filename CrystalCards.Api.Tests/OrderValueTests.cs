@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Api.Tests.Utils;
@@ -16,6 +17,10 @@ namespace CrystalCards.Api.Tests
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
             var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             int testOrder=1;
             var request = new
             {

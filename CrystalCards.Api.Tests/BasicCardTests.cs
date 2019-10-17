@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CrystalCards.api;
 using CrystalCards.Api.Tests.Utils;
@@ -29,8 +30,12 @@ namespace CrystalCards.Api.Tests
             //arrange 
             string testEditedCardTitle="Edited Title";
             string testEditedCardDescription="Edited Description";
+         
             var Client = Utilities<Startup>.CreateClient();
-            //bug - getting a 401 dispite the fake bearer token , why ? 161019 KM.
+            var token =await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             var id = await Utilities<Startup>.SetupACardReturnId("test", "test",Client);
             var request = new
             {
@@ -75,7 +80,10 @@ namespace CrystalCards.Api.Tests
                 }
             };
             var Client = Utilities<Startup>.CreateClient();
-
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             //Act
             var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
 
@@ -101,7 +109,10 @@ namespace CrystalCards.Api.Tests
                 }
             };
             var Client = Utilities<Startup>.CreateClient();
-
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             //Act
             var response = await Client.PostAsync(request.Url,ContentHelper.GetStringContent(request.Body));
 
@@ -147,6 +158,10 @@ namespace CrystalCards.Api.Tests
             };
 
             var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             //Act
 
             await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
