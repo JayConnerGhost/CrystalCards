@@ -9,6 +9,7 @@ namespace CrystalCards.Api.Dtos
         {
             NPPoints = new List<NPPointResponse>();
             ActionPoints=new List<ActionPointResponse>();
+            Links=new List<LinkResponse>();
         }
 
         public string Title { get; set; }
@@ -17,6 +18,7 @@ namespace CrystalCards.Api.Dtos
 
         public IList<NPPointResponse> NPPoints { get; set; }
         public IList<ActionPointResponse> ActionPoints { get; set; }
+        public IList<LinkResponse> Links { get; set; }
         public int Id { get; set; }
         public int Order { get; set; }
     }
