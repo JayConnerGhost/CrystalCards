@@ -1,12 +1,14 @@
-.cardContainer{
-    width:100%;
+.cardContainer {
+    width: 100%;
 }
-.cardContainer > li{
+
+.cardContainer>li {
     text-decoration: none;
     list-style-type: none;
 }
 
-.card-token
-{
-    width:200px;
+.card-token {
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
 }

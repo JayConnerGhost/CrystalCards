@@ -12,6 +12,8 @@ import {MatListModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material';
 import {OpenCardComponent } from './app/cards/open-card/open-card.component';
+
+
 @NgModule({
   imports: [
       MatButtonModule,
@@ -25,7 +27,8 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
       MatInputModule,
       MatListModule,
       MatIconModule,
-      MatButtonToggleModule
+      MatButtonToggleModule,
+
     ],
   exports: [
     MatButtonModule,
@@ -39,7 +42,8 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
     MatInputModule,
     MatListModule,
     MatIconModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+
 
 ],
 

@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+.card-token {
+    margin: 4px;
+    width: 250px;
+    max-width: 250px;
+    min-width: 250px;
+    height: 200px;
+    max-height: 200px;
+    min-height: 200px;
+    @include mat-elevation-transition;
+    @include mat-elevation(2);
+    &:active {
+        @include mat-elevation(8);
+    }
+}

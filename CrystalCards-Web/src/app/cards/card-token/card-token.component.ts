@@ -5,7 +5,7 @@ import { Card } from 'src/app/card';
 @Component({
   selector: 'app-card-token',
   templateUrl: './card-token.component.html',
-  styleUrls: ['./card-token.component.css']
+  styleUrls: ['./card-token.component.scss']
 })
 export class CardTokenComponent implements OnInit {
   @Output() CardSelected = new EventEmitter<number>();
