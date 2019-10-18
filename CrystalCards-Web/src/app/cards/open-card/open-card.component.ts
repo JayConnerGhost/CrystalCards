@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { NPPoint } from '../NPPoint';
 import { ActionPoint } from '../ActionPoint';
+import { UrlLink } from '../Link';
 @Component({
   selector: 'app-open-card',
   templateUrl: './open-card.component.html',
@@ -24,6 +25,7 @@ export class OpenCardComponent implements OnInit {
   PositivePoints = null;
   ActionPoints = this.data.actionPoints;
   Order = this.data.order;
+  Links = this.data.links;
 @Output() id=this.Id;
 
   ngOnInit() {
@@ -84,9 +86,25 @@ export class OpenCardComponent implements OnInit {
     }
   }
 
+  addLink(LinkDescription, LinkUrl) {
+    var newLink=new UrlLink();
+    newLink.description = LinkDescription.value;
+    newLink.Url = LinkUrl.value;
+    this.Links.push(newLink);
+  }
+
+  onLinkRemove(id){
+    const target = this.Links.find(x=>x.id===id);
+    const index = this.Links.indexOf(target);
+    if(index >-1)
+    {
+      this.Links.splice(index,1);
+    }
+  }
+
   onSubmit(f) {
     const editedPoints = (this.NegativePoints.concat(this.PositivePoints));
-    this.apiService.update(this.Title, this.Description, this.Id, editedPoints, this.ActionPoints).subscribe();
+    this.apiService.update(this.Title, this.Description, this.Id, editedPoints, this.ActionPoints, this.Links).subscribe();
   }
 
   splitPointsToLists(points) {

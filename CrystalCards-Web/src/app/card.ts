@@ -7,5 +7,6 @@ export class Card {
     npPoints: NPPoint[];
     order: number;
   actionPoints: ActionPoint[];
+  links:UrlLink[];
 }
 

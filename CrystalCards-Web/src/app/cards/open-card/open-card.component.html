@@ -97,8 +97,28 @@
             </mat-tab>
 
             <mat-tab label="Links">
-                <h1>Some tab content</h1>
-                <p>...</p>
+                <div class="row">
+                    <div class="col-xs-6 col-md-4 col-lg-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter Description" ngModel name="LinkDescription" #LinkDescription/>
+                            <input type="text" class="form-control" placeholder="Enter Url" ngModel name="LinkUrl" #LinkUrl/>
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary" type="button" (click)="addLink(LinkDescription,LinkUrl)">
+    <span class="glyphicon glyphicon-ok"></span>
+    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                    <li *ngFor="let link of Links" class="list-group-item ">
+                        <span> {{ link.description }} </span>
+                        <span>  <button class="btn btn-primary" type="button" (click)="onLinkRemove(link.id)">
+                           <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                        </span>
+                        <li>
+                </ul>
             </mat-tab>
             <mat-tab label="Attachments">
                 <h1>Some tab content</h1>
