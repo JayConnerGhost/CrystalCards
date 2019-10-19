@@ -87,7 +87,7 @@ export class OpenCardComponent implements OnInit {
   }
 
   addLink(LinkDescription, LinkUrl) {
-    var newLink=new UrlLink();
+    var newLink = new UrlLink();
     newLink.description = LinkDescription.value;
     newLink.Url = LinkUrl.value;
     this.Links.push(newLink);
