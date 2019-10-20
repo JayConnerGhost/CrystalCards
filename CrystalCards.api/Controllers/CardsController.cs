@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
@@ -58,7 +61,34 @@ namespace CrystalCards.Api.Controllers
             return Ok(ConvertResponse(entry));
         }
 
-      
+        [HttpPost("{username}")]
+        public async Task<IActionResult> PostWithUserName([FromBody] NewCardRequest request, string username)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //get user 
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            var entity = new Card() { Description = request.Description, Title = request.Title, Order = request.Order };
+            ProcessPoints(_context, request.NPPoints, entity);
+            ProcessActionPoints(_context, request.ActionPoints, entity);
+            ProcessLinks(_context, request.Links, entity);
+            var userEntity = _context.Users.Update(user);
+            user.Cards.Add(entity);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(Guid.NewGuid().ToString(),e);
+            }
+          
+
+            return Created(Url.RouteUrl(entity.Id), ConvertResponse(entity));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] NewCardRequest request)
         {
@@ -75,18 +105,41 @@ namespace CrystalCards.Api.Controllers
             return Created(Url.RouteUrl(card.Entity.Id), ConvertResponse(card.Entity));
         }
 
-       
-        [HttpGet]
-        public async Task<OkObjectResult> Get()
+        [HttpGet("[action]/{username}")]
+        public async Task<OkObjectResult> GetForUserName(string username)
         {
-            var result = await _context.Cards
-                .Include(x=>x.Points)
-                .Include(x=>x.ActionPoints)
-                .Include(x => x.Links)
-                .ToListAsync();
-            var resultConverted = ConvertResponses(result);
-            return Ok(resultConverted);
+            User user;
+            List<CardResponse> convertResponses=null;
+            try
+            {
+                user = await _context.Users
+                    .Include(x => x.Cards)
+                    .FirstOrDefaultAsync(x => x.Username == username);
+                List<Card> cards = (List<Card>)user.Cards;
+                convertResponses = ConvertResponses(cards);
+            }
+            catch (Exception e)
+            {
+               _logger.LogError(Guid.NewGuid().ToString(),e);
+            }
+           
+
+         
+            return Ok(convertResponses);
+
         }
+       
+//        [HttpGet]
+//        public async Task<OkObjectResult> Get()
+//        {
+//            var result = await _context.Cards
+//                .Include(x=>x.Points)
+//                .Include(x=>x.ActionPoints)
+//                .Include(x => x.Links)
+//                .ToListAsync();
+//            var resultConverted = ConvertResponses(result);
+//            return Ok(resultConverted);
+//        }
 
         [HttpGet("{id}")]
         public async Task<OkObjectResult> Get(int id)

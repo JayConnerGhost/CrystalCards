@@ -76,5 +76,13 @@ namespace CrystalCards.Api.Tests.Utils
             tokenValue = (string)jObject.SelectToken("token");
             return tokenValue;
         }
+
+        public static string StripUserNameValue(string token)
+        {
+            var userName = "";
+            JObject jObject = JObject.Parse(token);
+            userName = (string)jObject.SelectToken("username");
+            return userName;
+        }
     }
 }
