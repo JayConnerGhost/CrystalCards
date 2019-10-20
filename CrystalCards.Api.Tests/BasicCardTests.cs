@@ -69,20 +69,23 @@ namespace CrystalCards.Api.Tests
             //Arrange
             var testCardTitle = "Test Card 2";
             var testCardDescription = "Test Card 2 description";
+            var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
             var request = new
             {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
                     Title = testCardTitle,
                     Description = testCardDescription
                 }
             };
-            var Client = Utilities<Startup>.CreateClient();
-            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
-            //Attach bearer token 
-            Client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             //Act
             var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
 
