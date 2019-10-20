@@ -12,7 +12,8 @@ import { AuthService } from "./auth.service";
 export class ApiService {
   constructor(
     private httpClient: HttpClient,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private authService: AuthService
   ) {}
 
   NewBasic(Id: number, Title: any, Description: any): Observable<Card> {
@@ -26,8 +27,12 @@ export class ApiService {
     );
   }
   public getCards(): Observable<Card[]> {
+    let username = null;
+    if(this.authService.loggedIn){
+      username = this.authService.getUserName()
+    }
     return this.httpClient.get<Card[]>(
-      `${this.configService.master_apiURL}/cards`
+      `${this.configService.master_apiURL}/cards/GetForUserName/${username}`
     );
   }
 
