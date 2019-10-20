@@ -43,10 +43,10 @@ namespace CrystalCards.Api.Tests.Utils
             return jsonCompactSerializedString;
         }   
         
-        public static async Task<int> SetupACardReturnId(string description, string title, HttpClient client)
+        public static async Task<int> SetupACardReturnId(string description, string title, HttpClient client,string userName)
         {
             var request = new           {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
  
@@ -75,6 +75,14 @@ namespace CrystalCards.Api.Tests.Utils
             JObject jObject = JObject.Parse(token); 
             tokenValue = (string)jObject.SelectToken("token");
             return tokenValue;
+        }
+
+        public static string StripUserNameValue(string token)
+        {
+            var userName = "";
+            JObject jObject = JObject.Parse(token);
+            userName = (string)jObject.SelectToken("username");
+            return userName;
         }
     }
 }

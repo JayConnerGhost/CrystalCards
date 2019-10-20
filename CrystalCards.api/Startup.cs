@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CrystalCards.Api.helpers;
 using CrystalCards.Data;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -169,5 +170,11 @@ namespace CrystalCards.api
 
 
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .CaptureStartupErrors(true) // the default
+                .UseSetting("detailedErrors", "true")
+                .UseStartup<Startup>();
     }
 }

@@ -21,6 +21,10 @@ decodedToken: any;
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  getUserName()  {
+    return localStorage.getItem('username');
+  }
+
   login(model:any){
     return this.http.post(this.baseUrl+'login', model)
     .pipe(
@@ -29,6 +33,7 @@ decodedToken: any;
           console.log(user);
           if(user){
             localStorage.setItem('token', user.token);
+            localStorage.setItem('username', user.username);
             this.decodedToken=this.jwtHelper.decodeToken(user.token);
             console.log(this.decodedToken);
           }

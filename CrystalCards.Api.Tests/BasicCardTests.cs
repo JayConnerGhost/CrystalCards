@@ -17,7 +17,6 @@ namespace CrystalCards.Api.Tests
 {
     public class BasicCardTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        private const string _email = "anthony.giretti@gmail.com";
 
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
         public BasicCardTests() : base()
@@ -36,7 +35,9 @@ namespace CrystalCards.Api.Tests
             //Attach bearer token 
             Client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test",Client);
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test",Client, userName);
             var request = new
             {
                 Url = $"api/cards/{id}",
@@ -70,20 +71,23 @@ namespace CrystalCards.Api.Tests
             //Arrange
             var testCardTitle = "Test Card 2";
             var testCardDescription = "Test Card 2 description";
+            var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
             var request = new
             {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
                     Title = testCardTitle,
                     Description = testCardDescription
                 }
             };
-            var Client = Utilities<Startup>.CreateClient();
-            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
-            //Attach bearer token 
-            Client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
             //Act
             var response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
 
@@ -99,20 +103,25 @@ namespace CrystalCards.Api.Tests
         public async Task Receive_a_created_status_code_adding_card()
         {
             //Arrange
-            var request = new
-            {
-                Url = "api/cards",
-                Body = new
-                {
-                   Title="Test Card 1",
-                   Description="Test Card 1 description"
-                }
-            };
+    
             var Client = Utilities<Startup>.CreateClient();
             var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
             //Attach bearer token 
             Client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
+
+            var request = new
+            {
+                Url = $"api/cards/{userName}",
+                Body = new
+                {
+                    Title = "Test Card 1",
+                    Description = "Test Card 1 description"
+                }
+            };
+
             //Act
             var response = await Client.PostAsync(request.Url,ContentHelper.GetStringContent(request.Body));
 
@@ -126,12 +135,17 @@ namespace CrystalCards.Api.Tests
         [Fact]
         public async Task Get_Multiple_cards()
         {
+
+            var Client = Utilities<Startup>.CreateClient();
+            var authorizationResponse = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            var userName = Utilities<Startup>.StripUserNameValue(authorizationResponse);
+
             //Arrange 
-            int expectedCount=3;
+            int expectedCount =3;
             //set up 3 cards 
             var request = new
             {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
                     Title = "Test Card 1",
@@ -140,7 +154,7 @@ namespace CrystalCards.Api.Tests
             };
             var request2 = new
             {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
                     Title = "Test Card 2",
@@ -149,7 +163,7 @@ namespace CrystalCards.Api.Tests
             };
             var request3 = new
             {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
                     Title = "Test Card 3",
@@ -157,11 +171,14 @@ namespace CrystalCards.Api.Tests
                 }
             };
 
-            var Client = Utilities<Startup>.CreateClient();
-            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            var getRequest = new
+            {
+                Url = $"api/cards/GetForUserName/{userName}",
+            };
+  
             //Attach bearer token 
             Client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(authorizationResponse));
             //Act
 
             await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
@@ -169,7 +186,7 @@ namespace CrystalCards.Api.Tests
              await Client.PostAsync(request3.Url, ContentHelper.GetStringContent(request3.Body));
             
             //Assert
-            var response= await Client.GetAsync(request.Url);
+            var response= await Client.GetAsync(getRequest.Url);
             List<Card> returnedCardCollection = JsonConvert.DeserializeObject<List<Card>>(await response.Content.ReadAsStringAsync());
             Assert.Equal(returnedCardCollection.Count,expectedCount);
         }

@@ -22,13 +22,15 @@ namespace CrystalCards.Api.Tests
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
             var Client = Utilities<Startup>.CreateClient();
-            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            var authorizationHeader = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            var userName = Utilities<Startup>.StripUserNameValue(authorizationHeader);
+
             //Attach bearer token 
             Client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(authorizationHeader));
             var request = new
             {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
                     Title = testCardTitle,
@@ -38,10 +40,14 @@ namespace CrystalCards.Api.Tests
                          }
                 }
             };
+            var getRequest = new
+            {
+                Url = $"api/cards/GetForUserName/{userName}"
+            };
 
             //act
             var newResponse = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
-            var response = await Client.GetAsync(request.Url);
+            var response = await Client.GetAsync(getRequest.Url);
             //assert
             var cardResponses = JsonConvert.DeserializeObject<List<CardResponse>>(await response.Content.ReadAsStringAsync());
             var testValue = cardResponses[0].NPPoints[0].Direction;
@@ -55,13 +61,15 @@ namespace CrystalCards.Api.Tests
             string testCardTitle = "Edited Title";
             string testCardDescription = "Edited Description";
             var Client = Utilities<Startup>.CreateClient();
-            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            var authorizationHeader = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
             //Attach bearer token 
+            var userName = Utilities<Startup>.StripUserNameValue(authorizationHeader);
+
             Client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(authorizationHeader));
             var request = new
             {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
                     Title = testCardTitle,
@@ -71,10 +79,14 @@ namespace CrystalCards.Api.Tests
                     }
                 }
             };
+            var getRequest = new
+            {
+                Url=$"/api/cards/GetForUserName/{userName}"
+            };
 
             //act
             var newResponse = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
-            var response = await Client.GetAsync(request.Url);
+            var response = await Client.GetAsync(getRequest.Url);
             //assert
             var cardResponses = JsonConvert.DeserializeObject<List<CardResponse>>(await response.Content.ReadAsStringAsync());
             var testValue = cardResponses[0].NPPoints[0].Direction;
