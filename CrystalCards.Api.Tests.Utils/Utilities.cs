@@ -43,10 +43,10 @@ namespace CrystalCards.Api.Tests.Utils
             return jsonCompactSerializedString;
         }   
         
-        public static async Task<int> SetupACardReturnId(string description, string title, HttpClient client)
+        public static async Task<int> SetupACardReturnId(string description, string title, HttpClient client,string userName)
         {
             var request = new           {
-                Url = "api/cards",
+                Url = $"api/cards/{userName}",
                 Body = new
                 {
  

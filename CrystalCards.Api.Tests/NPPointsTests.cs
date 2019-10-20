@@ -109,7 +109,9 @@ namespace CrystalCards.Api.Tests
             //Attach bearer token 
             Client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client);
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client, userName);
             var request = new
             {
                 Url = $"api/cards/{id}",
@@ -262,7 +264,9 @@ namespace CrystalCards.Api.Tests
             //Attach bearer token 
             Client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
-            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client);
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client, userName);
             var request = new
             {
                 Url = $"api/cards/{id}",

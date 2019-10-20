@@ -31,7 +31,7 @@ namespace CrystalCards.Api.Controllers
         private readonly ILogger<CardsController> _logger;
 
         public CardsController(ApplicationDbContext context, ILogger<CardsController> logger)
-        {
+         {
             _context = context;
             _logger = logger;
         }
