@@ -89,22 +89,6 @@ namespace CrystalCards.Api.Controllers
             return Created(Url.RouteUrl(entity.Id), ConvertResponse(entity));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] NewCardRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var entity = new Card(){Description=request.Description, Title = request.Title,Order=request.Order};
-             ProcessPoints(_context, request.NPPoints, entity);
-             ProcessActionPoints(_context, request.ActionPoints, entity);
-             ProcessLinks(_context, request.Links, entity);
-            var card= await _context.Cards.AddAsync(entity);
-            await _context.SaveChangesAsync();
-            return Created(Url.RouteUrl(card.Entity.Id), ConvertResponse(card.Entity));
-        }
-
         [HttpGet("[action]/{username}")]
         public async Task<OkObjectResult> GetForUserName(string username)
         {
@@ -132,18 +116,6 @@ namespace CrystalCards.Api.Controllers
             return Ok(convertResponses);
 
         }
-       
-//        [HttpGet]
-//        public async Task<OkObjectResult> Get()
-//        {
-//            var result = await _context.Cards
-//                .Include(x=>x.Points)
-//                .Include(x=>x.ActionPoints)
-//                .Include(x => x.Links)
-//                .ToListAsync();
-//            var resultConverted = ConvertResponses(result);
-//            return Ok(resultConverted);
-//        }
 
         [HttpGet("{id}")]
         public async Task<OkObjectResult> Get(int id)

@@ -98,20 +98,25 @@ namespace CrystalCards.Api.Tests
         public async Task Receive_a_created_status_code_adding_card()
         {
             //Arrange
-            var request = new
-            {
-                Url = "api/cards",
-                Body = new
-                {
-                   Title="Test Card 1",
-                   Description="Test Card 1 description"
-                }
-            };
+    
             var Client = Utilities<Startup>.CreateClient();
             var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
             //Attach bearer token 
             Client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
+
+            var request = new
+            {
+                Url = $"api/cards/{userName}",
+                Body = new
+                {
+                    Title = "Test Card 1",
+                    Description = "Test Card 1 description"
+                }
+            };
+
             //Act
             var response = await Client.PostAsync(request.Url,ContentHelper.GetStringContent(request.Body));
 
