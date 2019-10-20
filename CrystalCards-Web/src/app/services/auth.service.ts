@@ -12,9 +12,6 @@ jwtHelper = new JwtHelperService();
 decodedToken: any;
   constructor(private http:HttpClient, private config:ConfigService) { }
 
-
-
-
   register(model:any){
     return this.http.post(this.baseUrl+'register',model);
   }
@@ -29,6 +26,7 @@ decodedToken: any;
     .pipe(
         map((response:any)=>{
           const user=response;
+          console.log(user);
           if(user){
             localStorage.setItem('token', user.token);
             this.decodedToken=this.jwtHelper.decodeToken(user.token);
