@@ -23,6 +23,32 @@ namespace CrystalCards.Api.Tests
         {
         }
 
+
+        [Fact]
+        public async Task Delete_a_card_by_id()
+        {
+            //arrange
+            var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+
+            var id = await Utilities<Startup>.SetupACardReturnId("test", "test", Client, userName);
+
+            var request = new
+            {
+                Url = $"api/cards/{id}",
+            };
+            //act
+            var deleteResult = await Client.DeleteAsync(request.Url);
+
+            //assert
+            var response = await Client.GetAsync(request.Url);
+            Assert.Equal(HttpStatusCode.NotFound,response.StatusCode);
+        }
+
         [Fact]
         public async Task Update_a_card()
         {

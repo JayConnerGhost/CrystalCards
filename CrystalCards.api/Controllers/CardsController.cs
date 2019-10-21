@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading;
 using System.Threading.Tasks;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Data;
@@ -11,10 +7,7 @@ using CrystalCards.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -26,20 +19,33 @@ namespace CrystalCards.Api.Controllers
     [ApiController]
     public class CardsController : CustomControllerBase
     {
-
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CardsController> _logger;
-
         public CardsController(ApplicationDbContext context, ILogger<CardsController> logger)
          {
             _context = context;
             _logger = logger;
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var target = await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
+             _context.Remove(target);
+            await _context.SaveChangesAsync();
+            return StatusCode(204);
+        }
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] UpdateCardRequest request)
         {
-            _logger.LogInformation($"in put controller {request} ");
+         
            if (!ModelState.IsValid)
            {
                return BadRequest(ModelState);
@@ -111,25 +117,25 @@ namespace CrystalCards.Api.Controllers
                _logger.LogError(Guid.NewGuid().ToString(),e);
             }
            
-
-         
             return Ok(convertResponses);
-
         }
 
         [HttpGet("{id}")]
-        public async Task<OkObjectResult> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var result=await _context.Cards
                 .Include(x=>x.Points)
                 .Include(x=>x.ActionPoints)
                 .Include(x => x.Links)
                 .FirstOrDefaultAsync(x => x.Id == id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
             var resultConverted = ConvertResponse(result);
             return Ok(resultConverted);
         }
-
-
-     
+   
     }
 }
