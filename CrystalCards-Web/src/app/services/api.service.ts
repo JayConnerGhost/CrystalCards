@@ -10,11 +10,18 @@ import { AuthService } from "./auth.service";
   providedIn: "root"
 })
 export class ApiService {
+
   constructor(
     private httpClient: HttpClient,
     private configService: ConfigService,
     private authService: AuthService
   ) {}
+
+  DeleteCard(event: any) {
+    console.log("deleting",event)
+    return this.httpClient.delete(`${this.configService.master_apiURL}/cards/${event}`);
+  }
+
 
   NewBasic(Id: number, Title: any, Description: any): Observable<Card> {
     let card = new Card();

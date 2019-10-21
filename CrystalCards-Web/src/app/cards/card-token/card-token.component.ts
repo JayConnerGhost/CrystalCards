@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { ApiService} from '../../services/api.service';
 import { Card } from 'src/app/card';
+import { _MatTabHeaderMixinBase } from '@angular/material/tabs/typings/tab-header';
 
 @Component({
   selector: 'app-card-token',
@@ -9,6 +10,7 @@ import { Card } from 'src/app/card';
 })
 export class CardTokenComponent implements OnInit {
   @Output() CardSelected = new EventEmitter<number>();
+  @Output() CardRequestDelete = new EventEmitter<number>();
   @Input() Title;
   @Input() Description;
   @Input() Id;
@@ -22,7 +24,10 @@ export class CardTokenComponent implements OnInit {
       });
     }
 
-      cardTokenClicked(){
+    cardEditClicked(){
         this.CardSelected.emit(this.Id);
       }
+    cardDeleteClicked(){
+      this.CardRequestDelete.emit(this.Id);
+    }
 }

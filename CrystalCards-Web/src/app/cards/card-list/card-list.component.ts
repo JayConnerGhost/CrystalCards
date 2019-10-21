@@ -37,6 +37,11 @@ export class CardListComponent implements OnInit {
     });
   }
 
+  DeleteCard(event)  {
+
+      this.apiService.DeleteCard(event).subscribe();
+  }
+
   DisplayCard(event) {
     //Here
     let card = this.cards.find(x => x.id == event);

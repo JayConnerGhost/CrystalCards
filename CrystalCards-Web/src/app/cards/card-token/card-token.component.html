@@ -1,4 +1,8 @@
-<mat-card class="card-token" (click)="cardTokenClicked()">
+<mat-card class="card-token">
     <mat-card-title>{{Title}}</mat-card-title>
     <mat-card-content> {{Description}}</mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="cardDeleteClicked()">Delete</button>
+        <button mat-raised-button (click)="cardEditClicked()">Edit</button>
+    </mat-card-actions>
 </mat-card>
