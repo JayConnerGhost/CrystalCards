@@ -11,6 +11,7 @@ import { _MatTabHeaderMixinBase } from '@angular/material/tabs/typings/tab-heade
 export class CardTokenComponent implements OnInit {
   @Output() CardSelected = new EventEmitter<number>();
   @Output() CardRequestDelete = new EventEmitter<number>();
+  @Output() CardRequestPrint = new EventEmitter<number>();
   @Input() Title;
   @Input() Description;
   @Input() Id;
@@ -23,7 +24,9 @@ export class CardTokenComponent implements OnInit {
 
       });
     }
-
+    cardPrintClicked(){
+      this.CardRequestPrint.emit(this.Id);
+    }
     cardEditClicked(){
         this.CardSelected.emit(this.Id);
       }

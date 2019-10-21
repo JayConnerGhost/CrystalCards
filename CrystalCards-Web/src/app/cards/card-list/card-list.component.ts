@@ -4,6 +4,7 @@ import { Card } from "src/app/card";
 import { OpenCardComponent } from "../open-card/open-card.component";
 import { MatDialog } from "@angular/material/dialog";
 import { CardsService } from "src/app/services/cards.service";
+import { CardPrintComponent } from '../card-print/card-print.component';
 
 @Component({
   selector: "app-card-list",
@@ -38,6 +39,34 @@ export class CardListComponent implements OnInit {
 
     });
     this.cd.detectChanges();
+  }
+
+  PrintCard(event){
+    //Open print preview dialog
+    let card = this.cards.find(x => x.id == event);
+    let dialogRef = this.dialog.open(
+      CardPrintComponent,
+
+      {
+        width: "800px",
+        data: {
+          //Card data to go in here
+          id: card.id,
+          title: card.title,
+          description: card.description,
+          points: card.npPoints,
+          actionPoints: card.actionPoints,
+          order: card.order,
+          links: card.links
+        },
+        panelClass: "formFieldWidth550"
+      }
+    );
+    dialogRef.afterClosed().subscribe(data => {
+
+    });
+    //compose html / css print preview
+    //provide print button --npx-print
   }
 
   DeleteCard(event)  {

@@ -25,6 +25,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './AuthIntercepter';
+import { CardPrintComponent } from './cards/card-print/card-print.component';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -42,7 +43,8 @@ export function tokenGetter(){
     FilePreviewOverlayComponent,
     ToolbarComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    CardPrintComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ export function tokenGetter(){
    entryComponents: [
     OpenCardComponent,
     OpenForAddCardComponent,
-    FilePreviewOverlayComponent
+    FilePreviewOverlayComponent,
+    CardPrintComponent
   ],
 
   providers: [
