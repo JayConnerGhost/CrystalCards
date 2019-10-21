@@ -16,7 +16,6 @@ namespace CrystalCards.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
         }
     
 

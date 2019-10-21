@@ -27,6 +27,8 @@ namespace CrystalCards.Api.Controllers
             _logger = logger;
         }
 
+
+        //NOTE: to fix code in here to clean up a cards images 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -35,14 +37,27 @@ namespace CrystalCards.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var target = await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
+            var target = await _context.Cards
+                .Include(c=>c.Points)
+                .Include(c=>c.ActionPoints)
+                .Include(c=>c.Links)
+                
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (target == null)
             {
                 return NotFound();
             }
              _context.Remove(target);
-            await _context.SaveChangesAsync();
+             try
+             {
+                 await _context.SaveChangesAsync();
+            }
+             catch (Exception e)
+             {
+               _logger.LogError(Guid.NewGuid().ToString(),e);
+             }
+     
             return StatusCode(204);
         }
 
