@@ -40,6 +40,7 @@ export class CardListComponent implements OnInit {
   DeleteCard(event)  {
 
       this.apiService.DeleteCard(event).subscribe();
+      this.RefreshCardList();
   }
 
   DisplayCard(event) {

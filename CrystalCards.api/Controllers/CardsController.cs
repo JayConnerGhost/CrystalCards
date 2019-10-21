@@ -36,6 +36,11 @@ namespace CrystalCards.Api.Controllers
             }
 
             var target = await _context.Cards.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (target == null)
+            {
+                return NotFound();
+            }
              _context.Remove(target);
             await _context.SaveChangesAsync();
             return StatusCode(204);
