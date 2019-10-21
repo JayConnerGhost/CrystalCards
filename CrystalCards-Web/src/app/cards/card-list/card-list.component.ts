@@ -28,8 +28,7 @@ export class CardListComponent implements OnInit {
 
     this.cardService.refreshEvent.subscribe(c => {
       this.RefreshCardList();
-      console.log("refreshing cards");
-      console.log(this.cards);
+
     });
   }
   RefreshCardList() {
@@ -44,7 +43,12 @@ export class CardListComponent implements OnInit {
   DeleteCard(event)  {
 
       this.apiService.DeleteCard(event).subscribe();
-      this.RefreshCardList();
+      const target = this.cards.find(x => x.id === event);
+      const index = this.cards.indexOf(target);
+      if (index > -1) {
+        this.cards.splice(index, 1);
+      }
+      //this.RefreshCardList();
   }
 
   DisplayCard(event) {
