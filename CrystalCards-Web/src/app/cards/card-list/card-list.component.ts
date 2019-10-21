@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef  } from "@angular/core";
 import { ApiService } from "../../services/api.service";
 import { Card } from "src/app/card";
 import { OpenCardComponent } from "../open-card/open-card.component";
@@ -8,14 +8,16 @@ import { CardsService } from "src/app/services/cards.service";
 @Component({
   selector: "app-card-list",
   templateUrl: "./card-list.component.html",
-  styleUrls: ["./card-list.component.css"]
+  styleUrls: ["./card-list.component.css"],
+
 })
 export class CardListComponent implements OnInit {
   cards: Card[];
   constructor(
     private apiService: ApiService,
     private cardService: CardsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -34,7 +36,9 @@ export class CardListComponent implements OnInit {
     console.log("getting cards ");
     this.apiService.getCards().subscribe(res => {
       this.cards = res;
+
     });
+    this.cd.detectChanges();
   }
 
   DeleteCard(event)  {
