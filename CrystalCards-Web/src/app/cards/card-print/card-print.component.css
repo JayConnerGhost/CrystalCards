@@ -4,6 +4,20 @@ section {
     padding: 5px 5px 5px 5px;
 }
 
+.document-wrapper {
+    scroll-behavior: smooth;
+    overflow: scroll;
+    max-height: 600px;
+}
+
+.mat-dialog-content {
+    max-height: initial !important;
+}
+
+.mat-dialog-content {
+    height: 75%;
+}
+
 .title {
     font: 900;
 }
@@ -25,6 +39,12 @@ section {
 }
 
 .cons-items {
+    font: 500;
+    font-size: 1.0em;
+    color: #000000;
+}
+
+.action-point-items {
     font: 500;
     font-size: 1.0em;
     color: #000000;

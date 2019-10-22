@@ -1,39 +1,63 @@
-<div id="print-section">
-    <!--Your html stuff that you want to print-->
-    <section class="outline">
-        <div class="Section_title">Idea Outline</div>
-        <div class="title">{{Title}}</div>
-        <div class="description">{{Description}}</div>
-    </section>
-    <section class="Pros">
-        <div class="Pros-title">
-            Positive Idea Points
-        </div>
-        <div class="pros-items">
-            <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
-                <li *ngFor="let point of PositivePoints" class="list-group-item ">
-                    <span> {{ point.description }} </span>
-                    <li>
-            </ul>
-        </div>
-    </section>
-    <section class="Cons">
-        <div class="Cons-title">
-            Negative Idea Points
-        </div>
-        <div class="cons-items">
-            <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
-                <li *ngFor="let point of NegativePoints" class="list-group-item ">
-                    <span> {{ point.description }} </span>
-                    <li>
-            </ul>
-        </div>
-    </section>
+<div class="document-wrapper">
+    <mat-dialog-content>
+        <div id="print-section">
 
+            <section class="outline">
+                <div class="Section_title">Idea Outline</div>
+                <div class="title">{{Title}}</div>
+                <div class="description">{{Description}}</div>
+            </section>
+            <section class="Pros">
+                <div class="Pros-title">
+                    Positive Idea Points
+                </div>
+                <div class="pros-items">
+                    <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                        <li *ngFor="let point of PositivePoints" class="list-group-item ">
+                            <span> {{ point.description }} </span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="Cons">
+                <div class="Cons-title">
+                    Negative Idea Points
+                </div>
+                <div class="cons-items">
+                    <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                        <li *ngFor="let point of NegativePoints" class="list-group-item ">
+                            <span> {{ point.description }} </span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="action-points">
+                <div class="action-points-title">
+                    Action Points
+                </div>
+                <div class="action-point-items">
+                    <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                        <li *ngFor="let point of ActionPoints" class="list-group-item ">
+                            <span> {{ point.description }} </span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
+            <section class="Mood-wall">
+                <div class="mood-wall-title">
+                    Mood Images
+                </div>
+                <div class="mood-wall-items">
+                    <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                        <li *ngFor="let image of images" class="list-group-item ">
+                            <img src={{image}} alt="thumbnail" class="rounded img-fluid z-depth-1" style="width: 200px">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </mat-dialog-content>
 </div>
-<!--
-   2)- Add the directive name in your button (ngxPrint),
-   3)- Affect your ID to printSectionId
- -->
 <button printSectionId="print-section" [useExistingCss]="true" ngxPrint>print</button>
