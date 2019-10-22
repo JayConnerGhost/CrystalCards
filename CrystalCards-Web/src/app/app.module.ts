@@ -26,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './AuthIntercepter';
 import { CardPrintComponent } from './cards/card-print/card-print.component';
+import {NgxPrintModule} from 'ngx-print';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -57,6 +58,7 @@ export function tokenGetter(){
     DragDropModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
+    NgxPrintModule
      ],
    entryComponents: [
     OpenCardComponent,

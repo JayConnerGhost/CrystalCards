@@ -1,0 +1,31 @@
+section {
+    border: 0.5px solid black;
+    box-shadow: 3px 3px #8888;
+    padding: 5px 5px 5px 5px;
+}
+
+.title {
+    font: 900;
+}
+
+.section_title {
+    font: 700;
+    font-size: 1.2em;
+}
+
+.description {
+    font: 500;
+    font-size: 1.0em;
+}
+
+.pros-items {
+    font: 500;
+    font-size: 1.0em;
+    color: #000000;
+}
+
+.cons-items {
+    font: 500;
+    font-size: 1.0em;
+    color: #000000;
+}
