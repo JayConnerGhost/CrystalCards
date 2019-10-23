@@ -30,6 +30,7 @@ export class OpenCardComponent implements OnInit {
 
   ngOnInit() {
     this.splitPointsToLists(this.Points);
+    console.log(this.Links);
   }
 
 

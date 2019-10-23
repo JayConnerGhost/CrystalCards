@@ -41,6 +41,7 @@ namespace CrystalCards.Api.Controllers
                 {
                     var linkToUpdate = entity.Links.FirstOrDefault(x => x.Id == link.Id);
                     linkToUpdate.Description = link.Description;
+                    linkToUpdate.Url = link.Url;
                 }
             }
         }
