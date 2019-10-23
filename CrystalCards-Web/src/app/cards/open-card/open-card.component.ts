@@ -91,6 +91,7 @@ export class OpenCardComponent implements OnInit {
     newLink.description = LinkDescription.value;
     newLink.Url = LinkUrl.value;
     this.Links.push(newLink);
+    console.log(newLink);
   }
 
   onLinkRemove(id){

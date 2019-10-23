@@ -36,8 +36,8 @@ namespace CrystalCards.Api.Tests
                     Description = testCardDescription,
 
                     Links = new[]{
-                        new LinkRequest(){Description = "test actionPoint", Link="http://www.testdomain.com/test"},
-                        new LinkRequest(){Description = "test actionPoint", Link="http://www.test.co.uk/test"}
+                        new LinkRequest(){Description = "test actionPoint", Url="http://www.testdomain.com/test"},
+                        new LinkRequest(){Description = "test actionPoint", Url="http://www.test.co.uk/test"}
                     }
                 }
             };
@@ -53,7 +53,7 @@ namespace CrystalCards.Api.Tests
                     Description = testCardDescription,
 
                     Links = new[]{
-                        new LinkRequest(){Description = "test actionPoint", Link="http://www.testdomain.com/test"},
+                        new LinkRequest(){Description = "test actionPoint", Url="http://www.testdomain.com/test"},
                     }
                 }
             };
@@ -102,8 +102,8 @@ namespace CrystalCards.Api.Tests
                     Title = testCardTitle,
                     Description = testCardDescription,
                     Links = new[]{
-                        new LinkRequest(){Description = "test actionPoint", Link="http://www.testdomain.com/test"},
-                        new LinkRequest(){Description = "test actionPoint", Link="http://www.test.co.uk/test"}
+                        new LinkRequest(){Description = "test actionPoint", Url="http://www.testdomain.com/test"},
+                        new LinkRequest(){Description = "test actionPoint", Url="http://www.test.co.uk/test"}
                     }
                 }
             };
@@ -141,8 +141,8 @@ namespace CrystalCards.Api.Tests
                     Description = testCardDescription,
 
                     Links = new[]{
-                        new LinkRequest(){Description = "test actionPoint", Link="http://www.testdomain.com/test"},
-                        new LinkRequest(){Description = "test actionPoint", Link="http://www.test.co.uk/test"}
+                        new LinkRequest(){Description = "test actionPoint", Url="http://www.testdomain.com/test"},
+                        new LinkRequest(){Description = "test actionPoint", Url="http://www.test.co.uk/test"}
                     }
                 }
             };

@@ -57,6 +57,18 @@
                 </div>
             </section>
 
+            <section class="links">
+                <div class="links-title">
+                    External links
+                </div>
+                <div class="links-items">
+                    <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+                        <li *ngFor="let link of Links" class="list-group-item ">
+                            <span> {{ link.description }} : {{link.Url}} </span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
         </div>
     </mat-dialog-content>
 </div>

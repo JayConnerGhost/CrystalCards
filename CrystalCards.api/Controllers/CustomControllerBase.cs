@@ -212,7 +212,7 @@ namespace CrystalCards.Api.Controllers
 
         private IEnumerable<Link> ConvertLinkRequests(IList<LinkRequest> requestLinks)
         {
-            return requestLinks.Select(linkRequest => new Link { Id = linkRequest.Id, Description = linkRequest.Description, Url = linkRequest.Link}).ToList();
+            return requestLinks.Select(linkRequest => new Link { Id = linkRequest.Id, Description = linkRequest.Description, Url = linkRequest.Url}).ToList();
         }
 
         protected IEnumerable<NPPoint> ConvertPointRequests(IList<NPPointRequest> requestNpPoints)
