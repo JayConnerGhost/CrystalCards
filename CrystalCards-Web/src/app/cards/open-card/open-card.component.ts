@@ -44,6 +44,7 @@ export class OpenCardComponent implements OnInit {
   addPositive(newPositive) {
     var newPoint = new NPPoint();
     newPoint.description = newPositive.value;
+    newPositive.value = '';
     newPoint.direction = "Positive";
     this.PositivePoints.push(newPoint)
   }
@@ -60,6 +61,7 @@ export class OpenCardComponent implements OnInit {
 
     var newPoint = new NPPoint();
     newPoint.description = newNegative.value;
+    newNegative.value = '';
     newPoint.direction = "Negative";
     this.NegativePoints.push(newPoint);
   }
@@ -75,6 +77,7 @@ export class OpenCardComponent implements OnInit {
   addActionPoint(actionPoint){
     var newActionPoint=new ActionPoint();
     newActionPoint.description=actionPoint.value;
+    actionPoint.value = '';
     this.ActionPoints.push(newActionPoint);
   }
 
@@ -91,6 +94,8 @@ export class OpenCardComponent implements OnInit {
     var newLink = new UrlLink();
     newLink.description = LinkDescription.value;
     newLink.Url = LinkUrl.value;
+    LinkDescription.value = '';
+    LinkUrl = '';
     this.Links.push(newLink);
     console.log(newLink);
   }
