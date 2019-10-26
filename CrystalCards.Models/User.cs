@@ -9,11 +9,14 @@ namespace CrystalCards.Models
         public User()
         {
             Cards=new List<Card>();
+            Roles=new List<CustomRole>();
         }
+
         public int Id { get; set; }
         public string Username { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public IList<Card> Cards { get; set; }
+        public List<CustomRole> Roles { get; set; }
     }
 }

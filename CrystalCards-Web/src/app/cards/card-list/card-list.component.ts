@@ -35,8 +35,8 @@ export class CardListComponent implements OnInit {
   RefreshCardList() {
     console.log("getting cards ");
     this.apiService.getCards().subscribe(res => {
+      this.cards = null;
       this.cards = res;
-
     });
     this.cd.detectChanges();
   }
@@ -90,7 +90,7 @@ export class CardListComponent implements OnInit {
       {
         width: "800px",
         data: {
-          //Card data to go in here
+
           id: card.id,
           title: card.title,
           description: card.description,

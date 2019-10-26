@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CrystalCards.api;
@@ -12,6 +13,31 @@ namespace CrystalCards.Api.Tests
     public class BasicUserTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private CustomWebApplicationFactory<Startup> _factory = new CustomWebApplicationFactory<Startup>();
+
+        [Fact]
+        public async Task User_can_not_access_user_controller()
+        {
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(user));
+
+            var requestGetUsers = new
+            {
+                Url = $"api/users"
+            };
+
+
+            //act
+            var response=await Client.GetAsync(requestGetUsers.Url);
+            
+            //assert
+            Assert.Equal(HttpStatusCode.Forbidden,response.StatusCode);
+        }
+
+
+        
 
         [Fact]
         public async Task User_has_a_card()
