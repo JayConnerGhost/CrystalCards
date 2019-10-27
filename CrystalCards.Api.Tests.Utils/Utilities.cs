@@ -118,5 +118,20 @@ namespace CrystalCards.Api.Tests.Utils
             var repository = new AuthRepository(db);
             var result= await repository.Register(new User(){Username = "ghostadmin",Roles = new List<CustomRole>() {new CustomRole(){Name = Role.Administrator}}}, "test");
         }
+
+        public static async Task RegisterUser(string password, string userName, HttpClient client)
+        {
+            var request = new
+            {
+                Url = "api/auth/register",
+                Body = new
+                {
+                    username = userName,
+                    password = password
+                }
+            };
+
+            await client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+        }
     }
 }

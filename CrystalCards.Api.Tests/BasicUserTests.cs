@@ -58,7 +58,40 @@ namespace CrystalCards.Api.Tests
             Assert.Equal(HttpStatusCode.OK,response.StatusCode);
             
         }
-        
+
+        [Fact]
+        public async Task Retreive_list_of_users()
+        {
+            //arrange
+            int expectedUserCount=8;
+            //need to use the built in test admin user for this 
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.LoginUser("test", "ghostAdmin", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(user));
+
+            var requestGetUsers = new
+            {
+                Url = $"api/users"
+            };
+            await Utilities<Startup>.RegisterUser("Test", "testUser1", Client);
+            await Utilities<Startup>.RegisterUser("Test", "testUser2", Client);
+            await Utilities<Startup>.RegisterUser("Test", "testUser3", Client);
+            await Utilities<Startup>.RegisterUser("Test", "testUser4", Client);
+            await Utilities<Startup>.RegisterUser("Test", "testUser5", Client);
+            await Utilities<Startup>.RegisterUser("Test", "testUser6", Client);
+            await Utilities<Startup>.RegisterUser("Test", "testUser7", Client);
+
+
+            //act
+            var response = await Client.GetAsync(requestGetUsers.Url);
+            var users = JsonConvert.DeserializeObject<List<User>>(await response.Content.ReadAsStringAsync());
+
+            //Assert
+            Assert.Equal(expectedUserCount,users.Count);
+        }
+
 
         [Fact]
         public async Task User_has_a_card()
