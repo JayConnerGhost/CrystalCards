@@ -58,11 +58,13 @@ namespace CrystalCards.Api.Controllers
                 return Unauthorized();
             }
 
-            var claims = new[]
+            var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Username),
+               new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
+
+                new Claim(ClaimTypes.Name, userFromRepo.Username)
             };
+            claims.AddRange(userFromRepo.Roles.Select(role => new Claim(ClaimTypes.Role, role.Name.ToString())));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 

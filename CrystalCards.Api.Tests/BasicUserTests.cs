@@ -36,7 +36,28 @@ namespace CrystalCards.Api.Tests
             Assert.Equal(HttpStatusCode.Forbidden,response.StatusCode);
         }
 
+        [Fact]
+        public async Task Administrator_can_access_users()
+        {
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.LoginUser("test", "ghostAdmin", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(user));
 
+            var requestGetUsers = new
+            {
+                Url = $"api/users"
+            };
+
+
+            //act
+            var response=await Client.GetAsync(requestGetUsers.Url);
+            
+            //assert
+            Assert.Equal(HttpStatusCode.OK,response.StatusCode);
+            
+        }
         
 
         [Fact]

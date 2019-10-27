@@ -71,7 +71,7 @@ namespace CrystalCards.Api.Tests.Utils
                     try
                     {
                         // Seed the database with test data.
-                        //Utilities.InitializeDbForTests(db);
+                        Utilities<Startup>.InitializeDbForTests(db);
                     }
                     catch (Exception ex)
                     {

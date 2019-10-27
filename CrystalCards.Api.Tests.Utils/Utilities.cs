@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CrystalCards.api;
+using CrystalCards.Data;
 using CrystalCards.Models;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -13,6 +15,29 @@ namespace CrystalCards.Api.Tests.Utils
 {
     public static class Utilities<T> where T :class
     {
+
+        public static async Task<string> LoginUser(string password, string userName, HttpClient client)
+        {
+            var loginRequest = new
+            {
+                Url = "api/auth/login",
+
+                Body = new
+                {
+                    username = userName,
+                    password = password
+                }
+            };
+
+            var stringContent = ContentHelper.GetStringContent(loginRequest.Body);
+            var tokenResponse = await client.PostAsync(loginRequest.Url, stringContent);
+            var jsonCompactSerializedString = await tokenResponse.Content.ReadAsStringAsync();
+            return jsonCompactSerializedString;
+        }
+    
+
+
+
 
         public static async Task<string> RegisterandLoginUser(string password, string userName, HttpClient client)
         {
@@ -83,6 +108,15 @@ namespace CrystalCards.Api.Tests.Utils
             JObject jObject = JObject.Parse(token);
             userName = (string)jObject.SelectToken("username");
             return userName;
+        }
+
+        public static async Task InitializeDbForTests(ApplicationDbContext db)
+        {
+            //TODO: Code in here to add ghostAdmin test as administrator
+            //create repo passin password and username 
+            //find user in _context //db and add administrator role
+            var repository = new AuthRepository(db);
+            var result= await repository.Register(new User(){Username = "ghostadmin",Roles = new List<CustomRole>() {new CustomRole(){Name = Role.Administrator}}}, "test");
         }
     }
 }

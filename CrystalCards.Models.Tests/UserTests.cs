@@ -2,10 +2,6 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CrystalCards.Models
-{
-}
-
 namespace CrystalCards.Models.Tests
 {
     public class UserTests
@@ -20,9 +16,7 @@ namespace CrystalCards.Models.Tests
             user.Roles.Add(new CustomRole {Name = Role.Administrator});
             //assert
 
-            Assert.Equal(user.Roles[0].Name, Role.Administrator);
+            Assert.Equal(Role.Administrator, user.Roles[0].Name);
         }
     }
-
-    
 }
