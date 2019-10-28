@@ -21,6 +21,15 @@ decodedToken: any;
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  IsAdmin() {
+
+    if(this.decodedToken.role == 'Administrator')
+    {
+      return true;
+    }
+    return false;
+  }
+
   getUserName()  {
     return localStorage.getItem('username');
   }

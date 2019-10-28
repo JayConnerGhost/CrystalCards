@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using CrystalCards.Data;
+using CrystalCards.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
@@ -15,6 +18,7 @@ namespace CrystalCards.api
     {
         public static void Main(string[] args)
         {
+            CustomInitLogic();
             var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
@@ -31,6 +35,8 @@ namespace CrystalCards.api
                 // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
                 NLog.LogManager.Shutdown();
             }
+
+         
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -42,5 +48,37 @@ namespace CrystalCards.api
             logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
         })
         .UseNLog();  // NLog: setup NLog for Dependency injection
+
+        private static async Task CustomInitLogic()
+        {
+            var directory = Directory.GetCurrentDirectory();
+           
+            if (File.Exists(directory+"/init.txt"))
+            {
+                var config = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.Development.json", optional: false)
+                    .Build();
+
+                //create user 
+                var dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+                    .UseSqlServer(config.GetConnectionString("CardDatabase"));
+                
+                var db = new ApplicationDbContext(dbContextOptions.Options);
+                var userRepository=new AuthRepository(db);
+                User user = new User {Username = "Admin"};
+                user.Roles.Add(new CustomRole(){Name=Role.Administrator.ToString()});
+
+                try
+                {
+
+                   await userRepository.Register(user, "Password");
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }  
+            }
+        }
     }
 }

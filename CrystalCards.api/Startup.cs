@@ -176,5 +176,7 @@ namespace CrystalCards.api
                 .CaptureStartupErrors(true) // the default
                 .UseSetting("detailedErrors", "true")
                 .UseStartup<Startup>();
+
+        
     }
 }

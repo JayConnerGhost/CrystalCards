@@ -26,6 +26,10 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
+IsAdmin(){
+  return this.authService.IsAdmin();
+}
+
 loggedIn()
 {
  return this.authService.loggedIn();

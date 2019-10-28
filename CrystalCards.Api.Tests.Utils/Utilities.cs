@@ -35,10 +35,6 @@ namespace CrystalCards.Api.Tests.Utils
             return jsonCompactSerializedString;
         }
     
-
-
-
-
         public static async Task<string> RegisterandLoginUser(string password, string userName, HttpClient client)
         {
             var request = new
@@ -79,8 +75,7 @@ namespace CrystalCards.Api.Tests.Utils
                     Description = description
                 }
             };
-
-
+            
             var stringContent = ContentHelper.GetStringContent(request.Body);
             var response = await client.PostAsync(request.Url, stringContent);
             var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
@@ -112,11 +107,8 @@ namespace CrystalCards.Api.Tests.Utils
 
         public static async Task InitializeDbForTests(ApplicationDbContext db)
         {
-            //TODO: Code in here to add ghostAdmin test as administrator
-            //create repo passin password and username 
-            //find user in _context //db and add administrator role
-            var repository = new AuthRepository(db);
-            var result= await repository.Register(new User(){Username = "ghostadmin",Roles = new List<CustomRole>() {new CustomRole(){Name = Role.Administrator}}}, "test");
+           var repository = new AuthRepository(db);
+            var result= await repository.Register(new User(){Username = "ghostadmin",Roles = new List<CustomRole>() {new CustomRole(){Name = Role.Administrator.ToString()}}}, "test");
         }
 
         public static async Task RegisterUser(string password, string userName, HttpClient client)

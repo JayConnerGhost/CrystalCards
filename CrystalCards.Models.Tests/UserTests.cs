@@ -13,10 +13,10 @@ namespace CrystalCards.Models.Tests
             var user=new User();
 
             //act
-            user.Roles.Add(new CustomRole {Name = Role.Administrator});
+            user.Roles.Add(new CustomRole {Name = Role.Administrator.ToString()});
             //assert
 
-            Assert.Equal(Role.Administrator, user.Roles[0].Name);
+            Assert.Equal(Role.Administrator.ToString(), user.Roles[0].Name);
         }
     }
 }

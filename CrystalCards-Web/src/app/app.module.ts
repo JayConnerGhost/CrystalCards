@@ -27,6 +27,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './AuthIntercepter';
 import { CardPrintComponent } from './cards/card-print/card-print.component';
 import {NgxPrintModule} from 'ngx-print';
+import { AdminMenuComponent } from './users/admin-menu/admin-menu.component';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -45,7 +46,8 @@ export function tokenGetter(){
     ToolbarComponent,
     HomeComponent,
     RegisterComponent,
-    CardPrintComponent
+    CardPrintComponent,
+    AdminMenuComponent
   ],
   imports: [
     BrowserModule,
