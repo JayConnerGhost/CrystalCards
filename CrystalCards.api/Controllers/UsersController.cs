@@ -17,7 +17,7 @@ namespace CrystalCards.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles="Administrator")]
-    public class UsersController : ControllerBase
+    public class UsersController : CustomControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<UsersController> _logger;
@@ -34,8 +34,8 @@ namespace CrystalCards.Api.Controllers
                 .Include(x=>x.Cards)
                 .Include(x=>x.Roles)
                 .ToList();
-
-            return Ok(users);
+          
+            return Ok(ConvertToUserResponses(users));
         }
     }
 }

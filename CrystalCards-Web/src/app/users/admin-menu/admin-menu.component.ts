@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { OpenForAddCardComponent } from 'src/app/cards/open-for-add-card/open-for-add-card.component';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { OpenUserManagementComponent } from '../open-user-management/open-user-management.component';
 
 @Component({
   selector: 'app-admin-menu',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog,) { }
 
   ngOnInit() {
+  }
+  openUserList() {
+// Open dialog
+this.dialog.open(OpenUserManagementComponent,
+    {
+      width: "800px"
+    }
+  );
+// Load user component
+//Load Users
+
   }
 
 }

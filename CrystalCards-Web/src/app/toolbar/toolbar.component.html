@@ -5,9 +5,6 @@
     </mat-toolbar-row>
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between">
         <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)" *ngIf="loggedIn()"></app-add-card>
-
-        <app-admin-menu *ngIf="IsAdmin()"></app-admin-menu>
-
         <div class="WelcomeContainer" *ngIf="loggedIn()">
             <span class="mr-2">Welcome {{authService.decodedToken?.unique_name | titlecase}}</span>
             <button mat-raised-button (click)="logout()">
@@ -29,5 +26,8 @@
                 <button mat-raised-button type="submit" [disabled]="!loginForm.valid">Login</button>
             </form>
         </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="adminMenuContainer">
+        <app-admin-menu *ngIf="IsAdmin()"></app-admin-menu>
     </mat-toolbar-row>
 </mat-toolbar>

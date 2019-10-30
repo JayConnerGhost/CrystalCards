@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Card } from ".././card";
-import { Observable, throwError } from "rxjs";
-import { catchError, retry } from "rxjs/operators";
-import { ConfigService } from "./config.service";
-import { AuthService } from "./auth.service";
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Card} from ".././card";
+import {Observable} from "rxjs";
+import {ConfigService} from "./config.service";
+import {AuthService} from "./auth.service";
+import {User} from "../User";
 
 @Injectable({
   providedIn: "root"
@@ -76,5 +76,11 @@ export class ApiService {
     return this.httpClient.get<string[]>(
       `${this.configService.master_apiURL}/moodwall/${userId}/${cardId}`
     );
+  }
+
+  getUsers() {
+     return this.httpClient.get<User>(
+       `${this.configService.master_apiURL}/users`
+     );
   }
 }

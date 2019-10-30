@@ -1,3 +1,13 @@
 .Toolbar {
     box-shadow: 2px 2px #87718b;
 }
+
+.adminMenuContainer {
+    max-height: 20px;
+}
+
+.mat-toolbar-single-row,
+mat-toolbar-row {
+    max-height: 45px !important;
+    min-height: 45px !important;
+}

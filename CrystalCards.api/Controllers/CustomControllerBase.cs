@@ -5,11 +5,27 @@ using CrystalCards.Api.Dtos;
 using CrystalCards.Data;
 using CrystalCards.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CrystalCards.Api.Controllers
 {
     public class CustomControllerBase:ControllerBase
     {
+
+        protected List<UserResponse> ConvertToUserResponses(List<User> users)
+        {
+            return users.Select(ConvertToUserResponse).ToList();
+        }
+
+        protected UserResponse ConvertToUserResponse(User user)
+        {
+            return new UserResponse()
+            {
+                Username = user.Username,
+                Roles=user.Roles.ToArray()
+            };
+        }
+
         protected void ProcessLinks(ApplicationDbContext context, IList<LinkRequest> requestLinks, Card entity)
         {
             var linkRequests = ConvertLinkRequests(requestLinks);

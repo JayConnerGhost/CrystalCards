@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CrystalCards.api;
+using CrystalCards.Api.Dtos;
 using CrystalCards.Api.Tests.Utils;
 using CrystalCards.Models;
 using Newtonsoft.Json;
@@ -60,7 +61,7 @@ namespace CrystalCards.Api.Tests
         }
 
         [Fact]
-        public async Task Retreive_list_of_users()
+        public async Task Retreive_list_of_users_as_userResponses()
         {
             //arrange
             int expectedUserCount=8;
@@ -86,7 +87,7 @@ namespace CrystalCards.Api.Tests
 
             //act
             var response = await Client.GetAsync(requestGetUsers.Url);
-            var users = JsonConvert.DeserializeObject<List<User>>(await response.Content.ReadAsStringAsync());
+            var users = JsonConvert.DeserializeObject<List<UserResponse>>(await response.Content.ReadAsStringAsync());
 
             //Assert
             Assert.Equal(expectedUserCount,users.Count);
