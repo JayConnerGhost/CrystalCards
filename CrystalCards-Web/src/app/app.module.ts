@@ -30,6 +30,7 @@ import {NgxPrintModule} from 'ngx-print';
 import { AdminMenuComponent } from './users/admin-menu/admin-menu.component';
 import { OpenUserManagementComponent } from './users/open-user-management/open-user-management.component';
 
+
 export function tokenGetter(){
   return localStorage.getItem('token');
 }
@@ -62,8 +63,9 @@ export function tokenGetter(){
     DragDropModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
-    NgxPrintModule
-     ],
+    NgxPrintModule,
+
+  ],
    entryComponents: [
     OpenCardComponent,
     OpenForAddCardComponent,

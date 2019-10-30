@@ -20,7 +20,8 @@ export class AdminMenuComponent implements OnInit {
 // Open dialog
 this.dialog.open(OpenUserManagementComponent,
     {
-      width: "800px"
+      width: "800px",
+      maxHeight: "600px"
     }
   );
 // Load user component

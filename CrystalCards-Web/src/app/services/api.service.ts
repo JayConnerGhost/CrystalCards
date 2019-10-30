@@ -79,7 +79,7 @@ export class ApiService {
   }
 
   getUsers() {
-     return this.httpClient.get<User>(
+     return this.httpClient.get<User[]>(
        `${this.configService.master_apiURL}/users`
      );
   }

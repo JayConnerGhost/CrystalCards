@@ -12,6 +12,7 @@ import {MatListModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material';
 import {OpenCardComponent } from './app/cards/open-card/open-card.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
       MatListModule,
       MatIconModule,
       MatButtonToggleModule,
+      MatTableModule
 
     ],
   exports: [
@@ -43,7 +45,7 @@ import {OpenCardComponent } from './app/cards/open-card/open-card.component';
     MatListModule,
     MatIconModule,
     MatButtonToggleModule,
-
+    MatTableModule
 
 ],
 
