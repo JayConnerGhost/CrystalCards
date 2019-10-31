@@ -49,15 +49,14 @@ export class OpenUserManagementComponent implements OnInit {
   }
 
   deletePerson(username: string) {
+    if(username==="Admin"){return;}
     this.apiService.deleteUser(username).subscribe();
     const target = this.dataSource.find(x => x.username === username);
     const index = this.dataSource.indexOf(target);
     if (index > -1) {
       this.dataSource.splice(index, 1);
     }
-
     this.cd.detectChanges();
     this.table.renderRows()
-
   }
 }
