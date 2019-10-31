@@ -46,7 +46,25 @@ namespace CrystalCards.Api.Controllers
                 .Include(x => x.Cards)
                 .Include(x => x.Roles)
                 .FirstOrDefaultAsync(x => x.Username == username.ToLower());
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             return Ok(ConvertToUserResponse(user));
+        }
+
+        [HttpDelete("{username}")]
+        public async Task<IActionResult> Delete(string username)
+        {
+            var user = await _context.Users
+                .Include(x => x.Cards)
+                .Include(x => x.Roles)
+                .FirstOrDefaultAsync(x => x.Username == username.ToLower());
+            _context.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return Accepted();
         }
     }
 }

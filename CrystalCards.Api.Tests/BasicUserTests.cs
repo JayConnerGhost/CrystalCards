@@ -109,16 +109,19 @@ namespace CrystalCards.Api.Tests
                 Url = $"api/users/testUser11"
             };
 
+            var requestDeleteUser = new
+            {
+                Url= $"api/users/testUser11"
+            };
+
             //act
 
-            //TODO issue delete statement
+                await Client.DeleteAsync(requestDeleteUser.Url);
 
             //assert
             var response = await Client.GetAsync(requestGetUsers.Url);
-            var userResponse = JsonConvert.DeserializeObject<UserResponse>(await response.Content.ReadAsStringAsync());
-
+           
             Assert.Equal(HttpStatusCode.NotFound,response.StatusCode);
-            Assert.Equal(null,userResponse);
         }
 
         [Fact]
