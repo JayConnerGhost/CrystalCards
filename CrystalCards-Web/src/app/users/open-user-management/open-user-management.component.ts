@@ -8,6 +8,7 @@ import {MatTable} from "@angular/material/table";
 class DisplayUser {
   username: string;
   roles:string;
+  isAdmin:Boolean;
 }
 
 @Component({
@@ -40,6 +41,13 @@ export class OpenUserManagementComponent implements OnInit {
             return rolesNames;
           });
           u.roles=rolesNames;
+          if(u.roles.includes("Administrator")){
+            u.isAdmin=true;
+          }
+          else
+          {
+            u.isAdmin=false;
+          }
           return u;
         }
       );

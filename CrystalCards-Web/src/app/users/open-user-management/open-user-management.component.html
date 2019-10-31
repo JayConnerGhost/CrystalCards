@@ -20,7 +20,7 @@
   <ng-container matColumnDef="makeAdmin">
     <th mat-header-cell *matHeaderCellDef>Admin</th>
     <td mat-cell *matCellDef="let person">
-      <mat-checkbox ></mat-checkbox>
+      <mat-checkbox  [checked]="person.isAdmin"></mat-checkbox>
     </td>
   </ng-container>
 
