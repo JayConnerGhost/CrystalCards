@@ -93,6 +93,59 @@ namespace CrystalCards.Api.Tests
             Assert.Equal(expectedUserCount,users.Count);
         }
 
+        [Fact]
+        public async Task Delete_user()
+        {
+            //arrange 
+           
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.LoginUser("test", "ghostAdmin", Client);
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(user));
+            await Utilities<Startup>.RegisterUser("Test", "testUser11", Client);
+
+            var requestGetUsers = new
+            {
+                Url = $"api/users/testUser11"
+            };
+
+            //act
+
+            //TODO issue delete statement
+
+            //assert
+            var response = await Client.GetAsync(requestGetUsers.Url);
+            var userResponse = JsonConvert.DeserializeObject<UserResponse>(await response.Content.ReadAsStringAsync());
+
+            Assert.Equal(HttpStatusCode.NotFound,response.StatusCode);
+            Assert.Equal(null,userResponse);
+        }
+
+        [Fact]
+        public async Task Can_retrieve_user_by_userName()
+        {
+            //arrange
+            var userName = "testUser11";
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.LoginUser("test", "ghostAdmin", Client);
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(user));
+           
+            await Utilities<Startup>.RegisterUser("Test", userName, Client);
+            var requestGetUser = new
+            {
+                Url = $"api/users/{userName}"
+            };
+
+            //act
+            var response = await Client.GetAsync(requestGetUser.Url);
+
+            //assert
+          
+            var userResponse = JsonConvert.DeserializeObject<UserResponse>(await response.Content.ReadAsStringAsync());
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.NotNull(userResponse);
+        }
 
         [Fact]
         public async Task User_has_a_card()

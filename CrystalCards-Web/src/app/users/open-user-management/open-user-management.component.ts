@@ -16,7 +16,7 @@ class DisplayUser {
 })
 export class OpenUserManagementComponent implements OnInit {
 
-  displayedColumns: string[] = ['username','roles'];
+  displayedColumns: string[] = ['username','roles','makeAdmin','deleteUsers'];
   dataSource = null;
   constructor(private apiService: ApiService,
               public dialogRef: MatDialogRef<OpenUserManagementComponent>,
@@ -24,12 +24,10 @@ export class OpenUserManagementComponent implements OnInit {
 
   ngOnInit() {
    this.loadUsers();
-   this.displayUsers();
   }
 
   loadUsers() {
     this.apiService.getUsers().subscribe(res=>{
-
       let displayUsers=res.map(user=> {
           var u = new DisplayUser();
           u.username = user.username;
@@ -48,8 +46,7 @@ export class OpenUserManagementComponent implements OnInit {
 
   }
 
-  displayUsers() {
-//TODO grid view
-
+  deletePerson(username: string) {
+    this.apiService.deleteUser(username).subscribe();
   }
 }

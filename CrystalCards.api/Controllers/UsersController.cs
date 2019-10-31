@@ -28,14 +28,25 @@ namespace CrystalCards.Api.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var users = _context.Users
+            var users = await _context.Users
                 .Include(x=>x.Cards)
                 .Include(x=>x.Roles)
-                .ToList();
+                .ToListAsync();
           
             return Ok(ConvertToUserResponses(users));
+        }
+
+        [HttpGet("{Username}")]
+        public async Task<IActionResult> Get(string username)
+        {
+            var user = await _context.Users
+                .Include(x => x.Cards)
+                .Include(x => x.Roles)
+                .FirstOrDefaultAsync(x => x.Username == username.ToLower());
+            return Ok(ConvertToUserResponse(user));
         }
     }
 }

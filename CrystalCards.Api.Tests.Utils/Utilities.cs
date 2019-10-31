@@ -122,8 +122,16 @@ namespace CrystalCards.Api.Tests.Utils
                     password = password
                 }
             };
-
-            await client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+            try
+            {
+                await client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+               
+            }
+          
         }
     }
 }

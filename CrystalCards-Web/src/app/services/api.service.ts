@@ -83,4 +83,8 @@ export class ApiService {
        `${this.configService.master_apiURL}/users`
      );
   }
+
+  deleteUser(username: string) {
+    return this.httpClient.delete(`${this.configService.master_apiURL}/users/${username}`);
+  }
 }
