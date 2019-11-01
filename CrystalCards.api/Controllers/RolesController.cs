@@ -27,9 +27,36 @@ namespace CrystalCards.Api.Controllers
             _context = context;
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Remove([FromBody] RoleRemoveRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var targetUser = await _context.Users
+                .Include(x => x.Roles)
+                .FirstOrDefaultAsync(x => x.Username == request.Username.ToLower());
+            _context.Update(targetUser);
+            var customRole = targetUser.Roles.Find(x => x.Name.ToLower() == request.RoleName.ToLower());
+            if (customRole != null)
+            {
+                targetUser.Roles.Remove(customRole);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(ConvertToUserResponse(targetUser));
+        }
+
         [HttpPost()]
         public async Task<IActionResult> Post([FromBody] RoleAssignmentRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var targetUser= await _context.Users
                 .Include(x => x.Roles)
                 .FirstOrDefaultAsync(x => x.Username == request.Username.ToLower());

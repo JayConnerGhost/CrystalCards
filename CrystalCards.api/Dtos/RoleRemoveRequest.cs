@@ -2,7 +2,7 @@
 
 namespace CrystalCards.Api.Dtos
 {
-    public class RoleAssignmentRequest
+    public class RoleRemoveRequest
     {
         [Required]
         public string Username { get; set; }

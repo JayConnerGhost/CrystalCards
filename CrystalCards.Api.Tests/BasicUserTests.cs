@@ -65,7 +65,6 @@ namespace CrystalCards.Api.Tests
             };
 
             //act
-            //TODO ... Make user admin 
             await Client.PostAsync(requestPostMakeAdmin.Url, ContentHelper.GetStringContent(requestPostMakeAdmin.Body));
 
 
@@ -74,6 +73,56 @@ namespace CrystalCards.Api.Tests
             var userResponse = JsonConvert.DeserializeObject<UserResponse>(await response.Content.ReadAsStringAsync());
 
             Assert.Equal(expectedRole, userResponse.Roles[0].Name);
+        }
+
+        [Fact]
+        public async Task Administrator_can_remove_Administrator_role_from_user()
+        {
+            //arrange
+            var expectedRoleCount = 0;
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.LoginUser("test", "ghostAdmin", Client);
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(user));
+            await Utilities<Startup>.RegisterUser("Test", "testUserAdmin", Client);
+
+            var requestGetUsers = new
+            {
+                Url = $"api/users/testUserAdmin"
+            };
+
+            var requestPostMakeAdmin = new
+            {
+                Url = $"api/Roles",
+                Body = new
+                {
+                    username = "testUserAdmin",
+                    roleName = "Administrator"
+                }
+            };
+            //duplicated for semantic value
+            var requestDeleteRoleAdmin = new
+            {
+                Url="api/Roles/Remove",
+                Body = new
+                {
+                    username = "testUserAdmin",
+                    roleName = "Administrator"
+                }
+            };
+
+            await Client.PostAsync(requestPostMakeAdmin.Url, ContentHelper.GetStringContent(requestPostMakeAdmin.Body));
+
+            //act
+            //TODO remove admin role .... 
+            await Client.PostAsync(requestDeleteRoleAdmin.Url, ContentHelper.GetStringContent(requestDeleteRoleAdmin.Body));
+
+            //assert
+            var response = await Client.GetAsync(requestGetUsers.Url);
+            var userResponse = JsonConvert.DeserializeObject<UserResponse>(await response.Content.ReadAsStringAsync());
+
+            Assert.Equal(expectedRoleCount, userResponse.Roles.Length);
+
         }
 
         [Fact]
