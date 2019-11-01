@@ -3,6 +3,7 @@ import {ApiService} from "../../services/api.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CustomRole, User} from "../../User";
 import {MatTable} from "@angular/material/table";
+import {MatCheckbox} from "@angular/material/checkbox";
 
 
 class DisplayUser {
@@ -66,5 +67,11 @@ export class OpenUserManagementComponent implements OnInit {
     }
     this.cd.detectChanges();
     this.table.renderRows()
+  }
+
+  changeAdmin(checkboxisadmin: MatCheckbox, username: string) {
+    console.log(username);
+    console.log(checkboxisadmin);
+    this.apiService.changeAdminOnUser(username, checkboxisadmin.checked).Subscribe();
   }
 }

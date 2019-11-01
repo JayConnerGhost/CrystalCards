@@ -10,5 +10,7 @@ namespace CrystalCards.Api.Dtos
         [Required]
         [StringLength(8,MinimumLength = 4, ErrorMessage = "you must specify password between 4 and 8 charactors")]
         public string Password { get; set; }
+
+
     }
 }

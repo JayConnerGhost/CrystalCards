@@ -6,6 +6,7 @@ using CrystalCards.api;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Api.Tests.Utils;
 using CrystalCards.Models;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -35,6 +36,44 @@ namespace CrystalCards.Api.Tests
             
             //assert
             Assert.Equal(HttpStatusCode.Forbidden,response.StatusCode);
+        }
+
+        [Fact]
+        public async Task Administrator_can_make_user_admin()
+        {
+            //arrange 
+            var expectedRole = Role.Administrator.ToString();
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.LoginUser("test", "ghostAdmin", Client);
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(user));
+            await Utilities<Startup>.RegisterUser("Test", "testUserAdmin", Client);
+           
+            var requestGetUsers = new
+            {
+                Url = $"api/users/testUserAdmin"
+            };
+
+            var requestPostMakeAdmin = new
+            {
+                Url = $"api/Roles",
+                Body=new
+                {
+                    username="testUserAdmin",
+                    roleName="Administrator"
+                }
+            };
+
+            //act
+            //TODO ... Make user admin 
+            await Client.PostAsync(requestPostMakeAdmin.Url, ContentHelper.GetStringContent(requestPostMakeAdmin.Body));
+
+
+            //assert
+            var response = await Client.GetAsync(requestGetUsers.Url);
+            var userResponse = JsonConvert.DeserializeObject<UserResponse>(await response.Content.ReadAsStringAsync());
+
+            Assert.Equal(expectedRole, userResponse.Roles[0].Name);
         }
 
         [Fact]

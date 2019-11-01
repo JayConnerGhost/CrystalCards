@@ -120,6 +120,7 @@ namespace CrystalCards.Api.Tests.Utils
                 {
                     username = userName,
                     password = password
+                    
                 }
             };
             try
@@ -133,5 +134,7 @@ namespace CrystalCards.Api.Tests.Utils
             }
           
         }
+
+       
     }
 }

@@ -87,4 +87,8 @@ export class ApiService {
   deleteUser(username: string) {
     return this.httpClient.delete(`${this.configService.master_apiURL}/users/${username}`);
   }
+
+  changeAdminOnUser(username: string, checked: boolean) {
+    //TODO.
+  }
 }
