@@ -1,7 +1,4 @@
-﻿export class CustomRole {
-Name:string;
-Id:number;
-}
+﻿import {CustomRole} from "./Role";
 
 export class User {
   //TODO fill in user definition

@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {ConfigService} from "./config.service";
 import {AuthService} from "./auth.service";
 import {User} from "../User";
+import {parseSelectorToR3Selector} from "@angular/compiler/src/core";
+import {CustomRoleAssignmentRequest} from "../Role";
 
 @Injectable({
   providedIn: "root"
@@ -89,6 +91,25 @@ export class ApiService {
   }
 
   changeAdminOnUser(username: string, checked: boolean) {
-    //TODO.
+    //TODO. implement client calls to API to add and remove admin role
+    if(checked){
+      //make a role object
+      let request=new CustomRoleAssignmentRequest();
+      request.roleName="Administrator";
+      request.userName=username;
+     return this.httpClient.post(`${this.configService.master_apiURL}/roles`,
+        request
+        );
+
+    }
+    else {
+      let request=new CustomRoleAssignmentRequest();
+      request.roleName="Administrator";
+      request.userName=username;
+      //call Remove as post on roles service
+      return this.httpClient.post(`${this.configService.master_apiURL}/roles/remove`,
+        request
+      );
+    }
   }
 }

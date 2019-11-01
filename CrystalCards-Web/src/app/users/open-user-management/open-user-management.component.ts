@@ -1,9 +1,10 @@
 import {ChangeDetectorRef, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CustomRole, User} from "../../User";
+import {User} from "../../User";
 import {MatTable} from "@angular/material/table";
 import {MatCheckbox} from "@angular/material/checkbox";
+import {CustomRole} from "../../Role";
 
 
 class DisplayUser {
@@ -18,7 +19,7 @@ class DisplayUser {
   styleUrls: ['./open-user-management.component.css']
 })
 export class OpenUserManagementComponent implements OnInit {
-@ViewChild('table') table: MatTable<any>;
+@ViewChild('table',null) table: MatTable<any>;
   displayedColumns: string[] = ['username','roles','makeAdmin','deleteUsers'];
   dataSource = null;
   constructor(private apiService: ApiService,
@@ -66,12 +67,21 @@ export class OpenUserManagementComponent implements OnInit {
       this.dataSource.splice(index, 1);
     }
     this.cd.detectChanges();
-    this.table.renderRows()
+    this.table.renderRows();
   }
 
   changeAdmin(checkboxisadmin: MatCheckbox, username: string) {
     console.log(username);
     console.log(checkboxisadmin);
-    this.apiService.changeAdminOnUser(username, checkboxisadmin.checked).Subscribe();
+    this.apiService.changeAdminOnUser(username, checkboxisadmin.checked).subscribe();
+    const target = this.dataSource.find(x => x.username === username);
+    if(checkboxisadmin.checked){
+      target.roles=' Administrator'
+    }
+    else {
+      target.roles='';
+    }
+    this.cd.detectChanges();
+    this.table.renderRows();
   }
 }
