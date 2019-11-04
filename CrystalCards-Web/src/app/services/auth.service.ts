@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http/';
 import { ConfigService } from './config.service';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,9 @@ export class AuthService {
 baseUrl = `${this.config.master_apiURL}/auth/`;
 jwtHelper = new JwtHelperService();
 decodedToken: any;
-  constructor(private http:HttpClient, private config:ConfigService) { }
+  constructor(private http:HttpClient,
+              private config:ConfigService,
+            ) { }
 
   register(model:any){
     return this.http.post(this.baseUrl+'register',model);
@@ -18,15 +20,23 @@ decodedToken: any;
 
   loggedIn(){
     const token=localStorage.getItem('token');
+    if(token===undefined){
+      return false;
+    }
     return !this.jwtHelper.isTokenExpired(token);
   }
 
   IsAdmin() {
+if(this.decodedToken===undefined){
 
+  return false;
+}
     if(this.decodedToken.role == 'Administrator')
     {
+
       return true;
     }
+
     return false;
   }
 
@@ -45,6 +55,7 @@ decodedToken: any;
             localStorage.setItem('username', user.username);
             this.decodedToken=this.jwtHelper.decodeToken(user.token);
             console.log(this.decodedToken);
+
           }
         }
     ));

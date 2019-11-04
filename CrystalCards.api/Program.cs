@@ -68,16 +68,20 @@ namespace CrystalCards.api
                 User user = new User {Username = "Admin"};
                 user.Roles.Add(new CustomRole(){Name=Role.Administrator.ToString()});
 
-                try
+                //TODO: code in  here to check if username unique 
+
+                var targetUser = await db.Users.FirstOrDefaultAsync(x => x.Username == "Admin");
+                if (targetUser == null)
                 {
-
-                   await userRepository.Register(user, "Password");
-
+                    try
+                    {
+                        await userRepository.Register(user, "Password");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }  
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿export class CustomRole {
-  Name: string;
+  name: string;
   Id: number;
 }
 export class CustomRoleAssignmentRequest{

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { CardsService } from '../services/cards.service';
 import { MatDialog } from '@angular/material';
@@ -21,7 +21,9 @@ export class ToolbarComponent implements OnInit {
               public authService: AuthService,
               private router: Router,
               private alertify: AlertifyService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private dt: ChangeDetectorRef
+  ) { }
   title = 'Crystal Ideas';
   ngOnInit() {
   }
@@ -38,11 +40,13 @@ logout(){
   localStorage.removeItem('token');
   this.alertify.message("you were logged out");
   this.router.navigateByUrl('');
+  this.dt.detectChanges();
 }
 
  login(){
   this.authService.login(this.model).subscribe(next=>{
    this.alertify.success("successfully logged in ");
+      this.dt.detectChanges()
   },
   error=>{
     this.alertify.error("failed to login");

@@ -16,6 +16,7 @@ namespace CrystalCards.Data
 
         public async Task<User> Register(User user, string password)
         {
+            
             byte[] passwordHash, passwordSalt;
             CreatPasswordHash(password, out passwordHash, out passwordSalt);
 
