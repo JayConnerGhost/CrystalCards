@@ -29,6 +29,7 @@ import { CardPrintComponent } from './cards/card-print/card-print.component';
 import {NgxPrintModule} from 'ngx-print';
 import { AdminMenuComponent } from './users/admin-menu/admin-menu.component';
 import { OpenUserManagementComponent } from './users/open-user-management/open-user-management.component';
+import {GeneralMenuComponent} from "./users/general-menu/general-menu.component";
 
 
 export function tokenGetter(){
@@ -50,7 +51,9 @@ export function tokenGetter(){
     RegisterComponent,
     CardPrintComponent,
     AdminMenuComponent,
-    OpenUserManagementComponent
+    OpenUserManagementComponent,
+    GeneralMenuComponent,
+    GeneralMenuComponent
   ],
   imports: [
     BrowserModule,
