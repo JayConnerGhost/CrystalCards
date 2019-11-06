@@ -35,7 +35,7 @@ describe('CardApiService', () => {
     httpMock = injector.get(HttpTestingController);
   });
 
-  it('should get cards successfully',()=> {
+  it('GetCards, should get cards successfully',()=> {
     //set up return data
     let cardData : Card[]= [
       {"id":0, "title": "test card ", "description": "test card description",actionPoints:null,links:null,npPoints:null,order:0}
@@ -49,12 +49,40 @@ describe('CardApiService', () => {
     req.flush(cardData);
   });
 
-  it('URL should include username',()=>{
+  it('GetCards, URL should include username',()=>{
     let userName='jade';
     service.getCards().subscribe();
     const req = httpMock.expectOne(`http://localhost:50872/api/cards/GetForUserName/${userName}`);
     expect(req.request.method).toBe('GET');
   });
+
+  it('AddBasicCard, should return a card with correct values',()=>{
+    const title="test card title";
+    const description ='test card description';
+    const id=0;
+    service.NewBasic(id,title,description).subscribe(response=>{
+      expect(response.title).toBe(title);
+      expect(response.description).toBe(description);
+
+    });
+    const req = httpMock.expectOne(`http://localhost:50872/api/cards/jade`);
+    expect(req.request.method).toBe('POST');
+    let card=new Card();
+    card.title=title;
+    card.description=description;
+    req.flush(card);
+
+  });
+
+  it('DeleteCard, correct url is called with correct method',()=>{
+    let cardId=1;
+    service.DeleteCard(cardId).subscribe();
+    const req = httpMock.expectOne(`http://localhost:50872/api/cards/${cardId}`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(cardId);
+  });
+
+
 
   afterEach(() => {
     httpMock.verify();

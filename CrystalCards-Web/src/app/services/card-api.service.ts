@@ -25,4 +25,22 @@ export class CardApiService {
       `${this.configService.master_apiURL}/cards/GetForUserName/${username}`
     );
   }
+  public NewBasic(Id: number, Title: any, Description: any): Observable<Card> {
+    let card = new Card();
+    card.description = Description;
+    card.title = Title;
+    card.id = Id;
+    let username = null;
+    if(this.authService.loggedIn){
+      username = this.authService.getUserName();
+    }
+    return this.httpClient.post<Card>(
+      `${this.configService.master_apiURL}/cards/${username}`,
+      card
+    );
+  }
+
+  DeleteCard(event: any) {
+    return this.httpClient.delete(`${this.configService.master_apiURL}/cards/${event}`);
+  }
 }

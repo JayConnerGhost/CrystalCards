@@ -20,7 +20,7 @@ export class ApiService {
   ) {}
 
   DeleteCard(event: any) {
-    console.log("deleting",event)
+
     return this.httpClient.delete(`${this.configService.master_apiURL}/cards/${event}`);
   }
 
