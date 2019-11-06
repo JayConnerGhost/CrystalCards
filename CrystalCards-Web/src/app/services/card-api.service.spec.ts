@@ -4,6 +4,9 @@ import { ConfigService } from './config.service';
 import { CardApiService } from './card-api.service';
 import {Card} from "../card";
 import {AuthService} from "./auth.service";
+import {NPPoint} from "../cards/NPPoint";
+import {ActionPoint} from "../cards/ActionPoint";
+import {Action} from "rxjs/internal/scheduler/Action";
 
 class AuthServiceStub extends AuthService{
   public  getUserName():string
@@ -14,7 +17,6 @@ class AuthServiceStub extends AuthService{
     return true;
   }
 }
-
 
 describe('CardApiService', () => {
   let service: CardApiService;
@@ -60,7 +62,7 @@ describe('CardApiService', () => {
     const title="test card title";
     const description ='test card description';
     const id=0;
-    service.NewBasic(id,title,description).subscribe(response=>{
+    service.newBasic(id,title,description).subscribe(response=>{
       expect(response.title).toBe(title);
       expect(response.description).toBe(description);
 
@@ -76,13 +78,31 @@ describe('CardApiService', () => {
 
   it('DeleteCard, correct url is called with correct method',()=>{
     let cardId=1;
-    service.DeleteCard(cardId).subscribe();
+    service.deleteCard(cardId).subscribe();
     const req = httpMock.expectOne(`http://localhost:50872/api/cards/${cardId}`);
     expect(req.request.method).toBe('DELETE');
     req.flush(cardId);
   });
+  it('UpdateCard, should return a card with correct values',()=>{
+    let title='test card';
+    let description='test card description';
+    let id=1;
+    let actionPoints=[];
+    let npPoints=[];
 
-
+    service.update(title,description,id,npPoints,actionPoints,[]).subscribe(response=>{
+      expect(response.title).toBe(title);
+      expect(response.description).toBe(description);
+      expect(response.id).toBe(id);
+      });
+    const req = httpMock.expectOne(`http://localhost:50872/api/cards/${id}`);
+    expect(req.request.method).toBe('PUT');
+    let card=new Card();
+    card.description=description;
+    card.title=title;
+    card.id=id;
+    req.flush(card);
+  });
 
   afterEach(() => {
     httpMock.verify();

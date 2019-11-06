@@ -25,7 +25,7 @@ export class CardApiService {
       `${this.configService.master_apiURL}/cards/GetForUserName/${username}`
     );
   }
-  public NewBasic(Id: number, Title: any, Description: any): Observable<Card> {
+  public newBasic(Id: number, Title: any, Description: any): Observable<Card> {
     let card = new Card();
     card.description = Description;
     card.title = Title;
@@ -40,7 +40,30 @@ export class CardApiService {
     );
   }
 
-  DeleteCard(event: any) {
+  deleteCard(event: any) {
     return this.httpClient.delete(`${this.configService.master_apiURL}/cards/${event}`);
+  }
+
+  public update(
+    title,
+    description,
+    id,
+    points,
+    actionPoints,
+    links
+  ): Observable<Card> {
+
+    let card = new Card();
+    card.description = description;
+    card.title = title;
+    card.id = id;
+    card.npPoints = points;
+    card.actionPoints = actionPoints;
+    card.links = links;
+
+    return this.httpClient.put<Card>(
+      `${this.configService.master_apiURL}/cards/${id}`,
+      card
+    );
   }
 }
