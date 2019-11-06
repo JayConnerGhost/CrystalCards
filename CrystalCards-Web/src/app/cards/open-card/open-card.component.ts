@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { NPPoint } from '../NPPoint';
 import { ActionPoint } from '../ActionPoint';
 import { UrlLink } from '../Link';
+import {CardApiService} from "../../services/card-api.service";
 @Component({
   selector: 'app-open-card',
   templateUrl: './open-card.component.html',
@@ -13,7 +14,7 @@ import { UrlLink } from '../Link';
 export class OpenCardComponent implements OnInit {
   @Output() UpdatePerformed = new EventEmitter();
   constructor(
-    private apiService: ApiService,
+    private apiService: CardApiService,
     public dialogRef: MatDialogRef<OpenCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 

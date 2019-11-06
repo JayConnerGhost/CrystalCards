@@ -4,9 +4,7 @@ import { ConfigService } from './config.service';
 import { CardApiService } from './card-api.service';
 import {Card} from "../card";
 import {AuthService} from "./auth.service";
-import {NPPoint} from "../cards/NPPoint";
-import {ActionPoint} from "../cards/ActionPoint";
-import {Action} from "rxjs/internal/scheduler/Action";
+
 
 class AuthServiceStub extends AuthService{
   public  getUserName():string
@@ -50,14 +48,12 @@ describe('CardApiService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(cardData);
   });
-
   it('GetCards, URL should include username',()=>{
     let userName='jade';
     service.getCards().subscribe();
     const req = httpMock.expectOne(`http://localhost:50872/api/cards/GetForUserName/${userName}`);
     expect(req.request.method).toBe('GET');
   });
-
   it('AddBasicCard, should return a card with correct values',()=>{
     const title="test card title";
     const description ='test card description';
@@ -75,7 +71,6 @@ describe('CardApiService', () => {
     req.flush(card);
 
   });
-
   it('DeleteCard, correct url is called with correct method',()=>{
     let cardId=1;
     service.deleteCard(cardId).subscribe();

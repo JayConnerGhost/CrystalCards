@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
+import {CardApiService} from "../../services/card-api.service";
 @Component({
   selector: 'app-open-for-add-card',
   templateUrl: './open-for-add-card.component.html',
@@ -10,7 +11,7 @@ export class OpenForAddCardComponent implements OnInit {
 Id=0;
 Title=null;
 Description=null;
-  constructor(private apiService: ApiService,
+  constructor(private apiService: CardApiService,
               public dialogRef: MatDialogRef<OpenForAddCardComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -21,7 +22,7 @@ Description=null;
   }
 
   onSubmit(f){
-    this.apiService.NewBasic(this.Id, this.Title, this.Description).subscribe();
+    this.apiService.newBasic(this.Id, this.Title, this.Description).subscribe();
     this.closeDialog();
   }
 

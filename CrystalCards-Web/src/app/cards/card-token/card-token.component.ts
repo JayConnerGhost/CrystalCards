@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { ApiService} from '../../services/api.service';
 import { Card } from 'src/app/card';
 import { _MatTabHeaderMixinBase } from '@angular/material/tabs/typings/tab-header';
+import {CardApiService} from "../../services/card-api.service";
 
 @Component({
   selector: 'app-card-token',
@@ -16,12 +17,11 @@ export class CardTokenComponent implements OnInit {
   @Input() Description;
   @Input() Id;
   cards: Card[];
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: CardApiService) { }
 
   ngOnInit() {
     this.apiService.getCards().subscribe((res)=>{
         this.cards=res;
-
       });
     }
     cardPrintClicked(){

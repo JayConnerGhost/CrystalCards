@@ -19,59 +19,6 @@ export class ApiService {
     private authService: AuthService
   ) {}
 
-  DeleteCard(event: any) {
-
-    return this.httpClient.delete(`${this.configService.master_apiURL}/cards/${event}`);
-  }
-
-
-  NewBasic(Id: number, Title: any, Description: any): Observable<Card> {
-    let card = new Card();
-    card.description = Description;
-    card.title = Title;
-    card.id = Id;
-    let username = null;
-    if(this.authService.loggedIn){
-      username = this.authService.getUserName();
-    }
-    return this.httpClient.post<Card>(
-      `${this.configService.master_apiURL}/cards/${username}`,
-      card
-    );
-  }
-  public getCards(): Observable<Card[]> {
-    let username = null;
-    if(this.authService.loggedIn){
-      username = this.authService.getUserName();
-    }
-    return this.httpClient.get<Card[]>(
-      `${this.configService.master_apiURL}/cards/GetForUserName/${username}`
-    );
-  }
-
-  public update(
-    title,
-    description,
-    id,
-    points,
-    actionPoints,
-    links
-  ): Observable<Card> {
-    console.log(title, description, id, points);
-    let card = new Card();
-    card.description = description;
-    card.title = title;
-    card.id = id;
-    card.npPoints = points;
-    card.actionPoints = actionPoints;
-    card.links = links;
-
-    return this.httpClient.put<Card>(
-      `${this.configService.master_apiURL}/cards/${id}`,
-      card
-    );
-  }
-
   GetImageURLs(userId, cardId): any {
     console.log(cardId);
 

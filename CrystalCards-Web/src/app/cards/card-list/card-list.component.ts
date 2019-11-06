@@ -5,6 +5,7 @@ import { OpenCardComponent } from "../open-card/open-card.component";
 import { MatDialog } from "@angular/material/dialog";
 import { CardsService } from "src/app/services/cards.service";
 import { CardPrintComponent } from '../card-print/card-print.component';
+import {CardApiService} from "../../services/card-api.service";
 
 @Component({
   selector: "app-card-list",
@@ -15,7 +16,7 @@ import { CardPrintComponent } from '../card-print/card-print.component';
 export class CardListComponent implements OnInit {
   cards: Card[];
   constructor(
-    private apiService: ApiService,
+    private apiService: CardApiService,
     private cardService: CardsService,
     public dialog: MatDialog,
     private cd: ChangeDetectorRef
@@ -71,7 +72,7 @@ export class CardListComponent implements OnInit {
 
   DeleteCard(event)  {
 
-      this.apiService.DeleteCard(event).subscribe();
+      this.apiService.deleteCard(event).subscribe();
       const target = this.cards.find(x => x.id === event);
       const index = this.cards.indexOf(target);
       if (index > -1) {
