@@ -50,9 +50,13 @@ namespace CrystalCards.Data.Migrations
 
                     b.Property<int?>("UserId");
 
+                    b.Property<int?>("UserProjectId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserProjectId");
 
                     b.ToTable("Cards");
                 });
@@ -131,6 +135,23 @@ namespace CrystalCards.Data.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("CrystalCards.Models.UserProject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Title");
+
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("CrystalCards.Models.ActionPoint", b =>
                 {
                     b.HasOne("CrystalCards.Models.Card")
@@ -143,6 +164,10 @@ namespace CrystalCards.Data.Migrations
                     b.HasOne("CrystalCards.Models.User")
                         .WithMany("Cards")
                         .HasForeignKey("UserId");
+
+                    b.HasOne("CrystalCards.Models.UserProject")
+                        .WithMany("Cards")
+                        .HasForeignKey("UserProjectId");
                 });
 
             modelBuilder.Entity("CrystalCards.Models.CustomRole", b =>
@@ -164,6 +189,13 @@ namespace CrystalCards.Data.Migrations
                     b.HasOne("CrystalCards.Models.Card")
                         .WithMany("Points")
                         .HasForeignKey("CardId");
+                });
+
+            modelBuilder.Entity("CrystalCards.Models.UserProject", b =>
+                {
+                    b.HasOne("CrystalCards.Models.User")
+                        .WithMany("Projects")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

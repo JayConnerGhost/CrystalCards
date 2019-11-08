@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {OpenUserManagementComponent} from "../open-user-management/open-user-management.component";
 import {AddProjectComponent} from "../../projects/add-project/add-project.component";
+import {ListProjectComponent} from "../../projects/list-project/list-project.component";
 
 @Component({
   selector: 'app-general-menu',
@@ -18,13 +19,18 @@ export class GeneralMenuComponent implements OnInit {
   addProject() {
     this.dialog.open(AddProjectComponent,
       {
-        width: "800px",
+        width: "400px",
         maxHeight: "600px"
       }
     );
   }
 
   listProjects() {
-
+    this.dialog.open(ListProjectComponent,
+      {
+        width: "800px",
+        maxHeight: "600px"
+      }
+    );
   }
 }

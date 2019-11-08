@@ -135,6 +135,31 @@ namespace CrystalCards.Api.Tests.Utils
           
         }
 
-       
+
+        public static async void CreateProject(string title, string username, HttpClient client)
+        {
+            var request = new
+            {
+                Url = $"api/projects/{username}",
+                Body = new
+                {
+                    id = 0,
+                    Title = title,
+                }
+            };
+            HttpResponseMessage response=null;
+            try
+            {
+                response = await client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+        }
     }
 }

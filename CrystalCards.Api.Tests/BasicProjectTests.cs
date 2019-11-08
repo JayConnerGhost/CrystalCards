@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
@@ -144,7 +145,40 @@ namespace CrystalCards.Api.Tests
         }
 
 
-        
+        [Fact]
+        public async Task Get_projects_for_userId()
+        {
+            //arrange 
+            int expectedCountOfProjects=1;
+            var Client = Utilities<Startup>.CreateClient();
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+            
+            var request = new
+            {
+                Url = $"api/projects/{userName}",
+                Body = new
+                {
+                    id = 0,
+                    Title = "test",
+                }
+            };
+            HttpResponseMessage response = null;
+            response = await Client.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+           
+            //act
+            var getRequest= new
+            {
+                Url=$"api/projects/{userName}"
+            };
+            var projectResponse = await Client.GetAsync(getRequest.Url);
+            var projectList = JsonConvert.DeserializeObject<List<ProjectResponse>>(await projectResponse.Content.ReadAsStringAsync());
+            //assert
+            Assert.Equal(expectedCountOfProjects,projectList.Count);
+        }
 
         [Fact]
         public async Task Can_delete_project_by_id()

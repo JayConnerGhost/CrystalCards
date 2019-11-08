@@ -31,6 +31,7 @@ import { AdminMenuComponent } from './users/admin-menu/admin-menu.component';
 import { OpenUserManagementComponent } from './users/open-user-management/open-user-management.component';
 import {GeneralMenuComponent} from "./users/general-menu/general-menu.component";
 import { AddProjectComponent } from './projects/add-project/add-project.component';
+import { ListProjectComponent } from './projects/list-project/list-project.component';
 
 
 
@@ -56,7 +57,8 @@ export function tokenGetter(){
     OpenUserManagementComponent,
     GeneralMenuComponent,
     GeneralMenuComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    ListProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ export function tokenGetter(){
     FilePreviewOverlayComponent,
     CardPrintComponent,
     OpenUserManagementComponent,
-    AddProjectComponent
+    AddProjectComponent,
+     ListProjectComponent
   ],
 
   providers: [
