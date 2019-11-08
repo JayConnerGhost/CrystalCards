@@ -130,7 +130,7 @@ namespace CrystalCards.Api.Controllers
                     .Include(cs4 => cs4.Cards).ThenInclude(cs5 => cs5.Links)
                     .FirstOrDefaultAsync(x => x.Username == username);
                 List<Card> cards = (List<Card>)user.Cards;
-                convertResponses = ConvertResponses(cards);
+                convertResponses = ConvertCardResponses(cards);
             }
             catch (Exception e)
             {

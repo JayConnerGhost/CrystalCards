@@ -26,6 +26,36 @@ namespace CrystalCards.Api.Controllers
             _logger = logger;
         }
 
+        [HttpPost("[action]/{projectId}")]
+        public async Task<IActionResult> AddCardToProject([FromBody] AddCardToProjectRequest request, int projectId)
+        {
+          var targetProject= await _context.Projects
+                .Include(x => x.Cards)
+                .FirstOrDefaultAsync(x => x.Id == projectId);
+          var targetCard = await _context.Cards.FirstOrDefaultAsync(x => x.Id == request.CardId);
+
+          if (!ModelState.IsValid)
+          {
+              return BadRequest(ModelState);
+          }
+            
+          if (targetProject == null)
+          {
+              return BadRequest();
+          }
+
+          if (targetCard == null)
+          {
+              return BadRequest();
+          }
+
+          _context.Projects.Update(targetProject);
+          targetProject.Cards.Add(targetCard);
+          await _context.SaveChangesAsync();
+
+          return Ok(ConvertToProjectResponse(targetProject));
+        }
+
         [HttpDelete("{projectId}")]
         public async Task<IActionResult> Delete(int projectId)
         {
@@ -65,7 +95,9 @@ namespace CrystalCards.Api.Controllers
         [HttpGet("[action]/{projectId}")]
         public async Task<IActionResult> GetForProjectId(int projectId)
         {
-            var targetProject = await _context.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
+            var targetProject = await _context.Projects
+                .Include(x=>x.Cards)
+                .FirstOrDefaultAsync(x => x.Id == projectId);
             if (targetProject == null)
             {
                 return BadRequest();

@@ -17,7 +17,9 @@ namespace CrystalCards.Api.Controllers
         }
         protected ProjectResponse ConvertToProjectResponse(UserProject convertedProject)
         {
-            return new ProjectResponse() { Id = convertedProject.Id, Title = convertedProject.Title };
+            var projectResponse = new ProjectResponse() { Id = convertedProject.Id, Title = convertedProject.Title };
+            projectResponse.Cards = ConvertCardResponses(convertedProject.Cards);
+            return projectResponse;
         }
         protected UserProject ConvertProject(NewProjectRequest request)
         {
@@ -167,7 +169,7 @@ namespace CrystalCards.Api.Controllers
             return actionPoints;
         }
 
-        protected List<CardResponse> ConvertResponses(List<Card> result)
+        protected List<CardResponse> ConvertCardResponses(List<Card> result)
         {
             var convertedResponses = new List<CardResponse>();
             foreach (var card in result)

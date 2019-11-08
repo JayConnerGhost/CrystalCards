@@ -22,6 +22,98 @@ namespace CrystalCards.Api.Tests
         }
 
         [Fact]
+        public async Task Can_add_card_to_project()
+        {
+            // arrange
+            string testProjectTitle = "Test project";
+            string expectedCardTitle = "test card title";
+            var Client = Utilities<Startup>.CreateClient();
+            //set up user 
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+            //set up project
+            var addRequest = new
+            {
+                Url = $"api/projects/{userName}",
+                Body = new
+                {
+                    id = 0,
+                    Title = testProjectTitle,
+                }
+            };
+            var addResult = await Client.PostAsync(addRequest.Url, ContentHelper.GetStringContent(addRequest.Body));
+            var addProjectResponse = JsonConvert.DeserializeObject<ProjectResponse>(await addResult.Content.ReadAsStringAsync());
+            var projectId = addProjectResponse.Id;
+            //set up card 
+            var cardId = await Utilities<Startup>.SetupACardReturnId("test", expectedCardTitle, Client, userName);
+
+            //Act
+
+            var addCardToProjectRequest = new
+            {
+                Url = $"api/projects/AddCardToProject/{projectId}",
+                Body = new
+                {
+                    projectId = projectId,
+                    cardId = cardId
+                }
+            };
+
+            var project = await Client.PostAsync(addCardToProjectRequest.Url,
+                ContentHelper.GetStringContent(addCardToProjectRequest.Body));
+            //assert
+
+            var getRequest = new
+            {
+                Url = $"api/projects/GetForProjectId/{projectId}"
+            };
+            var getResponse = await Client.GetAsync(getRequest.Url);
+            var projectResponse = JsonConvert.DeserializeObject<ProjectResponse>(await getResponse.Content.ReadAsStringAsync());
+            var card = projectResponse.Cards[0];
+            Assert.Equal(expectedCardTitle, card.Title);
+        }
+
+
+        [Fact]
+        public async Task Can_get_card_by_id()
+        {
+            //arrange
+            var expectedProjectTitle="test project";
+            var Client = Utilities<Startup>.CreateClient();
+            //set up user 
+            var token = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            //Attach bearer token 
+            Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Utilities<Startup>.StripTokenValue(token));
+            var userName = Utilities<Startup>.StripUserNameValue(token);
+            var addRequest = new
+            {
+                Url = $"api/projects/{userName}",
+                Body = new
+                {
+                    id = 0,
+                    Title = expectedProjectTitle,
+                }
+            };
+            var addResult = await Client.PostAsync(addRequest.Url, ContentHelper.GetStringContent(addRequest.Body));
+            var addProjectResponse = JsonConvert.DeserializeObject<ProjectResponse>(await addResult.Content.ReadAsStringAsync());
+            //act
+
+            var getRequest = new
+            {
+                Url = $"api/projects/GetForProjectId/{addProjectResponse.Id}"
+            };
+            var projectResponse = await Client.GetAsync(getRequest.Url);
+
+            //assert
+            var project = JsonConvert.DeserializeObject<ProjectResponse>(await projectResponse.Content.ReadAsStringAsync());
+            Assert.Equal(expectedProjectTitle, project.Title);
+        }
+
+        [Fact]
         public async Task Can_delete_project_by_id()
         {
             //arrange 
