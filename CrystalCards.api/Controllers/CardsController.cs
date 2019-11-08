@@ -22,7 +22,7 @@ namespace CrystalCards.Api.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CardsController> _logger;
         public CardsController(ApplicationDbContext context, ILogger<CardsController> logger)
-         {
+        {
             _context = context;
             _logger = logger;
         }
@@ -38,26 +38,26 @@ namespace CrystalCards.Api.Controllers
             }
 
             var target = await _context.Cards
-                .Include(c=>c.Points)
-                .Include(c=>c.ActionPoints)
-                .Include(c=>c.Links)
-                
+                .Include(c => c.Points)
+                .Include(c => c.ActionPoints)
+                .Include(c => c.Links)
+
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (target == null)
             {
                 return NotFound();
             }
-             _context.Remove(target);
-             try
-             {
-                 await _context.SaveChangesAsync();
+            _context.Remove(target);
+            try
+            {
+                await _context.SaveChangesAsync();
             }
-             catch (Exception e)
-             {
-               _logger.LogError(Guid.NewGuid().ToString(),e);
-             }
-     
+            catch (Exception e)
+            {
+                _logger.LogError(Guid.NewGuid().ToString(), e);
+            }
+
             return StatusCode(204);
         }
 
@@ -65,23 +65,23 @@ namespace CrystalCards.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] UpdateCardRequest request)
         {
-         
-           if (!ModelState.IsValid)
-           {
-               return BadRequest(ModelState);
-           }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var entry = await _context.Cards
-                .Include(x=>x.Points)
-                .Include(x=>x.ActionPoints)
-                .Include(x=>x.Links)
+                .Include(x => x.Points)
+                .Include(x => x.ActionPoints)
+                .Include(x => x.Links)
                 .FirstOrDefaultAsync(x => x.Id == id);
             _context.Cards.Update(entry);
             entry.Description = request.Description;
             entry.Title = request.Title;
             entry.Order = request.Order;
             ProcessPoints(_context, request.NPPoints, entry);
-            ProcessActionPoints(_context,request.ActionPoints,entry);
+            ProcessActionPoints(_context, request.ActionPoints, entry);
             ProcessLinks(_context, request.Links, entry);
             await _context.SaveChangesAsync();
             return Ok(ConvertResponse(entry));
@@ -108,9 +108,9 @@ namespace CrystalCards.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(Guid.NewGuid().ToString(),e);
+                _logger.LogError(Guid.NewGuid().ToString(), e);
             }
-          
+
 
             return Created(Url.RouteUrl(entity.Id), ConvertResponse(entity));
         }
@@ -119,33 +119,33 @@ namespace CrystalCards.Api.Controllers
         public async Task<OkObjectResult> GetForUserName(string username)
         {
             User user;
-            List<CardResponse> convertResponses=null;
+            List<CardResponse> convertResponses = null;
             try
             {
                 user = await _context.Users
                     .Include(x => x.Cards)
-                    .ThenInclude(cs=>cs.ActionPoints)
-                    .Include(cs=>cs.Cards)
-                    .ThenInclude(cs3=>cs3.Points)
-                    .Include(cs4=>cs4.Cards).ThenInclude(cs5=>cs5.Links)
+                    .ThenInclude(cs => cs.ActionPoints)
+                    .Include(cs => cs.Cards)
+                    .ThenInclude(cs3 => cs3.Points)
+                    .Include(cs4 => cs4.Cards).ThenInclude(cs5 => cs5.Links)
                     .FirstOrDefaultAsync(x => x.Username == username);
                 List<Card> cards = (List<Card>)user.Cards;
                 convertResponses = ConvertResponses(cards);
             }
             catch (Exception e)
             {
-               _logger.LogError(Guid.NewGuid().ToString(),e);
+                _logger.LogError(Guid.NewGuid().ToString(), e);
             }
-           
+
             return Ok(convertResponses);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result=await _context.Cards
-                .Include(x=>x.Points)
-                .Include(x=>x.ActionPoints)
+            var result = await _context.Cards
+                .Include(x => x.Points)
+                .Include(x => x.ActionPoints)
                 .Include(x => x.Links)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (result == null)
@@ -156,6 +156,6 @@ namespace CrystalCards.Api.Controllers
             var resultConverted = ConvertResponse(result);
             return Ok(resultConverted);
         }
-   
+
     }
 }

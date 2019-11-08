@@ -10,6 +10,7 @@ namespace CrystalCards.Models
         {
             Cards=new List<Card>();
             Roles=new List<CustomRole>();
+            Projects=new List<UserProject>();
         }
 
         public int Id { get; set; }
@@ -18,5 +19,6 @@ namespace CrystalCards.Models
         public byte[] PasswordSalt { get; set; }
         public IList<Card> Cards { get; set; }
         public List<CustomRole> Roles { get; set; }
+        public List<UserProject> Projects { get; set; }
     }
 }

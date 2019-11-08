@@ -21,5 +21,6 @@ namespace CrystalCards.Data
 
         public virtual DbSet<Card> Cards { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserProject> Projects { get; set; }
     }
 }

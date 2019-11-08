@@ -11,7 +11,22 @@ namespace CrystalCards.Api.Controllers
 {
     public class CustomControllerBase:ControllerBase
     {
-
+        protected List<ProjectResponse> ConvertToProjectResponses(List<UserProject> targetUserProjects)
+        {
+            return targetUserProjects.Select(ConvertToProjectResponse).ToList();
+        }
+        protected ProjectResponse ConvertToProjectResponse(UserProject convertedProject)
+        {
+            return new ProjectResponse() { Id = convertedProject.Id, Title = convertedProject.Title };
+        }
+        protected UserProject ConvertProject(NewProjectRequest request)
+        {
+            return new UserProject()
+            {
+                Id = request.Id,
+                Title = request.Title
+            };
+        }
         protected List<UserResponse> ConvertToUserResponses(List<User> users)
         {
             return users.Select(ConvertToUserResponse).ToList();
