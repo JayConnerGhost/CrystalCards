@@ -26,6 +26,21 @@ namespace CrystalCards.Api.Controllers
             _logger = logger;
         }
 
+        [HttpDelete("{projectId}")]
+        public async Task<IActionResult> Delete(int projectId)
+        {
+            var target =await _context.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
+            if (target == null)
+            {
+                return BadRequest();
+            }
+
+            _context.Projects.Remove(target);
+            await _context.SaveChangesAsync();
+            return StatusCode(204);
+
+        }
+
         [HttpPost("{username}")]
         public async Task<IActionResult> PostWithUserName([FromBody] NewProjectRequest request, string username)
         {
