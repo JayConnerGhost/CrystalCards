@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Projects} from "@angular/cli/lib/config/schema";
 import {ProjectApiService} from "../../services/project-api.service";
+import {ProjectService} from "../../services/project.service";
 
 @Component({
   selector: 'app-list-project',
@@ -13,7 +14,11 @@ export class ListProjectComponent implements OnInit {
 
   displayedColumns: string[] = ['Id', 'Title','load','delete'];
   private dataSource: any;
-  constructor(private projectApiService: ProjectApiService) { }
+  constructor(
+    private projectApiService: ProjectApiService,
+    private projectService: ProjectService
+  ) { }
+
   ngOnInit() {
     this.projectApiService.getProjects().subscribe(rez=>{
       this.projects=rez;
@@ -21,4 +26,8 @@ export class ListProjectComponent implements OnInit {
     });
   }
 
+  LoadProjectContext(id: any) {
+
+    this.projectService.LoadProjectData(id)
+  }
 }

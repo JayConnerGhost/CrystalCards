@@ -6,6 +6,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { CardsService } from "src/app/services/cards.service";
 import { CardPrintComponent } from '../card-print/card-print.component';
 import {CardApiService} from "../../services/card-api.service";
+import {ProjectService} from "../../services/project.service";
+import {ProjectApiService} from "../../services/project-api.service";
+import {AssignProjectComponent} from "../../projects/assign-project/assign-project.component";
 
 @Component({
   selector: "app-card-list",
@@ -17,21 +20,42 @@ export class CardListComponent implements OnInit {
   cards: Card[];
   constructor(
     private apiService: CardApiService,
+    private projectApiService:ProjectApiService,
     private cardService: CardsService,
+    private projectService: ProjectService,
     public dialog: MatDialog,
     private cd: ChangeDetectorRef
   ) {}
+ context="General";
 
   ngOnInit() {
     this.apiService.getCards().subscribe(res => {
       this.cards = res;
       console.log(res);
     });
-
+    this.projectService.loadGeneralEvent.subscribe(p=>{
+      this.RefreshCardList();
+      this.context="General";
+    });
     this.cardService.refreshEvent.subscribe(c => {
       this.RefreshCardList();
 
     });
+    this.projectService.LoadProjectEvent.subscribe(event =>{
+
+    this.LoadProjectCards(event);
+    });
+
+  }
+  LoadProjectCards(event){
+if(event===-1){return;}
+    this.cards = null;
+    this.projectApiService.GetCardsForProject(event).subscribe(res=>{
+      this.cards=null;
+      this.cards=res.cards;
+      this.context=res.title;
+    });
+    this.cd.detectChanges();
   }
   RefreshCardList() {
     console.log("getting cards ");
@@ -66,8 +90,7 @@ export class CardListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
 
     });
-    //compose html / css print preview
-    //provide print button --npx-print
+
   }
 
   DeleteCard(event)  {
@@ -84,7 +107,6 @@ export class CardListComponent implements OnInit {
   DisplayCard(event) {
     //Here
     let card = this.cards.find(x => x.id == event);
-    console.log("pre-dialog", card);
     let dialogRef = this.dialog.open(
       OpenCardComponent,
 
@@ -106,5 +128,18 @@ export class CardListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
       this.RefreshCardList();
     });
+  }
+
+  AssignToProject(cardId: number) {
+
+    let dialogRef = this.dialog.open(
+      AssignProjectComponent,
+      {
+        width: "400px",
+        data: {
+          id: cardId,
+        },
+
+      });
   }
 }

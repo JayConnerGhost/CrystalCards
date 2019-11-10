@@ -1,7 +1,15 @@
 <div class="cardContainer" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+   <div class="context" >{{context}}</div>
     <li *ngFor="let card of cards">
         <ul>
-            <app-card-token [Title]=card.title [Description]=card.description [Id]=card.id (CardSelected)='DisplayCard($event)' (CardRequestDelete)='DeleteCard($event)' (CardRequestPrint)='PrintCard($event)'>
+            <app-card-token [Title]=card.title
+                            [Description]=card.description
+                            [Id]=card.id
+                            (CardSelected)='DisplayCard($event)'
+                            (CardRequestDelete)='DeleteCard($event)'
+                            (CardRequestPrint)='PrintCard($event)'
+                            (CardRequestAddToProject)='AssignToProject($event)'
+            >
             </app-card-token>
         </ul>
     </li>

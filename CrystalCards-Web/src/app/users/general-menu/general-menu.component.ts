@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {OpenUserManagementComponent} from "../open-user-management/open-user-management.component";
 import {AddProjectComponent} from "../../projects/add-project/add-project.component";
 import {ListProjectComponent} from "../../projects/list-project/list-project.component";
+import {ProjectService} from "../../services/project.service";
 
 @Component({
   selector: 'app-general-menu',
@@ -11,7 +12,9 @@ import {ListProjectComponent} from "../../projects/list-project/list-project.com
 })
 export class GeneralMenuComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              public projectService: ProjectService
+              ) { }
 
   ngOnInit() {
   }
@@ -32,5 +35,10 @@ export class GeneralMenuComponent implements OnInit {
         maxHeight: "600px"
       }
     );
+  }
+
+  LoadGeneral() {
+    //Code in here to load all card to wall and ignore projects
+    this.projectService.LoadGeneralData();
   }
 }

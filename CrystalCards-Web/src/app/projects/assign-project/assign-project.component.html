@@ -1,0 +1,23 @@
+<form validate #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <mat-dialog-content >
+    <div class="wrapper">
+      <div>
+        <mat-form-field class="mat-form-field-infix">
+          <input matInput placeholder="Card Id" name="Id" [(ngModel)]="Id" readonly />
+        </mat-form-field>
+        <mat-form-field class="mat-form-field-infix">
+         <!-- slect to go in here for project-->
+          <mat-select [(ngModel)]="selectedProject" name="project">
+            <mat-option *ngFor="let project of projects"  [value]="project.id">
+              {{project.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions fxLayoutAlign="end">
+    <button mat-raised-button type="submit"  class="background-primary-color white-text">Save</button>
+  </mat-dialog-actions>
+</form>

@@ -13,6 +13,7 @@ export class CardTokenComponent implements OnInit {
   @Output() CardSelected = new EventEmitter<number>();
   @Output() CardRequestDelete = new EventEmitter<number>();
   @Output() CardRequestPrint = new EventEmitter<number>();
+  @Output() CardRequestAddToProject = new EventEmitter<number>();
   @Input() Title;
   @Input() Description;
   @Input() Id;
@@ -33,4 +34,8 @@ export class CardTokenComponent implements OnInit {
     cardDeleteClicked(){
       this.CardRequestDelete.emit(this.Id);
     }
+
+  cardAddToProject() {
+    this.CardRequestAddToProject.emit(this.Id);
+  }
 }

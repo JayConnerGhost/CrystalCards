@@ -32,6 +32,8 @@ import { OpenUserManagementComponent } from './users/open-user-management/open-u
 import {GeneralMenuComponent} from "./users/general-menu/general-menu.component";
 import { AddProjectComponent } from './projects/add-project/add-project.component';
 import { ListProjectComponent } from './projects/list-project/list-project.component';
+import { AssignProjectComponent } from './projects/assign-project/assign-project.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 
@@ -58,7 +60,8 @@ export function tokenGetter(){
     GeneralMenuComponent,
     GeneralMenuComponent,
     AddProjectComponent,
-    ListProjectComponent
+    ListProjectComponent,
+    AssignProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ export function tokenGetter(){
     ToastrModule.forRoot(),
     FontAwesomeModule,
     NgxPrintModule,
+    MatSelectModule,
   ],
    entryComponents: [
     OpenCardComponent,
@@ -80,7 +84,8 @@ export function tokenGetter(){
     CardPrintComponent,
     OpenUserManagementComponent,
     AddProjectComponent,
-     ListProjectComponent
+     ListProjectComponent,
+     AssignProjectComponent
   ],
 
   providers: [

@@ -3,5 +3,5 @@
 export class Project {
   id: number;
   title: string;
-  Cards: Card[];
+  cards: Card[];
 }
