@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -89,14 +90,24 @@ namespace CrystalCards.Api.Controllers
         [HttpDelete("{projectId}")]
         public async Task<IActionResult> Delete(int projectId)
         {
-            var target =await _context.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
+            var target =await _context.Projects
+                .Include(x=>x.Cards)
+                .FirstOrDefaultAsync(x => x.Id == projectId);
             if (target == null)
             {
                 return BadRequest();
             }
 
-            _context.Projects.Remove(target);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Projects.Remove(target);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+              _logger.LogError(Guid.NewGuid().ToString(),e);
+            }
+        
             return StatusCode(204);
 
         }

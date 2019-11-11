@@ -20,4 +20,5 @@ export class ProjectService {
     localStorage.setItem('projectContext', null);
     this.loadGeneralEvent.next();
   }
-}
+
+  }

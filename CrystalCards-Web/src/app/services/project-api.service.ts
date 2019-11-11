@@ -51,5 +51,10 @@ export class ProjectApiService {
     request.projectId=selectedProject;
    return this.httpClient.post(`${this.configService.master_apiURL}/projects/AddCardToProject/${selectedProject}`,request)
   }
+
+  deleteProject(id: any) {
+    console.log(id);
+    return this.httpClient.delete(`${this.configService.master_apiURL}/projects/${id}`)
+  }
 }
 

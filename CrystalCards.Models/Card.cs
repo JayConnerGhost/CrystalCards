@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CrystalCards.Models
 {
@@ -20,5 +21,8 @@ namespace CrystalCards.Models
         public IList<ActionPoint> ActionPoints { get; set; }
         public IList<Link> Links { get; set; }
         public int Order { get; set; }
+
+        [ForeignKey("ProjectId")]
+        public int? ProjectId { get; set; }
     }
 }

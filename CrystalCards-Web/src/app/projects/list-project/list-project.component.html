@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" >
+<table mat-table [dataSource]="dataSource" #table>
 
   <ng-container matColumnDef="Id">
     <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -14,14 +14,14 @@
   <ng-container matColumnDef="load">
     <th mat-header-cell  *matHeaderCellDef > </th>
     <td mat-cell *matCellDef="let element" >
-      <button mat-button (click)="LoadProjectContext(element.id)" >Load</button>
+      <button mat-button (click)="loadProjectContext(element.id)" >Load</button>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell  *matHeaderCellDef >  </th>
     <td mat-cell *matCellDef="let element" >
-      <button mat-button >Delete</button>
+      <button mat-button (click)="deleteProject(element.id)" >Delete</button>
     </td>
   </ng-container>
 

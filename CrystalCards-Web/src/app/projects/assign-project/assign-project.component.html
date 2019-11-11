@@ -6,8 +6,7 @@
           <input matInput placeholder="Card Id" name="Id" [(ngModel)]="Id" readonly />
         </mat-form-field>
         <mat-form-field class="mat-form-field-infix">
-         <!-- slect to go in here for project-->
-          <mat-select [(ngModel)]="selectedProject" name="project">
+           <mat-select [(ngModel)]="selectedProject" name="project">
             <mat-option *ngFor="let project of projects"  [value]="project.id">
               {{project.title}}
             </mat-option>

@@ -16,6 +16,12 @@ namespace CrystalCards.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<UserProject>()
+                .HasMany(c => c.Cards)
+                .WithOne()
+                .HasForeignKey(c => c.ProjectId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     
 

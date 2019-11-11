@@ -28,5 +28,6 @@ export class AssignProjectComponent implements OnInit {
   onSubmit(f: NgForm) {
     console.log(this.selectedProject);
     this.projectApiService.AssignCardToProject(this.Id,this.selectedProject).subscribe();
+    this.dialogRef.close();
   }
 }
