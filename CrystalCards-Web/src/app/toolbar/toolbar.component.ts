@@ -70,4 +70,12 @@ logout(){
 
 
   }
+  ShowAsDeck() {
+    this.cardService.ShowCardsAsDeck();
+  }
+  ShowAsList() {
+    this.cardService.ShowCardsAsList();
+  }
+
+
 }

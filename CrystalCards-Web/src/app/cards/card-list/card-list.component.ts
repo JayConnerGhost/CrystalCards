@@ -27,7 +27,7 @@ export class CardListComponent implements OnInit {
     private cd: ChangeDetectorRef
   ) {}
  context="General";
-
+ asCards=true;
   ngOnInit() {
     this.apiService.getCards().subscribe(res => {
       this.cards = res;
@@ -38,9 +38,13 @@ export class CardListComponent implements OnInit {
       this.context="General";
     });
     this.cardService.refreshEvent.subscribe(c => {
+      if(c==false){
+        this.asCards=false;
+      }else {
+        this.asCards=true;
+      }
       this.RefreshCardList();
-
-    });
+      });
     this.projectService.LoadProjectEvent.subscribe(event =>{
 
     this.LoadProjectCards(event);
@@ -58,7 +62,7 @@ if(event===-1){return;}
     this.cd.detectChanges();
   }
   RefreshCardList() {
-    console.log("getting cards ");
+
     this.apiService.getCards().subscribe(res => {
       this.cards = null;
       this.cards = res;

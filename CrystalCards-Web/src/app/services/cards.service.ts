@@ -5,14 +5,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CardsService {
-  refreshEvent: BehaviorSubject<void>;
-  constructor() { 
+  refreshEvent: BehaviorSubject<boolean>;
+  constructor() {
 
-    this.refreshEvent = new BehaviorSubject(null);
+    this.refreshEvent = new BehaviorSubject(true);
   }
 
   refreshData()
   {
-    this.refreshEvent.next();
+    this.refreshEvent.next(true);
+  }
+
+  ShowCardsAsList() {
+    this.refreshEvent.next(false);
+  }
+
+  ShowCardsAsDeck() {
+    this.refreshEvent.next(true);
   }
 }

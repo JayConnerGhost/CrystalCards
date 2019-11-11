@@ -1,8 +1,10 @@
-<div class="cardContainer" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+<div  >
    <div class="context" >{{context}}</div>
+  <section *ngIf="asCards" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start" class="cardContainer">
     <li *ngFor="let card of cards">
         <ul>
-            <app-card-token [Title]=card.title
+            <app-card-token
+                            [Title]=card.title
                             [Description]=card.description
                             [Id]=card.id
                             (CardSelected)='DisplayCard($event)'
@@ -13,5 +15,8 @@
             </app-card-token>
         </ul>
     </li>
-
+  </section>
+  <section *ngIf="!asCards">
+    display as list
+  </section>
 </div>
