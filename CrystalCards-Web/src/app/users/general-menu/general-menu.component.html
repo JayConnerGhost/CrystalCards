@@ -4,6 +4,9 @@
   <button mat-menu-item (click)="LoadGeneral()">General</button>
 </mat-menu>
 
-<button mat-icon-button [matMenuTriggerFor]="appMenu" class="projects-menu-item">
-  projects
+<button mat-raised-button [matMenuTriggerFor]="appMenu"
+        matTooltip="Open Project Views"
+        class="projects-menu-item">
+  <mat-icon>view_module</mat-icon>
+
 </button>

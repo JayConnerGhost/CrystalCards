@@ -1,8 +1,5 @@
-<mat-button-toggle-group [(ngModel)]="selected">
-    <mat-button-toggle value="Brain_Storming">Brain Storming</mat-button-toggle>
-    <mat-button-toggle value="detail">Detail</mat-button-toggle>
-</mat-button-toggle-group>
-
-<button mat-button value="addidea" class="iconButton" (click)="addIdea()">
+<button mat-raised-button value="addidea"
+        matTooltip="Add a Idea"
+        class="iconButton" (click)="addIdea()">
     <mat-icon>add</mat-icon>
 </button>

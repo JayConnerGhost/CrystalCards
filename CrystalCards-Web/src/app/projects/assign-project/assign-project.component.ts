@@ -12,7 +12,7 @@ import {NgForm} from "@angular/forms";
 export class AssignProjectComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<OpenCardComponent>,
+    private dialogRef: MatDialogRef<AssignProjectComponent>,
     private projectApiService:ProjectApiService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
   Id = this.data.id;

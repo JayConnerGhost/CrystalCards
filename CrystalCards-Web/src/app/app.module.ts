@@ -34,6 +34,7 @@ import { AddProjectComponent } from './projects/add-project/add-project.componen
 import { ListProjectComponent } from './projects/list-project/list-project.component';
 import { AssignProjectComponent } from './projects/assign-project/assign-project.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -76,6 +77,7 @@ export function tokenGetter(){
     FontAwesomeModule,
     NgxPrintModule,
     MatSelectModule,
+    MatTooltipModule,
   ],
    entryComponents: [
     OpenCardComponent,

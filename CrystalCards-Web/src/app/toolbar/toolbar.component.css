@@ -2,12 +2,20 @@
     box-shadow: 2px 2px #87718b;
 }
 
-.adminMenuContainer {
-    max-height: 20px;
+.menuContainer {
+
+  white-space:nowrap;
+  display:inline-block;
+
+}
+.menuContainerDiv{
+
+  white-space:nowrap;
+  display:inline-block;
 }
 
 .mat-toolbar-single-row,
 mat-toolbar-row {
-    max-height: 45px !important;
-    min-height: 45px !important;
+    max-height: 65px !important;
+    min-height: 65px !important;
 }

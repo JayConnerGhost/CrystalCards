@@ -3,8 +3,8 @@
         <span> {{ title }}</span>
 
     </mat-toolbar-row>
-    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between">
-        <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)" *ngIf="loggedIn()"></app-add-card>
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="end">
+
         <div class="WelcomeContainer" *ngIf="loggedIn()">
             <span class="mr-2">Welcome {{authService.decodedToken?.unique_name | titlecase}}</span>
             <button mat-raised-button (click)="logout()">
@@ -27,8 +27,17 @@
             </form>
         </div>
     </mat-toolbar-row>
-    <mat-toolbar-row class="adminMenuContainer">
+    <mat-toolbar-row class="menuContainer"  fxLayoutAlign="space-between">
+      <div class="menuContainerDiv" fxLayoutAlign="space-around">
         <app-admin-menu *ngIf="IsAdmin()"></app-admin-menu>
         <app-general-menu *ngIf="loggedIn()"></app-general-menu>
+        <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)" *ngIf="loggedIn()"></app-add-card>
+      </div>
+        <div>
+          <button mat-raised-button
+                  matTooltip="Display Ideas as List"><mat-icon>list</mat-icon></button>
+          <button mat-raised-button
+                  matTooltip="Display Ideas as Cards"><mat-icon>dashboard</mat-icon></button>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
