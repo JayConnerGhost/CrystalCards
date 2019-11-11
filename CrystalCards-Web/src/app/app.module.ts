@@ -35,6 +35,7 @@ import { ListProjectComponent } from './projects/list-project/list-project.compo
 import { AssignProjectComponent } from './projects/assign-project/assign-project.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { CardsListViewComponent } from './cards/cards-list-view/cards-list-view.component';
 
 
 
@@ -62,7 +63,8 @@ export function tokenGetter(){
     GeneralMenuComponent,
     AddProjectComponent,
     ListProjectComponent,
-    AssignProjectComponent
+    AssignProjectComponent,
+    CardsListViewComponent
   ],
   imports: [
     BrowserModule,

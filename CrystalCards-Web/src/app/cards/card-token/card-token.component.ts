@@ -21,9 +21,10 @@ export class CardTokenComponent implements OnInit {
   constructor(private apiService: CardApiService) { }
 
   ngOnInit() {
-    this.apiService.getCards().subscribe((res)=>{
-        this.cards=res;
-      });
+    //TO BE REMOVED
+    //this.apiService.getCards().subscribe((res)=>{
+   //     this.cards=res;
+    //  });
     }
     cardPrintClicked(){
       this.CardRequestPrint.emit(this.Id);

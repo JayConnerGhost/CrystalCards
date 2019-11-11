@@ -1,0 +1,42 @@
+<table mat-table [dataSource]="Data" class="at-elevation-z2, table" #table>
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef>ID. </th>
+    <td mat-cell *matCellDef="let idea"> {{idea.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Title">
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td mat-cell *matCellDef="let idea"> {{idea.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Edit">
+    <th mat-header-cell  *matHeaderCellDef >  </th>
+    <td mat-cell *matCellDef="let idea" >
+      <button mat-button (click)="editCard(idea.id)">Edit</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Print">
+    <th mat-header-cell  *matHeaderCellDef >  </th>
+    <td mat-cell *matCellDef="let idea" >
+      <button mat-button (click)="printCard(idea.id)" >Print</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Project">
+    <th mat-header-cell  *matHeaderCellDef >  </th>
+    <td mat-cell *matCellDef="let idea" >
+      <button mat-button (click)="cardToProject(idea.id)" >Add To Project</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Delete">
+    <th mat-header-cell  *matHeaderCellDef >  </th>
+    <td mat-cell *matCellDef="let idea" >
+      <button mat-button (click)="deleteCard(idea.id)" >Delete</button>
+    </td>
+  </ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

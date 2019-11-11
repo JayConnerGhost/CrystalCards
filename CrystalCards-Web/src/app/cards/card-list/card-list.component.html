@@ -17,6 +17,12 @@
     </li>
   </section>
   <section *ngIf="!asCards">
-    display as list
+      <app-cards-list-view
+        [Data]="cards"
+        (CardSelected)='DisplayCard($event)'
+        (CardRequestDelete)='DeleteCard($event)'
+        (CardRequestPrint)='PrintCard($event)'
+        (CardRequestAddToProject)='AssignToProject($event)'
+       ></app-cards-list-view>
   </section>
 </div>
