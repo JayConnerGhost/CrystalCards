@@ -24,4 +24,11 @@
         min-height: 70px;
         overflow: hidden;
     }
+  .mat-card-title{
+    display: flex;
+    flex: 1;
+    max-height: 115px;
+    min-height: 115px;
+    overflow: hidden;
+  }
 }
