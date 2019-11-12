@@ -36,6 +36,7 @@ import { AssignProjectComponent } from './projects/assign-project/assign-project
 import {MatSelectModule} from "@angular/material/select";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { CardsListViewComponent } from './cards/cards-list-view/cards-list-view.component';
+import { CardFullScreenViewComponent } from './cards/card-full-screen-view/card-full-screen-view.component';
 
 
 
@@ -64,7 +65,8 @@ export function tokenGetter(){
     AddProjectComponent,
     ListProjectComponent,
     AssignProjectComponent,
-    CardsListViewComponent
+    CardsListViewComponent,
+    CardFullScreenViewComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ export function tokenGetter(){
     OpenUserManagementComponent,
     AddProjectComponent,
      ListProjectComponent,
-     AssignProjectComponent
+     AssignProjectComponent,
+     CardFullScreenViewComponent
   ],
 
   providers: [

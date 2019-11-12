@@ -1,11 +1,12 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { NPPoint } from '../NPPoint';
 import { ActionPoint } from '../ActionPoint';
 import { UrlLink } from '../Link';
 import {CardApiService} from "../../services/card-api.service";
+import {CardFullScreenViewComponent} from "../card-full-screen-view/card-full-screen-view.component";
 @Component({
   selector: 'app-open-card',
   templateUrl: './open-card.component.html',
@@ -16,7 +17,9 @@ export class OpenCardComponent implements OnInit {
   constructor(
     private apiService: CardApiService,
     public dialogRef: MatDialogRef<OpenCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialog: MatDialog,
+    ) { }
 
   Description = this.data.description;
   Title = this.data.title;
@@ -120,5 +123,30 @@ export class OpenCardComponent implements OnInit {
     this.NegativePoints = points.filter(p => p.direction === 'Negative');
     this.PositivePoints = points.filter(p => p.direction === 'Positive');
 
+  }
+
+  fullScreen() {
+    //Open card in full screen layout - readonly
+    let config=new MatDialogConfig();
+    config = {
+      position: {
+        top: '10px',
+        right: '10px'
+      },
+      height: '98%',
+      width: '100vw',
+      panelClass: 'full-screen-modal',
+    };
+
+    const dialog=this.dialog.open(CardFullScreenViewComponent,config);
+
+
+
+    //TODO
+    //Open Dialog full screen
+    //Add Leave Full screen
+    //Add CLose button
+    //Add print button
+    //Layout content as a document
   }
 }

@@ -28,7 +28,7 @@ button {
 
 .mat-tab-group {
     height: 300%;
-    
+
 }
 
 .mat-tab-body-wrapper {
@@ -53,4 +53,7 @@ button {
 
 #tab-group mat-tab-body {
     flex-grow: 1;
+}
+.full-screen-modal .mat-dialog-container {
+  max-width: none;
 }
