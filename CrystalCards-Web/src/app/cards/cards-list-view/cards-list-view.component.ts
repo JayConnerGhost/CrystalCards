@@ -11,20 +11,19 @@ import {MatSort} from "@angular/material/sort";
 export class CardsListViewComponent implements OnInit {
   @ViewChild('table',null) table: MatTable<any>;
   @Input() Data;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   @Output() CardSelected = new EventEmitter<number>();
   @Output() CardRequestDelete = new EventEmitter<number>();
   @Output() CardRequestPrint = new EventEmitter<number>();
   @Output() CardRequestAddToProject = new EventEmitter<number>();
 
-  dsCards:MatTableDataSource<Card>;
+
   displayedColumns: string[] = ['Id', 'title', 'Edit','Print', 'Project', 'Delete'];
   constructor() {
       }
 
   ngOnInit() {
-    this.dsCards=new MatTableDataSource<Card>(this.Data);
-    this.dsCards.sort = this.sort;
+
   }
 
   editCard(id: any) {
