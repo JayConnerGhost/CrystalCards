@@ -27,22 +27,18 @@ export class CardListComponent implements OnInit {
     private cd: ChangeDetectorRef
   ) {}
  context="General";
- asCards=true;
+asCardWall:boolean;
   ngOnInit() {
     this.apiService.getCards().subscribe(res => {
       this.cards = res;
-      console.log(res);
+
     });
     this.projectService.loadGeneralEvent.subscribe(p=>{
       this.RefreshCardList();
       this.context="General";
     });
     this.cardService.refreshEvent.subscribe(c => {
-      if(c==false){
-        this.asCards=false;
-      }else {
-        this.asCards=true;
-      }
+
       this.RefreshCardList();
       });
     this.projectService.LoadProjectEvent.subscribe(event =>{
@@ -62,7 +58,7 @@ if(event===-1){return;}
     this.cd.detectChanges();
   }
   RefreshCardList() {
-
+    this.asCardWall=this.cardService.asCardWall;
     this.apiService.getCards().subscribe(res => {
       this.cards = null;
       this.cards = res;

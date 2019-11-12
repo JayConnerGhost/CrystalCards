@@ -16,12 +16,7 @@ export class AddCardComponent implements OnInit {
 
   addIdea()
   {
-    if(this.selected=="detail"){
-      this.toastr.success("This is not implemented yet !! - coming soon ");
-    }
-    else{
       this.OpenAddDialog.emit();
-    }
   }
 
 }

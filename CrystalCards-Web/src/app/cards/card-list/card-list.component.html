@@ -1,6 +1,6 @@
 <div  >
    <div class="context" >{{context}}</div>
-  <section *ngIf="asCards" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start" class="cardContainer">
+  <section *ngIf="asCardWall" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start" class="cardContainer">
     <li *ngFor="let card of cards">
         <ul>
             <app-card-token
@@ -16,7 +16,7 @@
         </ul>
     </li>
   </section>
-  <section *ngIf="!asCards">
+  <section *ngIf="!asCardWall">
       <app-cards-list-view
         [Data]="cards"
         (CardSelected)='DisplayCard($event)'

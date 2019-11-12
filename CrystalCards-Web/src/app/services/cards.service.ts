@@ -5,22 +5,26 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CardsService {
+  asCardWall:boolean=true;
+
   refreshEvent: BehaviorSubject<boolean>;
   constructor() {
 
-    this.refreshEvent = new BehaviorSubject(true);
+    this.refreshEvent = new BehaviorSubject(this.asCardWall);
   }
 
   refreshData()
   {
-    this.refreshEvent.next(true);
+    this.refreshEvent.next(this.asCardWall);
   }
 
   ShowCardsAsList() {
-    this.refreshEvent.next(false);
+    this.asCardWall=false;
+    this.refreshEvent.next(this.asCardWall);
   }
 
   ShowCardsAsDeck() {
-    this.refreshEvent.next(true);
+    this.asCardWall=true;
+    this.refreshEvent.next(this.asCardWall);
   }
 }
