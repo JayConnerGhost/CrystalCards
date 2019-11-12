@@ -37,6 +37,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { CardsListViewComponent } from './cards/cards-list-view/cards-list-view.component';
 import { CardFullScreenViewComponent } from './cards/card-full-screen-view/card-full-screen-view.component';
+import {MatSortModule} from "@angular/material/sort";
 
 
 
@@ -82,6 +83,7 @@ export function tokenGetter(){
     NgxPrintModule,
     MatSelectModule,
     MatTooltipModule,
+    MatSortModule,
   ],
    entryComponents: [
     OpenCardComponent,
