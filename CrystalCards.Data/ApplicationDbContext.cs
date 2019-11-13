@@ -22,6 +22,11 @@ namespace CrystalCards.Data
                 .HasForeignKey(c => c.ProjectId)
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<User>()
+                .HasMany<CustomRole>(x => x.Roles)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     
 
