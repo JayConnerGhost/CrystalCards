@@ -27,6 +27,20 @@ namespace CrystalCards.Data
                 .HasMany<CustomRole>(x => x.Roles)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Card>()
+                .HasMany<Link>(x => x.Links)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Card>()
+                .HasMany<NPPoint>(x => x.Points)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Card>()
+                .HasMany<ActionPoint>(x => x.ActionPoints)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     
 
