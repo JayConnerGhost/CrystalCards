@@ -1,6 +1,19 @@
-.outercontainer{
+.outercontainer,mat-dialog-content{
   background-color: #ffffff;
   color:#000000;
-  width:99%;
-  height:95vh;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+
+.title{
+ font-size:2em;
+  text-align: center;
+  font-weight:bold;
+}
+.description{
+  font-size: 1.2em;
+}
+
+.sectionTitle{
+  font-size: 1.4em;
+  font-weight:bold;
+}

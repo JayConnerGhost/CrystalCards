@@ -14,7 +14,7 @@ export class ListProjectComponent implements OnInit {
   projects: Projects[];
 
   displayedColumns: string[] = ['Id', 'Title','load','delete'];
-  private dataSource: any;
+  dataSource: any;
 
   constructor(
     private projectApiService: ProjectApiService,

@@ -1,3 +1,55 @@
+<mat-dialog-content>
 <section class="outercontainer">
-  this will be the card preview
+  <div id="print-container">
+  <section class="header">
+    <div class="title">{{Title}}</div>
+    <div class="description">{{Description}}</div>
+  </section>
+  <section class="PositiveActionPoints">
+  <div class="sectionTitle">Positive Points about the Idea</div>
+  <ul>
+    <li  *ngFor="let point of PositivePoints" class="list-group-item ">{{point.description}}</li>
+  </ul>
 </section>
+
+  <section class="NegativeActionPoints">
+    <div class="sectionTitle">Negative Points about the Idea</div>
+    <ul>
+      <li  *ngFor="let point of NegativePoints" class="list-group-item ">{{point.description}}</li>
+    </ul>
+  </section>
+
+
+  <section class="ActionPoints">
+    <div class="sectionTitle">Action Points needed to bring about the Idea</div>
+    <ul>
+      <li  *ngFor="let point of ActionPoints" class="list-group-item ">{{point.description}}</li>
+    </ul>
+  </section>
+
+  <section class="Links">
+  <div class="sectionTitle">Links to research</div>
+  <ul>
+    <li  *ngFor="let link of Links" class="list-group-item ">{{link.description}} : {{link.url}}</li>
+  </ul>
+</section>
+
+  <section class="Images">
+    <div class="sectionTitle">Mood Images</div>
+    <ul class="list-group points-list col-xs-6 col-md-4 col-lg-12">
+      <li *ngFor="let image of images" class="list-group-item ">
+        <img src={{image}} alt="thumbnail" class="rounded img-fluid z-depth-1" style="width: 200px">
+      </li>
+    </ul>
+  </section>
+  </div>
+</section>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="flex-end">
+<button mat-raised-button  [useExistingCss]="true" ngxPrint printSectionId="print-container">
+  <mat-icon>print</mat-icon>
+</button>
+  <button mat-raised-button (click)="close()">
+  <mat-icon>close</mat-icon>
+  </button>
+</mat-dialog-actions>

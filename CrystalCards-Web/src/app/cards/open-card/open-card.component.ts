@@ -97,7 +97,7 @@ export class OpenCardComponent implements OnInit {
   addLink(LinkDescription, LinkUrl) {
     var newLink = new UrlLink();
     newLink.description = LinkDescription.value;
-    newLink.Url = LinkUrl.value;
+    newLink.url = LinkUrl.value;
     LinkDescription.value = '';
     LinkUrl = '';
     this.Links.push(newLink);
@@ -133,9 +133,21 @@ export class OpenCardComponent implements OnInit {
         top: '10px',
         right: '10px'
       },
-      height: '98%',
-      width: '100vw',
-      panelClass: 'full-screen-modal',
+
+      width: '80vw',
+
+      data: {
+        //Card data to go in here
+        id: this.id,
+        title: this.Title,
+        description: this.Description,
+        points: this.Points,
+        Positives: this.PositivePoints,
+        Negatives: this.NegativePoints,
+        actionPoints: this.ActionPoints,
+        order: this.Order,
+        links: this.Links
+      },
     };
 
     const dialog=this.dialog.open(CardFullScreenViewComponent,config);
