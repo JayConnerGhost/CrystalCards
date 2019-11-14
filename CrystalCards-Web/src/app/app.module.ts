@@ -38,6 +38,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { CardsListViewComponent } from './cards/cards-list-view/cards-list-view.component';
 import { CardFullScreenViewComponent } from './cards/card-full-screen-view/card-full-screen-view.component';
 import {MatSortModule} from "@angular/material/sort";
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
 
 
 
@@ -98,6 +99,10 @@ export function tokenGetter(){
   ],
 
   providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue:{ appearance: 'fill' }
+    },
     FilePreviewOverlayService,
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,18 +1,18 @@
 <div class="Container" fxLayout="row" fxLayoutAlign="center center">
-    <form #registerForm="ngForm" (ngSubmit)="register()">
+    <form #registerForm="ngForm" (ngSubmit)="register()" id="registerForm">
         <mat-card class="registrationCard">
             <mat-card-header>
-                <h2 class="text-conter text-primary"> Sign Up </h2>
+                <h2 class="text-conter "> Sign Up </h2>
             </mat-card-header>
             <mat-card-content>
                 <div>
                     <mat-form-field>
-                        <input type="text" name="username" matInput class="blackForm" placeholder="Username" [(ngModel)]="model.username">
+                        <input type="text" name="username" matInput class="registerForm" placeholder="Username" [(ngModel)]="model.username">
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field>
-                        <input type="password" name="password" matInput class="blackForm" placeholder="password" [(ngModel)]="model.password">
+                        <input type="password" name="password" matInput class="registerForm" placeholder="password" [(ngModel)]="model.password">
                     </mat-form-field>
                 </div>
             </mat-card-content>
