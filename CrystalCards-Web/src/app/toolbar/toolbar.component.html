@@ -28,10 +28,10 @@
         </div>
     </mat-toolbar-row>
     <mat-toolbar-row class="menuContainer"  fxLayoutAlign="space-between">
-      <div class="menuContainerDiv" fxLayoutAlign="space-around">
+      <div class="menuContainerDiv" fxLayoutAlign="space-around" *ngIf="loggedIn()">
         <app-admin-menu *ngIf="IsAdmin()"></app-admin-menu>
-        <app-general-menu *ngIf="loggedIn()"></app-general-menu>
-        <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)" *ngIf="loggedIn()"></app-add-card>
+        <app-general-menu ></app-general-menu>
+        <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)" ></app-add-card>
       </div>
         <div>
           <button *ngIf="loggedIn()" mat-raised-button
