@@ -6,7 +6,7 @@
           <input matInput placeholder="Card Id" name="Id" [(ngModel)]="Id" readonly />
         </mat-form-field>
         <mat-form-field class="mat-form-field-infix">
-           <mat-select [(ngModel)]="selectedProject" name="project">
+           <mat-select [(ngModel)]="selectedProject" name="project" required>
             <mat-option *ngFor="let project of projects"  [value]="project.id">
               {{project.title}}
             </mat-option>
@@ -17,6 +17,6 @@
   </mat-dialog-content>
 
   <mat-dialog-actions fxLayoutAlign="end">
-    <button mat-raised-button type="submit"  class="background-primary-color white-text">Save</button>
+    <button mat-raised-button type="submit" [disabled]="!f.valid"  class="background-primary-color white-text">Save</button>
   </mat-dialog-actions>
 </form>
