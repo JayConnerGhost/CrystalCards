@@ -34,9 +34,9 @@
         <app-add-card (OpenAddDialog)="openAddDialogBrainStorming($event)" *ngIf="loggedIn()"></app-add-card>
       </div>
         <div>
-          <button mat-raised-button
+          <button *ngIf="loggedIn()" mat-raised-button
                   matTooltip="Display Ideas as List" (click)="ShowAsList()"><mat-icon>list</mat-icon></button>
-          <button mat-raised-button
+          <button *ngIf="loggedIn()" mat-raised-button
                   matTooltip="Display Ideas as Cards" (click)="ShowAsDeck()"><mat-icon>dashboard</mat-icon></button>
         </div>
     </mat-toolbar-row>
