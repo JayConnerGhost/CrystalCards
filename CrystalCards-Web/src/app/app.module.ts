@@ -39,6 +39,7 @@ import { CardsListViewComponent } from './cards/cards-list-view/cards-list-view.
 import { CardFullScreenViewComponent } from './cards/card-full-screen-view/card-full-screen-view.component';
 import {MatSortModule} from "@angular/material/sort";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -68,7 +69,8 @@ export function tokenGetter(){
     ListProjectComponent,
     AssignProjectComponent,
     CardsListViewComponent,
-    CardFullScreenViewComponent
+    CardFullScreenViewComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
