@@ -26,4 +26,7 @@ Description=null;
     this.closeDialog();
   }
 
+  close() {
+    this.dialogRef.close();
+  }
 }
