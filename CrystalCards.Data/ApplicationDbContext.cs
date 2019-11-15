@@ -28,6 +28,11 @@ namespace CrystalCards.Data
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<User>()
+                .HasMany<Card>(x => x.Cards)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Card>()
                 .HasMany<Link>(x => x.Links)
                 .WithOne()

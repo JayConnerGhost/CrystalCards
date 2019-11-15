@@ -54,7 +54,7 @@ if(event===-1){return;}
     this.projectApiService.GetCardsForProject(event).subscribe(res=>{
       this.cards=null;
       this.cards=res.cards;
-      this.context=res.title;
+     // this.context=res.title;
     });
     this.cd.detectChanges();
   }
@@ -64,6 +64,7 @@ if(event===-1){return;}
       this.cards = null;
       this.cards = res;
     });
+
     this.cd.detectChanges();
   }
 
