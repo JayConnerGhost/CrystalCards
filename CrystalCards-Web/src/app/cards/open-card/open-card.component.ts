@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
 import { Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
@@ -10,7 +10,8 @@ import {CardFullScreenViewComponent} from "../card-full-screen-view/card-full-sc
 @Component({
   selector: 'app-open-card',
   templateUrl: './open-card.component.html',
-  styleUrls: ['./open-card.component.css']
+  styleUrls: ['./open-card.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OpenCardComponent implements OnInit {
   @Output() UpdatePerformed = new EventEmitter();

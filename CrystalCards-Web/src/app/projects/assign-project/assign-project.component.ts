@@ -30,4 +30,8 @@ export class AssignProjectComponent implements OnInit {
     this.projectApiService.AssignCardToProject(this.Id,this.selectedProject).subscribe();
     this.dialogRef.close();
   }
+
+  close() {
+    this.dialogRef.close();
+  }
 }

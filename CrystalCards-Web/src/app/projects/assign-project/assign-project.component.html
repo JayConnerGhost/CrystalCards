@@ -17,6 +17,13 @@
   </mat-dialog-content>
 
   <mat-dialog-actions fxLayoutAlign="end">
-    <button mat-raised-button type="submit" [disabled]="!f.valid"  class="background-primary-color white-text">Save</button>
+    <button mat-raised-button type="submit" [disabled]="!f.valid"  class="background-primary-color white-text">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-raised-button (click)="close()"  class="background-primary-color white-text">
+      <mat-icon>close</mat-icon>
+    </button>
+
+
   </mat-dialog-actions>
 </form>

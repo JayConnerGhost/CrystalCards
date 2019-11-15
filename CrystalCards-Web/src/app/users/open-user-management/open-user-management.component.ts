@@ -31,6 +31,10 @@ export class OpenUserManagementComponent implements OnInit {
    this.loadUsers();
   }
 
+  close()  {
+    this.dialogRef.close();
+  }
+
   loadUsers() {
     this.apiService.getUsers().subscribe(res=>{
       let displayUsers=res.map(user=> {

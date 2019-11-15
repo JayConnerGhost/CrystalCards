@@ -3,6 +3,7 @@ import {Projects} from "@angular/cli/lib/config/schema";
 import {ProjectApiService} from "../../services/project-api.service";
 import {ProjectService} from "../../services/project.service";
 import {MatTable} from "@angular/material/table";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-list-project',
@@ -19,6 +20,7 @@ export class ListProjectComponent implements OnInit {
   constructor(
     private projectApiService: ProjectApiService,
     private projectService: ProjectService,
+    private dialog:MatDialogRef<ListProjectComponent>,
     private cd: ChangeDetectorRef,
   ) { }
 
@@ -45,5 +47,9 @@ export class ListProjectComponent implements OnInit {
     }
     this.cd.detectChanges();
     this.table.renderRows();
+  }
+
+  close() {
+    this.dialog.close();
   }
 }

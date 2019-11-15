@@ -30,6 +30,9 @@ button {
     height: 300%;
 
 }
+.mat-tab-body-content{
+  overflow:hidden!important;
+}
 
 .mat-tab-body-wrapper {
     flex-grow: 1;
@@ -48,7 +51,7 @@ button {
 }
 
 #tab-group {
-    height: 400px;
+    height: 430px;
 }
 
 #tab-group mat-tab-body {

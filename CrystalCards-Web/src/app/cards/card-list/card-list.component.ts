@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef  } from "@angular/core";
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation} from "@angular/core";
 import { ApiService } from "../../services/api.service";
 import { Card } from "src/app/card";
 import { OpenCardComponent } from "../open-card/open-card.component";
@@ -14,6 +14,7 @@ import {AssignProjectComponent} from "../../projects/assign-project/assign-proje
   selector: "app-card-list",
   templateUrl: "./card-list.component.html",
   styleUrls: ["./card-list.component.css"],
+  encapsulation: ViewEncapsulation.None
 
 })
 export class CardListComponent implements OnInit {

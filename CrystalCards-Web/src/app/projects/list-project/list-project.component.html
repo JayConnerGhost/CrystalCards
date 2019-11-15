@@ -1,3 +1,4 @@
+<mat-dialog-content>
 <table mat-table [dataSource]="dataSource" #table>
 
   <ng-container matColumnDef="Id">
@@ -28,3 +29,10 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</mat-dialog-content>
+<mat-dialog-actions >
+<button mat-raised-button class="background-primary-color white-text" (click)="close()">
+  <mat-icon>close</mat-icon>
+  </button>
+</mat-dialog-actions>
+
