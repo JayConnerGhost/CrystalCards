@@ -22,5 +22,10 @@ export class AddProjectComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.projectApiService.AddProject(this.Id,this.Title).subscribe();
     this.dialogRef.close();
+    console.log("in submit");
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }
