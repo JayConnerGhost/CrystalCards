@@ -7,7 +7,7 @@ export class ConfigService {
 
   constructor() { }
   Url:string ='http://localhost:50872';
-  Url2:string ='http://localhost:55265';
+  Url2:string ='http://localhost:54891';
   Url3:string ='http://www.katiekatcoder.co.uk/api';
 
 
@@ -15,8 +15,8 @@ export class ConfigService {
   apiURL2: string = `${this.Url2}/api`;
   apiUR_staging: string = `${this.Url3}/api`;
 
-  public master_apiURL: string =`${this.apiURL}`;
-  public Resources: string=`${this.Url}/Resources`;
+  public master_apiURL: string =`${this.apiURL2}`;
+  public Resources: string=`${this.Url2}/Resources`;
   public Images: string=`${this.Resources}/Images`;
 
 }
