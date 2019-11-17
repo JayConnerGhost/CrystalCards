@@ -3,7 +3,7 @@
       <h1>Welcome</h1>
     </div>
     <div class="row">
-    <div class="registrationContainer col-md-4 col-sm-4 " *ngIf="!loggedIn()">
+    <div class="registrationContainer col-md-12 col-sm-12 " *ngIf="!loggedIn()">
         <app-register></app-register>
      <div class="loginMessaging"> or if you have a account please
       <button  [routerLink]="['/login']" mat-raised-button>login</button>
