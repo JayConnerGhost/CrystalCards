@@ -5,12 +5,26 @@
 @import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
 @import '~@angular/material/theming';
 @import "./app/app-theme.scss";
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+
 html {
     margin: 0;
+  width:100vw;
+  max-width: 100vw;
 }
 
 body {
     margin: 0;
+  width:100vw;
+  max-width: 100vw;
 }
 
 textarea {

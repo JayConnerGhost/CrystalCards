@@ -2,14 +2,15 @@
     <div class="welcome-container">
       <h1>Welcome</h1>
     </div>
-
-    <div class="registrationContainer" *ngIf="!loggedIn()">
+    <div class="row">
+    <div class="registrationContainer col-md-4 col-sm-4 " *ngIf="!loggedIn()">
         <app-register></app-register>
      <div class="loginMessaging"> or if you have a account please
-      <button (click)="loadLogin()" mat-raised-button>login</button>
+      <button  [routerLink]="['/login']" mat-raised-button>login</button>
      </div>
     </div>
     <div class="InitialContainer" *ngIf="loggedIn()">
         <button mat-raised-button [routerLink]="['/cards']">Click to Enter</button>
+    </div>
     </div>
 </div>
