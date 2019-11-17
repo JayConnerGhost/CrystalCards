@@ -14,7 +14,7 @@
 
         </div>
         <!-- bug here n reactive sizing on mobile devices km-->
-        <div class="LoginContainer" *ngIf="!loggedIn()">
+       <!-- <div class="LoginContainer" *ngIf="!loggedIn()">
             <form #loginForm="ngForm" class="login-form" (ngSubmit)="login()">
                 <mat-form-field>
                     <input matInput placeholder="username" value="" required name="username" [(ngModel)]="model.username">
@@ -25,7 +25,7 @@
 
                 <button mat-raised-button type="submit" [disabled]="!loginForm.valid">Login</button>
             </form>
-        </div>
+        </div>-->
     </mat-toolbar-row>
     <mat-toolbar-row class="menuContainer"  fxLayoutAlign="space-between">
       <div class="menuContainerDiv" fxLayoutAlign="space-around" *ngIf="loggedIn()">
