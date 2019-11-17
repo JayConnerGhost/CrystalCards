@@ -101,10 +101,7 @@ export function tokenGetter(){
   ],
 
   providers: [
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue:{ appearance: 'fill' }
-    },
+
     FilePreviewOverlayService,
     {
       provide: HTTP_INTERCEPTORS,
