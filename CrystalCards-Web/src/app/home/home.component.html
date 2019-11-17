@@ -9,7 +9,7 @@
       <button  [routerLink]="['/login']" mat-raised-button>login</button>
      </div>
     </div>
-    <div class="InitialContainer" *ngIf="loggedIn()">
+    <div  *ngIf="loggedIn()" fxLayoutAlign="center center" class="w-100">
         <button mat-raised-button [routerLink]="['/cards']">Click to Enter</button>
     </div>
     </div>
