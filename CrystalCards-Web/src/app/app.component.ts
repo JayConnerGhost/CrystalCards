@@ -5,7 +5,7 @@ import { OpenForAddCardComponent } from "./cards/open-for-add-card/open-for-add-
 import { CardsService } from "./services/cards.service";
 import { AuthService } from "./services/auth.service";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import {ResponsiveService} from "./globals"
+
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @Component({
