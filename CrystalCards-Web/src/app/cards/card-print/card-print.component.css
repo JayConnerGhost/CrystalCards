@@ -19,39 +19,43 @@ section {
 }
 
 .title {
-    font: 900;
+    font-weight: 900;
 }
 
 .section_title {
-    font: 700;
+    font-weight: 700;
     font-size: 1.2em;
 }
 
 .description {
-    font: 500;
+    font-weight: 500;
     font-size: 1.0em;
 }
 
 .pros-items {
-    font: 500;
+    font-weight: 500;
     font-size: 1.0em;
     color: #000000;
+  background-color: #FFFFFF;
 }
 
 .cons-items {
-    font: 500;
+    font-weight: 500;
     font-size: 1.0em;
     color: #000000;
+  background-color: #FFFFFF;
 }
 
 .action-point-items {
-    font: 500;
+    font-weight: 500;
     font-size: 1.0em;
     color: #000000;
+  background-color: #FFFFFF;
 }
 
 .links-items {
-    font: 500;
+    font-weight: 500;
     font-size: 1.0em;
     color: #000000;
+  background-color: #FFFFFF;
 }
