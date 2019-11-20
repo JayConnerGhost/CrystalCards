@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using CrystalCards.Api.Dtos;
 using CrystalCards.Data;
@@ -21,10 +22,13 @@ namespace CrystalCards.Api.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CardsController> _logger;
-        public CardsController(ApplicationDbContext context, ILogger<CardsController> logger)
+        private readonly ICardRepository _repository;
+
+        public CardsController(ApplicationDbContext context, ILogger<CardsController> logger, ICardRepository repository)
         {
             _context = context;
             _logger = logger;
+            _repository = repository;
         }
 
 
@@ -37,28 +41,16 @@ namespace CrystalCards.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var target = await _context.Cards
-                .Include(c => c.Points)
-                .Include(c => c.ActionPoints)
-                .Include(c => c.Links)
-
-                .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (target == null)
+            var result=await _repository.Delete(id);
+            switch (result)
             {
-                return NotFound();
+                case OpsStatus.Failed:
+                    return StatusCode(500);
+                case OpsStatus.TargetNotFound:
+                    return BadRequest();
+                default:
+                    return StatusCode(204);
             }
-            _context.Remove(target);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(Guid.NewGuid().ToString(), e);
-            }
-
-            return StatusCode(204);
         }
 
 

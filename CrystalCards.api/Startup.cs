@@ -58,6 +58,7 @@ namespace CrystalCards.api
               });
 
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<ICardRepository, CardRepository>();
             services.AddAuthentication(o =>
                 {
                     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
