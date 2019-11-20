@@ -5,12 +5,14 @@ import { CardListComponent} from '../app/cards/card-list/card-list.component'
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import {LoginComponent} from "./login/login.component";
+import {ProjectPictureComponent} from "./projects/project-picture/project-picture.component";
 
 
 const routes: Routes = [
   { path: '', component:HomeComponent  },
   { path: 'login', component:LoginComponent  },
-  {path:'cards', component:CardListComponent, canActivate: [AuthGuard]}
+  {path:'cards', component:CardListComponent, canActivate: [AuthGuard]},
+  {path:'projects', component:ProjectPictureComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

@@ -41,8 +41,8 @@ import {MatSortModule} from "@angular/material/sort";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-
-
+import { ProjectPictureComponent } from './projects/project-picture/project-picture.component'
+import * as $ from 'jquery';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -72,7 +72,8 @@ export function tokenGetter(){
     CardsListViewComponent,
     CardFullScreenViewComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    ProjectPictureComponent
   ],
   imports: [
     BrowserModule,
