@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CrystalCards.Models;
 
@@ -10,5 +11,6 @@ namespace CrystalCards.Data
         Task<Card> Get(int id);
         Task<Card> Update(Card card);
         Task<Card> Add(Card card, string userName);
+        Task<List<Card>> Get(string userName);
     }
 }

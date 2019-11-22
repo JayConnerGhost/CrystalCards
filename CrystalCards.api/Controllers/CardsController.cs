@@ -109,14 +109,7 @@ namespace CrystalCards.Api.Controllers
             List<CardResponse> convertResponses = null;
             try
             {
-                user = await _context.Users
-                    .Include(x => x.Cards)
-                    .ThenInclude(cs => cs.ActionPoints)
-                    .Include(cs => cs.Cards)
-                    .ThenInclude(cs3 => cs3.Points)
-                    .Include(cs4 => cs4.Cards).ThenInclude(cs5 => cs5.Links)
-                    .FirstOrDefaultAsync(x => x.Username == username);
-                List<Card> cards = (List<Card>)user.Cards;
+                var cards =await _repository.Get(username);
                 convertResponses = ConvertCardResponses(cards);
             }
             catch (Exception e)
