@@ -91,8 +91,8 @@ namespace CrystalCards.Api.Controllers
       
             try
             {
-                var card = _repository.Add(entity, username);
-            }
+                var card = await  _repository.Add(entity, username);
+            } 
             catch (Exception e)
             {
                 _logger.LogError(Guid.NewGuid().ToString(), e);
