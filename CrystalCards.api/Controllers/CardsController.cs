@@ -63,20 +63,16 @@ namespace CrystalCards.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var entry = await _context.Cards
-                .Include(x => x.Points)
-                .Include(x => x.ActionPoints)
-                .Include(x => x.Links)
-                .FirstOrDefaultAsync(x => x.Id == id);
-         
-            entry.Description = request.Description;
-            entry.Title = request.Title;
-            entry.Order = request.Order;
-            ProcessPoints(_context, request.NPPoints, entry);
-            ProcessActionPoints(_context, request.ActionPoints, entry);
-            ProcessLinks(_context, request.Links, entry);
+            var entity = await _repository.Get(id);
 
-            var card=await _repository.Update(entry);
+            entity.Description = request.Description;
+            entity.Title = request.Title;
+            entity.Order = request.Order;
+            ProcessPoints(_context, request.NPPoints, entity);
+            ProcessActionPoints(_context, request.ActionPoints, entity);
+            ProcessLinks(_context, request.Links, entity);
+
+            var card=await _repository.Update(entity);
             return Ok(ConvertResponse(card));
         }
 
@@ -87,17 +83,15 @@ namespace CrystalCards.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            //get user 
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+          
             var entity = new Card() { Description = request.Description, Title = request.Title, Order = request.Order };
             ProcessPoints(_context, request.NPPoints, entity);
             ProcessActionPoints(_context, request.ActionPoints, entity);
             ProcessLinks(_context, request.Links, entity);
-            var userEntity = _context.Users.Update(user);
-            user.Cards.Add(entity);
+      
             try
             {
-                await _context.SaveChangesAsync();
+                var card = _repository.Add(entity, username);
             }
             catch (Exception e)
             {

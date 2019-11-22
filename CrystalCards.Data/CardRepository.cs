@@ -57,5 +57,15 @@ namespace CrystalCards.Data
             await _context.SaveChangesAsync();
             return card;
         }
+
+        public async Task<Card> Add(Card card, string userName)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == userName);
+            var userEntity = _context.Users.Update(user);
+            user.Cards.Add(card);
+
+            await _context.SaveChangesAsync();
+            return card;
+        }
     }
 }
