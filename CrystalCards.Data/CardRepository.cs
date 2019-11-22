@@ -50,5 +50,12 @@ namespace CrystalCards.Data
          return result;
 
         }
+
+        public async Task<Card> Update(Card card)
+        { 
+            _context.Cards.Update(card);
+            await _context.SaveChangesAsync();
+            return card;
+        }
     }
 }

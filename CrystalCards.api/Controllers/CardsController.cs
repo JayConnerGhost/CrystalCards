@@ -68,15 +68,16 @@ namespace CrystalCards.Api.Controllers
                 .Include(x => x.ActionPoints)
                 .Include(x => x.Links)
                 .FirstOrDefaultAsync(x => x.Id == id);
-            _context.Cards.Update(entry);
+         
             entry.Description = request.Description;
             entry.Title = request.Title;
             entry.Order = request.Order;
             ProcessPoints(_context, request.NPPoints, entry);
             ProcessActionPoints(_context, request.ActionPoints, entry);
             ProcessLinks(_context, request.Links, entry);
-            await _context.SaveChangesAsync();
-            return Ok(ConvertResponse(entry));
+
+            var card=await _repository.Update(entry);
+            return Ok(ConvertResponse(card));
         }
 
         [HttpPost("{username}")]
