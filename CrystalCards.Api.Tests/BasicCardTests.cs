@@ -43,9 +43,12 @@ namespace CrystalCards.Api.Tests
             };
             //act
             var deleteResult = await Client.DeleteAsync(request.Url);
-
+            Assert.Equal(HttpStatusCode.NoContent, deleteResult.StatusCode);
             //assert
             var response = await Client.GetAsync(request.Url);
+            var card = JsonConvert.DeserializeObject<Card>(await response.Content.ReadAsStringAsync());
+           
+
             Assert.Equal(HttpStatusCode.NotFound,response.StatusCode);
         }
 

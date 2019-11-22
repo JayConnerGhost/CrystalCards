@@ -135,11 +135,8 @@ namespace CrystalCards.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _context.Cards
-                .Include(x => x.Points)
-                .Include(x => x.ActionPoints)
-                .Include(x => x.Links)
-                .FirstOrDefaultAsync(x => x.Id == id);
+            var  result  = await _repository.Get(id);
+
             if (result == null)
             {
                 return NotFound();

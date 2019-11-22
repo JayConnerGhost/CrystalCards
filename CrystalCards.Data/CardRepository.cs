@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CrystalCards.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CrystalCards.Data
@@ -28,6 +29,7 @@ namespace CrystalCards.Data
 
             try
             {
+                _context.Remove(target);
                 await _context.SaveChangesAsync();
             }
             catch (Exception e)
@@ -36,6 +38,17 @@ namespace CrystalCards.Data
             }
 
             return OpsStatus.Success;
+        }
+
+        public async Task<Card> Get(int id)
+        {
+            var result = await _context.Cards
+                .Include(x => x.Points)
+                .Include(x => x.ActionPoints)
+                .Include(x => x.Links)
+                .FirstOrDefaultAsync(x => x.Id == id);
+         return result;
+
         }
     }
 }
