@@ -43,4 +43,8 @@
     <Folder Include="Resources\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.2.8" />
+  </ItemGroup>
+
 </Project>
