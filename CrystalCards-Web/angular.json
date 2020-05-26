@@ -88,7 +88,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "web.config"
+              "src/web.config"
             ],
             "styles": [
               "src/styles.scss"

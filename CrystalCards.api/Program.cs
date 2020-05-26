@@ -18,7 +18,7 @@ namespace CrystalCards.api
     {
         public static void Main(string[] args)
         {
-            CustomInitLogic();
+             CustomInitLogic();
             var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
@@ -49,7 +49,7 @@ namespace CrystalCards.api
         })
         .UseNLog();  // NLog: setup NLog for Dependency injection
 
-        private static async Task CustomInitLogic()
+        private static void CustomInitLogic()
         {
             var directory = Directory.GetCurrentDirectory();
            
@@ -70,12 +70,12 @@ namespace CrystalCards.api
 
                 //TODO: code in  here to check if username unique 
 
-                var targetUser = await db.Users.FirstOrDefaultAsync(x => x.Username == "Admin");
+                var targetUser =  db.Users.FirstOrDefault(x => x.Username == "Admin");
                 if (targetUser == null)
                 {
                     try
                     {
-                        await userRepository.Register(user, "Password");
+                       userRepository.Register(user, "Password");
                     }
                     catch (Exception e)
                     {
