@@ -42,6 +42,8 @@ import {AdminMenuComponent} from "../users/admin-menu/admin-menu.component";
 import {GeneralMenuComponent} from "../users/general-menu/general-menu.component";
 import {AddCardComponent} from "../cards/add-card/add-card.component";
 import {FooterComponent} from "../footer/footer.component";
+import { By } from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -113,5 +115,18 @@ describe('RegisterComponent', () => {
    const compiled = fixture.debugElement.nativeElement;
    expect(compiled.querySelector('h2').textContent).toContain('Sign Up');
  }));
-
+  it('Should have a username field', async(()=>{
+    const fixture = TestBed.createComponent(RegisterComponent);
+    fixture.detectChanges();
+    let compiled: DebugElement;
+    compiled = fixture.debugElement.query(By.css('#usernameField'));
+    expect(compiled).toBeTruthy();
+  }));
+  it('Should have a password field', async(()=>{
+    const fixture = TestBed.createComponent(RegisterComponent);
+    fixture.detectChanges();
+    let compiled: DebugElement;
+    compiled = fixture.debugElement.query(By.css('#passwordField'));
+    expect(compiled).toBeTruthy();
+  }));
 });

@@ -6,12 +6,12 @@
              </div>
              <div>
                <mat-form-field>
-                   <input matInput placeholder="username" value="" required name="username" [(ngModel)]="model.username">
+                   <input matInput placeholder="username" value="" required name="username" [(ngModel)]="model.username" id="usernameField">
                </mat-form-field>
              </div>
               <div>
                <mat-form-field>
-                   <input matInput placeholder="password" value="" type="password" required name="password" [(ngModel)]="model.password">
+                   <input matInput placeholder="password" value="" type="password" required name="password" [(ngModel)]="model.password" id="passwordField">
                </mat-form-field>
               </div>
                <button mat-raised-button type="submit" [disabled]="!loginForm.valid">Login</button>
