@@ -129,4 +129,11 @@ describe('RegisterComponent', () => {
     compiled = fixture.debugElement.query(By.css('#passwordField'));
     expect(compiled).toBeTruthy();
   }));
+  it('should have a submit button',async ()=>{
+    const fixture = TestBed.createComponent(RegisterComponent);
+    fixture.detectChanges();
+    let compiled: DebugElement;
+    compiled = fixture.debugElement.query(By.css('#submitButton'));
+    expect(compiled).toBeTruthy();
+  });
 });
