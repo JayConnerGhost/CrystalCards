@@ -116,11 +116,24 @@ describe('LoginComponent', () => {
     expect(compiled.querySelector('h2').textContent).toContain('Please enter your credentials');
   }));
   it('Should have a username field', async(()=>{
-    const fixture = TestBed.createComponent(RegisterComponent);
+    const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     let compiled: DebugElement;
     compiled = fixture.debugElement.query(By.css('#usernameField'));
     expect(compiled).toBeTruthy();
   }));
-
+  it('Should have a password field', async(()=>{
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    let compiled: DebugElement;
+    compiled = fixture.debugElement.query(By.css('#passwordField'));
+    expect(compiled).toBeTruthy();
+  }));
+  it('should have a submit button',async ()=>{
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    let compiled: DebugElement;
+    compiled = fixture.debugElement.query(By.css('#loginButton'));
+    expect(compiled).toBeTruthy();
+  });
 });

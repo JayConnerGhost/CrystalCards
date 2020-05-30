@@ -14,6 +14,8 @@
                    <input matInput placeholder="password" value="" type="password" required name="password" [(ngModel)]="model.password" id="passwordField">
                </mat-form-field>
               </div>
-               <button mat-raised-button type="submit" [disabled]="!loginForm.valid">Login</button>
+               <button mat-raised-button type="submit"
+                       id="loginButton"
+                       [disabled]="!loginForm.valid">Login</button>
            </form>
        </div>
