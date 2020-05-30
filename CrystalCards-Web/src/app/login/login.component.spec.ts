@@ -115,5 +115,12 @@ describe('LoginComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('Please enter your credentials');
   }));
+  it('Should have a username field', async(()=>{
+    const fixture = TestBed.createComponent(RegisterComponent);
+    fixture.detectChanges();
+    let compiled: DebugElement;
+    compiled = fixture.debugElement.query(By.css('#usernameField'));
+    expect(compiled).toBeTruthy();
+  }));
 
 });
