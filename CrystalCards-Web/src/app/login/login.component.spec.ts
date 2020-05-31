@@ -49,10 +49,10 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   const routes: Routes = [
-    { path: '', component:HomeComponent  },
-    { path: 'login', component:LoginComponent  },
-    {path:'cards', component:CardListComponent, canActivate: [AuthGuard]},
-    {path:'projects', component:ProjectPictureComponent, canActivate: [AuthGuard]}
+    {path: '', component: HomeComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'cards', component: CardListComponent, canActivate: [AuthGuard]},
+    {path: 'projects', component: ProjectPictureComponent, canActivate: [AuthGuard]}
   ];
 
   beforeEach(async(() => {
@@ -109,31 +109,33 @@ describe('LoginComponent', () => {
       .compileComponents();
   }));
 
-  it('Should have a welcome message',async(()=>{
+  it('Should have a welcome message', async(() => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('Please enter your credentials');
   }));
-  it('Should have a username field', async(()=>{
+  it('Should have a username field', async(() => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     let compiled: DebugElement;
     compiled = fixture.debugElement.query(By.css('#usernameField'));
     expect(compiled).toBeTruthy();
   }));
-  it('Should have a password field', async(()=>{
+  it('Should have a password field', async(() => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     let compiled: DebugElement;
     compiled = fixture.debugElement.query(By.css('#passwordField'));
     expect(compiled).toBeTruthy();
   }));
-  it('should have a submit button',async ()=>{
+  it('should have a submit button', async () => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     let compiled: DebugElement;
     compiled = fixture.debugElement.query(By.css('#loginButton'));
     expect(compiled).toBeTruthy();
   });
+
+
 });

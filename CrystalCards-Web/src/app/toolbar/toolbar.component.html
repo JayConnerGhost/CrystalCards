@@ -7,7 +7,7 @@
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="end">
 
         <div class="WelcomeContainer" *ngIf="loggedIn()">
-            <span class="mr-2">Welcome {{authService.decodedToken?.unique_name | titlecase}}</span>
+            <span class="mr-2"id="welcomeContainer">Welcome {{authService.decodedToken?.unique_name | titlecase}}</span>
             <button mat-raised-button (click)="logout()">
                 <fa-icon [icon]="faSignOutAlt"></fa-icon>
               Logout
