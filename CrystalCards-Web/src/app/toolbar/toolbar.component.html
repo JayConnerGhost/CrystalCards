@@ -1,7 +1,7 @@
 <script src="toolbar.component.ts"></script>
 <mat-toolbar color="primary" class="Toolbar">
     <mat-toolbar-row>
-        <span> {{ title }}</span>
+        <span id="title" >{{ title }}</span>
 
     </mat-toolbar-row>
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="end">
@@ -14,19 +14,7 @@
             </button>
 
         </div>
-        <!-- bug here n reactive sizing on mobile devices km-->
-       <!-- <div class="LoginContainer" *ngIf="!loggedIn()">
-            <form #loginForm="ngForm" class="login-form" (ngSubmit)="login()">
-                <mat-form-field>
-                    <input matInput placeholder="username" value="" required name="username" [(ngModel)]="model.username">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="password" value="" type="password" required name="password" [(ngModel)]="model.password">
-                </mat-form-field>
 
-                <button mat-raised-button type="submit" [disabled]="!loginForm.valid">Login</button>
-            </form>
-        </div>-->
     </mat-toolbar-row>
     <mat-toolbar-row class="menuContainer"  fxLayoutAlign="space-between">
       <div class="menuContainerDiv" fxLayoutAlign="space-around" *ngIf="loggedIn()">
