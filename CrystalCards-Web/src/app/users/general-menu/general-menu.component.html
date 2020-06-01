@@ -1,7 +1,7 @@
-<mat-menu #appMenu="matMenu">
-  <button mat-menu-item (click)="addProject()">Add</button>
-  <button mat-menu-item (click)="listProjects()">List</button>
-  <button mat-menu-item (click)="LoadGeneral()">General</button>
+<mat-menu #appMenu="matMenu" id="mmProjectMenu">
+  <button mat-menu-item (click)="addProject()" id="mmiProjectAdd">Add</button>
+  <button mat-menu-item (click)="listProjects()" id="mmiProjectList">List</button>
+  <button mat-menu-item (click)="LoadGeneral()" id="mmiProjectGeneral">General</button>
 </mat-menu>
 
 <button mat-raised-button [matMenuTriggerFor]="appMenu"
