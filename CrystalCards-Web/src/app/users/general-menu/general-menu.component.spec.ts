@@ -116,4 +116,19 @@ describe('GeneralMenuComponent', () => {
     compiled = fixture.debugElement.query(By.css('#OpenProjectViewButton'));
     expect(compiled).toBeTruthy();
   });
+
+  it( 'has submenu', async () => {
+    const fixture = TestBed.createComponent(GeneralMenuComponent);
+    fixture.detectChanges();
+    const dropdownButton = fixture.debugElement.query(By.css('#OpenProjectViewButton'));
+    dropdownButton.nativeElement.click();
+
+    const addButton = fixture.debugElement.query(By.css('#mmiProjectAdd'));
+    const listButton = fixture.debugElement.query(By.css('#mmiProjectList'));
+    const GeneralButton = fixture.debugElement.query(By.css('#mmiProjectGeneral'));
+
+    expect(addButton).toBeTruthy();
+    expect(listButton).toBeTruthy();
+    expect(GeneralButton).toBeTruthy();
+  });
 });
