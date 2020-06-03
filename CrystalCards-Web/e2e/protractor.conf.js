@@ -17,7 +17,7 @@ exports.config = {
   },
   directConnect: true,
   baseUrl: 'http://127.0.0.1:4444/wd/hub',
-  framework: 'jasmine',
+  framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,

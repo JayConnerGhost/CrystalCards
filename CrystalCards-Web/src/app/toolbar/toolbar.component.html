@@ -8,7 +8,7 @@
 
         <div class="WelcomeContainer" *ngIf="loggedIn()">
             <span class="mr-2"id="welcomeContainer">Welcome {{authService.decodedToken?.unique_name | titlecase}}</span>
-            <button mat-raised-button (click)="logout()">
+            <button mat-raised-button (click)="logout()" id="logoutButton">
                 <fa-icon [icon]="faSignOutAlt"></fa-icon>
               Logout
             </button>
