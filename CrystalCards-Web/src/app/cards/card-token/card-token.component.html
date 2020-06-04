@@ -2,9 +2,9 @@
     <mat-card-title>{{Title}}</mat-card-title>
 
     <mat-card-actions>
-        <button mat-raised-button color="warn" (click)="cardDeleteClicked()">Delete</button>
-        <button mat-raised-button color="accent" (click)="cardEditClicked()">Edit</button>
-        <button mat-raised-button color="accent" (click)="cardPrintClicked()">Print</button>
-        <button mat-raised-button color="accent" (click)="cardAddToProject()">Project</button>
+        <button mat-raised-button color="warn" id="deleteButton" (click)="cardDeleteClicked()">Delete</button>
+        <button mat-raised-button color="accent" id="editButton" (click)="cardEditClicked()">Edit</button>
+        <button mat-raised-button color="accent" id="printButton"(click)="cardPrintClicked()">Print</button>
+        <button mat-raised-button color="accent" id="addToProjectButton"(click)="cardAddToProject()">Project</button>
     </mat-card-actions>
 </mat-card>

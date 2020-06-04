@@ -7,23 +7,23 @@
                <input matInput placeholder="Id" name="Id" [(ngModel)]="Id" readonly />
        </mat-form-field>
      <mat-form-field class="mat-form-field-infix">
-              <input matInput placeholder="Name" name="Title" [(ngModel)]="Title"  required/>
+              <input matInput placeholder="Name" name="Title" [(ngModel)]="Title" id="titleField" required/>
       </mat-form-field>
 </div>
 <div>
       <mat-form-field  class="mat-form-field-infix">
-          <textarea matInput placeholder="Description" name="Description" [(ngModel)]="Description"  required class="taDescription"></textarea>
+          <textarea matInput placeholder="Description" name="Description" [(ngModel)]="Description" id="descriptionField" required class="taDescription"></textarea>
       </mat-form-field>
 </div>
 </div>
 </mat-dialog-content>
 
 <mat-dialog-actions fxLayoutAlign="end">
-  <button mat-raised-button type="submit"  class="" [disabled]="!f.valid">
+  <button mat-raised-button type="submit"  class="" id="submitButton" [disabled]="!f.valid">
     <mat-icon>save</mat-icon>
   </button>
 
-  <button mat-raised-button type="button" class="" (click)="close()">
+  <button mat-raised-button type="button" class="" id="closeDialogButton" (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
 </mat-dialog-actions>

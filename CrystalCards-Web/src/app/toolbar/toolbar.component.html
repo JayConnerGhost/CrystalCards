@@ -24,8 +24,10 @@
       </div>
         <div>
           <button *ngIf="loggedIn()" mat-raised-button
+                  id="showAsListButton"
                   matTooltip="Display Ideas as List" (click)="ShowAsList()"><mat-icon>list</mat-icon></button>
           <button *ngIf="loggedIn()" mat-raised-button
+                  id="showAsDeckButton"
                   matTooltip="Display Ideas as Cards" (click)="ShowAsDeck()"><mat-icon>dashboard</mat-icon></button>
         </div>
     </mat-toolbar-row>

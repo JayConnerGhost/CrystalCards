@@ -8,12 +8,12 @@
                         <input matInput placeholder="Id" name="Id" [(ngModel)]="Id" readonly />
                     </mat-form-field>
                     <mat-form-field class="mat-form-field-infix">
-                        <input matInput placeholder="Name" name="Title" [(ngModel)]="Title" required/>
+                        <input matInput placeholder="Name" name="Title" id="titleField" [(ngModel)]="Title" required/>
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field class="mat-form-field-infix">
-                        <textarea matInput placeholder="Description" name="Description" [(ngModel)]="Description" required class="taDescription"></textarea>
+                        <textarea matInput placeholder="Description" name="Description" id="descriptionField" [(ngModel)]="Description" required class="taDescription"></textarea>
                     </mat-form-field>
                 </div>
             </mat-tab>
@@ -130,6 +130,7 @@
     <mat-dialog-actions fxLayoutAlign="end">
         <button mat-raised-button (click)='CloseDialog()' class=""
         matTooltip="Close Editor"
+        id="closeDialogButton"
         >
            <mat-icon>close</mat-icon>
         </button>
