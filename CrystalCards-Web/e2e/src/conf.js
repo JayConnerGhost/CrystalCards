@@ -5,7 +5,6 @@ exports.config = {
      './login/landingPage.po.ts',
     './tools/sessionStorageStub.po.ts',
     './AddCard/AddIdea.po.ts',
-    './tools/sessionStorageStub.po.ts',
-//hack - SessionStorageStub, cant find another way to do it
+    //hack - SessionStorageStub, cant find another way to do it
   ]
 }

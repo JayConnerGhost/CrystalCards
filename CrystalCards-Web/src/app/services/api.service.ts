@@ -1,11 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Card} from ".././card";
-import {Observable} from "rxjs";
 import {ConfigService} from "./config.service";
 import {AuthService} from "./auth.service";
 import {User} from "../User";
-import {parseSelectorToR3Selector} from "@angular/compiler/src/core";
 import {CustomRoleAssignmentRequest} from "../Role";
 
 @Injectable({

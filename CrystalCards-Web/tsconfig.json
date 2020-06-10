@@ -27,5 +27,9 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "types": [
+    "cypress-commands",
+    "cypress"
+  ]
 }
