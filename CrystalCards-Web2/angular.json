@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CrystalCards-Web2"
+    }
+  },
+  "defaultProject": "CrystalCards-Web2",
+  "cli": {
+    "analytics": "0ae2dcfa-7a14-44e0-977b-9e15c3b58857"
+  }
 }
