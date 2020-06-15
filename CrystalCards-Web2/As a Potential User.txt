@@ -1,0 +1,7 @@
+ As a Potential User 
+ When i am on the Registration Page 
+ Then i expect to be challenged for as mandatory Fields
+- First Name 
+- Second Name 
+- Username
+- Password

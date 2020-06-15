@@ -1,0 +1,38 @@
+label, input {
+  width:200px;
+  display:block;
+  float:left;
+  margin-bottom:10px;
+}
+label {
+  width:125px;
+  text-align:right;
+  padding-right:10px;
+  margin-top:2px;
+}
+br {
+  clear:left;
+}
+fieldset{
+  border:1px solid black;
+  border-radius:5px;
+  width:350px;
+  overflow:hidden;
+}
+legend {
+  text-align:center;
+  font-weight:bold;
+  background-color:green;
+  padding:5px;
+  color:white;
+  border-radius:0 0 5px 0;
+}
+button{
+  float:right;
+}
+mat-form-field label {
+  font-size: 20px;
+}
+mat-form-field.mat-form-field-should-float label {
+  font-size: 13px;
+}
