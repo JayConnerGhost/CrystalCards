@@ -59,6 +59,7 @@ if(event===-1){return;}
     this.cd.detectChanges();
   }
   RefreshCardList() {
+
     this.asCardWall=this.cardService.asCardWall;
     this.apiService.getCards().subscribe(res => {
       this.cards = null;

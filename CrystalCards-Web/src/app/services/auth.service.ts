@@ -23,6 +23,7 @@ decodedToken: any;
     if(token===undefined){
       return false;
     }
+
     return !this.jwtHelper.isTokenExpired(token);
   }
 
@@ -33,10 +34,8 @@ if(this.decodedToken===undefined){
 }
     if(this.decodedToken.role == 'Administrator')
     {
-
       return true;
     }
-
     return false;
   }
 
