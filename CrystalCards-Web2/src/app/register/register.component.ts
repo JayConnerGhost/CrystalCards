@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +8,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor() { }
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  myForm: FormGroup;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  constructor(public fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.reactiveForm();
   }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    submitForm() {
+      console.log(this.myForm.value);
+    }
+    /* Handle form errors in Angular 8 */
+    public errorHandling = (control: string, error: string) => {
+      return this.myForm.controls[control].hasError(error);
+    }
 
-}
+    /* Reactive form */
+    reactiveForm() {
+      this.myForm = this.fb.group({
+        FirstName: ['', [Validators.required]],
+        SecondName: ['', [Validators.required]],
+        Username: ['', [Validators.required]],
+        Password: ['', [Validators.required]],
+      });
+}}
