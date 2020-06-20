@@ -29,6 +29,9 @@ namespace CrystalCards.Api.Controllers
             _config = config;
         }
 
+        //Method here to check if a user exists
+
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]  UserForRegisterRequest userForRegister)
         {
@@ -45,6 +48,20 @@ namespace CrystalCards.Api.Controllers
             var createdUser = await _repo.Register(userToCreate, userForRegister.Password);
 
             return StatusCode(201);
+        }
+
+        [HttpGet("IsUserInSystem/{username}")]
+        public async Task<IActionResult> IsUserInSystem(string username)
+        {
+            bool userExits= await _repo.UserExists(username);
+            if (userExits)
+            {
+                return Ok(true);
+            }
+            else
+            {
+                return Ok(false);
+            }
         }
 
         [HttpPost("login")]
