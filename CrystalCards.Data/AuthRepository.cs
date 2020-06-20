@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using CrystalCards.Models;
 using Microsoft.EntityFrameworkCore;
@@ -85,5 +86,7 @@ namespace CrystalCards.Data
 
             return false;
         }
+
+    
     }
 }

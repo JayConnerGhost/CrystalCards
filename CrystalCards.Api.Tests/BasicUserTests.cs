@@ -7,7 +7,9 @@ using CrystalCards.Api.Dtos;
 using CrystalCards.Api.Tests.Utils;
 using CrystalCards.Models;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NuGet.Frameworks;
 using Xunit;
 
 namespace CrystalCards.Api.Tests
@@ -277,7 +279,49 @@ namespace CrystalCards.Api.Tests
             Assert.Equal(expectedCardCount, cards.Count);
         }
 
+        [Fact]
+        public async Task Can_check_if_user_exist()
+        {
+            //arrange 
+            var Client = Utilities<Startup>.CreateClient();
+            var user = await Utilities<Startup>.RegisterandLoginUser("ghost", "test", Client);
+            var username = Utilities<Startup>.StripUserNameValue(user);
+
+            var request = new
+            {
+                Url = $"api/auth/IsUserInSystem/{username}"
+            };
+
+            //act
+
+            var response= await Client.GetAsync(request.Url);
+            var result = JsonConvert.DeserializeObject<bool>(await response.Content.ReadAsStringAsync());
+
+            //assert
+           Assert.True(result);
+        }
+
+        [Fact]
+        public async Task Returns_a_NotFound_Status_Code_if_user_not_present()
+        {
+            var Client = Utilities<Startup>.CreateClient();
+            string username="fred";
+            var request = new
+            {
+                Url = $"api/auth/IsUserInSystem/{username}"
+            };
+
+            //act
+
+            var response = await Client.GetAsync(request.Url);
+            var result = JsonConvert.DeserializeObject<bool>(await response.Content.ReadAsStringAsync());
 
 
-    }
+            //assert
+            Assert.False(result);
+        }
+
+
+
+        }
 }
