@@ -4,7 +4,7 @@
 <mat-card class="col-sm-11 col-med-8 col-lg-6">
  <mat-card-title>Register</mat-card-title>
   <mat-card-content>
-    <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()" novalidate>
   <br/>
    <div>
   <mat-form-field appearance="standard">
@@ -42,9 +42,14 @@
          formControlName="Username"
          matInput type="text"/>
     <!-- error -->
+    <mat-error >
+      You must provide a <strong>Username</strong> that has minimum of 4 characters
+    </mat-error>
     <mat-error *ngIf="errorHandling('Username', 'required')">
       You must provide a <strong>Username</strong>
     </mat-error>
+
+
 </mat-form-field>
 </div>
 <br/>

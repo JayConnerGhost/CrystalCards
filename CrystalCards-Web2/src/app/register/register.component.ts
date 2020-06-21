@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  myForm: FormGroup;
+  registerForm: FormGroup;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   constructor(public fb: FormBuilder) { }
 
@@ -28,15 +28,23 @@ export class RegisterComponent implements OnInit {
     }
     /* Handle form errors in Angular 8 */
     public errorHandling = (control: string, error: string) => {
-      return this.myForm.controls[control].hasError(error);
+      return this.registerForm.controls[control].hasError(error);
     }
 
     /* Reactive form */
     reactiveForm() {
-      this.myForm = this.fb.group({
+      this.registerForm = this.fb.group({
         FirstName: ['', [Validators.required]],
         SecondName: ['', [Validators.required]],
-        Username: ['', [Validators.required]],
+        Username: [ '',
+          [
+            Validators.required,
+            Validators.minLength(4)
+          ]],
         Password: ['', [Validators.required]],
+
+
+
+
       });
 }}
