@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigService {
   // tslint:disable-next-line:variable-name
-  master_apiURL = 'http://localhost:54650';
+  master_apiURL = 'http://localhost:54650/api';
 
   constructor() { }
 }

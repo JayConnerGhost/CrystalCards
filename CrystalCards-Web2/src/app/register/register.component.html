@@ -42,9 +42,10 @@
          formControlName="Username"
          matInput type="text"/>
     <!-- error -->
-    <mat-error >
+    <mat-error  *ngIf="errorHandling('Username', 'UsernameUinique')">
       You must provide a <strong>Username</strong> that has minimum of 4 characters
     </mat-error>
+
     <mat-error *ngIf="errorHandling('Username', 'required')">
       You must provide a <strong>Username</strong>
     </mat-error>

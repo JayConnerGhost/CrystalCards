@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import {AuthService} from '../services/auth.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -14,25 +17,33 @@ export class RegisterComponent implements OnInit {
   addOnBlur = true;
   registerForm: FormGroup;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  constructor(public fb: FormBuilder) { }
+
+  constructor(public fb: FormBuilder,
+              public auth: AuthService) {
+
+  }
 
   ngOnInit(): void {
     this.reactiveForm();
   }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-    submitForm() {
-      console.log(this.myForm.value);
-    }
-    /* Handle form errors in Angular 8 */
-    public errorHandling = (control: string, error: string) => {
-      return this.registerForm.controls[control].hasError(error);
-    }
 
-    /* Reactive form */
-    reactiveForm() {
+  // Reset the input value
+  if(input) {
+    input.value = '';
+  }
+
+  submitForm() {
+    console.log(this.registerForm.value);
+  }
+
+  /* Handle form errors in Angular 8 */
+  public errorHandling = (control: string, error: string) => {
+    return this.registerForm.controls[control].hasError(error);
+  }
+
+
+
+ reactiveForm() {
       this.registerForm = this.fb.group({
         FirstName: ['', [Validators.required]],
         SecondName: ['', [Validators.required]],
@@ -40,11 +51,8 @@ export class RegisterComponent implements OnInit {
           [
             Validators.required,
             Validators.minLength(4)
+
           ]],
         Password: ['', [Validators.required]],
-
-
-
-
       });
 }}
