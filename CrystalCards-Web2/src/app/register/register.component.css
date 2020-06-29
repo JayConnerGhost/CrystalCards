@@ -13,21 +13,18 @@ label {
 br {
   clear:left;
 }
-fieldset{
-  border:1px solid black;
-  border-radius:5px;
-  width:350px;
-  overflow:hidden;
-}
-legend {
-  text-align:center;
-  font-weight:bold;
-  background-color:green;
-  padding:5px;
-  color:white;
-  border-radius:0 0 5px 0;
-}
+
+
+/*legend {*/
+/*  text-align:center;*/
+/*  font-weight:bold;*/
+/*  background-color:green;*/
+/*  padding:5px;*/
+/*  color:white;*/
+/*  border-radius:0 0 5px 0;*/
+/*}*/
 button{
+  padding:0 20 0 0;
   float:right;
 }
 mat-form-field label {
@@ -35,4 +32,16 @@ mat-form-field label {
 }
 mat-form-field.mat-form-field-should-float label {
   font-size: 13px;
+}
+.mat-card{
+  display:flex;
+  flex-direction: column;
+}
+
+.mat-card-header {
+  flex-shrink: 0;
+}
+
+.mat-card-content {
+  flex-grow: 1;
 }

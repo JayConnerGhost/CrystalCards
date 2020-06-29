@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {AuthService} from '../services/auth.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import {AlertifyService} from '../services/alertify.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(public fb: FormBuilder,
-              public auth: AuthService) {
+              public auth: AuthService,
+              private alirtify: AlertifyService) {
 
   }
 
@@ -33,6 +35,8 @@ export class RegisterComponent implements OnInit {
   }
 
   submitForm() {
+    this.auth.register(this.registerForm.value);
+
     console.log(this.registerForm.value);
   }
 

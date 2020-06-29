@@ -16,4 +16,8 @@ export class AuthService {
     const path = `${this.config.master_apiURL}/auth/IsUserInSystem/${username}`;
     return this.http.get<boolean>(path);
   }
+
+  register(value: any) {
+
+  }
 }
