@@ -1,1 +1,45 @@
-<p>login works!</p>
+
+  <mat-card >
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()" novalidate>
+      <mat-form-field appearance="standard">
+        <mat-label>Username:</mat-label>
+        <input id="Username"
+               placeholder="Username"
+               formControlName="Username"
+               matInput type="text"/>
+        <!-- error -->
+        <mat-error  *ngIf="errorHandling('Username', 'UsernameMinimum')">
+          You must provide a <strong>Username</strong> that has minimum of 4 characters
+        </mat-error>
+
+        <mat-error *ngIf="errorHandling('Username', 'required')">
+          You must provide a <strong>Username</strong>
+        </mat-error>
+      </mat-form-field>
+        <br/>
+        <div>
+          <mat-form-field appearance="standard">
+            <mat-label>Password:</mat-label>
+            <input id="Password"
+                   placeholder="Password"
+                   formControlName="Password"
+                   matInput type="password"/>
+            <!-- error -->
+            <mat-error *ngIf="errorHandling('Password', 'required')">
+              You must provide a <strong>Password</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        <mat-card-actions>
+        <div><button id="registerButton" type="submit" class="btn btn-info btn-block">Register</button></div>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+
+</mat-card>
+

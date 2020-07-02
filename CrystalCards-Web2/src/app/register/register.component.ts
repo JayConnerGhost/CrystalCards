@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public submitForm() {
+    console.log("in registration");
     const FirstName = this.registerForm.get('FirstName').value;
     const SecondName = this.registerForm.get('SecondName').value;
     const Username = this.registerForm.get('Username').value;
