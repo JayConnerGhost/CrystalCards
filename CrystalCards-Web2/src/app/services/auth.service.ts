@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConfigService} from './config.service';
+import {User} from '../user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ export class AuthService {
     return this.http.get<boolean>(path);
   }
 
-  register(value: any) {
-
+ public register(FirstName: string, SecondName: string, Username: string, Password: string) {
+  const user = new User(FirstName, SecondName, Username, Password);
+  const path = `${this.config.master_apiURL}/auth/register`;
+  return this.http.post(path, user);
   }
 }

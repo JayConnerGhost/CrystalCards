@@ -5,12 +5,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
 const modules = [
   MatCardModule,
   MatInputModule,
   MatFormFieldModule,
   ReactiveFormsModule,
-  MatButtonModule
+  MatButtonModule,
+  MatToolbarModule
 ];
 
 @NgModule({

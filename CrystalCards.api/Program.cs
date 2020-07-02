@@ -28,6 +28,7 @@ namespace CrystalCards.api
             {
                 //NLog: catch setup errors
                 logger.Error(ex, "Stopped program because of exception");
+                Console.WriteLine("Error >> ",ex);
                 throw;
             }
             finally

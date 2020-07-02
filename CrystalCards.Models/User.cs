@@ -20,5 +20,7 @@ namespace CrystalCards.Models
         public IList<Card> Cards { get; set; }
         public List<CustomRole> Roles { get; set; }
         public List<UserProject> Projects { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
     }
 }

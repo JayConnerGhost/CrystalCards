@@ -43,6 +43,8 @@ namespace CrystalCards.Api.Controllers
 
             var userToCreate = new User
             {
+                FirstName=userForRegister.FirstName,
+                SecondName= userForRegister.SecondName,
                 Username = userForRegister.Username
             };
             var createdUser = await _repo.Register(userToCreate, userForRegister.Password);

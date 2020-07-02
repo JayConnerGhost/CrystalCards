@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './app.meterial.module';
-import {HttpClient} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +20,6 @@ import {HttpClient} from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-
   ],
   imports: [
     BrowserModule,

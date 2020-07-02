@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(public fb: FormBuilder,
               public auth: AuthService,
-              private alirtify: AlertifyService) {
+              private alertifyService: AlertifyService) {
 
   }
 
@@ -34,18 +34,24 @@ export class RegisterComponent implements OnInit {
     input.value = '';
   }
 
-  submitForm() {
-    this.auth.register(this.registerForm.value);
-
-    console.log(this.registerForm.value);
-  }
-
+  public submitForm() {
+    const FirstName = this.registerForm.get('FirstName').value;
+    const SecondName = this.registerForm.get('SecondName').value;
+    const Username = this.registerForm.get('Username').value;
+    const Password = this.registerForm.get('Password').value;
+    this.auth.register(FirstName, SecondName, Username, Password).subscribe(() => {
+    this.alertifyService.success('Registration Successful');
+    console.log("succesfully registered");
+   },
+     error => {
+     this.alertifyService.error('Registration Failed');
+     console.log(error);
+     });
+   }
   /* Handle form errors in Angular 8 */
   public errorHandling = (control: string, error: string) => {
     return this.registerForm.controls[control].hasError(error);
   }
-
-
 
  reactiveForm() {
       this.registerForm = this.fb.group({
