@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {AlertifyService} from '../services/alertify.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
@@ -32,11 +32,27 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls[control].hasError(error);
   }
 
-  public submitForm() {}
-
-  public reactiveForm(){
-
+  public submitForm() {
+    const Username = this.loginForm.get('Username');
+    const Password = this.loginForm.get('Password');
+    this.auth.login(Username.value, Password.value).subscribe(() => {
+      this.alertifyService.success('Login successful');
+    },
+      error => {
+        this.alertifyService.error('Login Failed');
+      });
   }
 
+ reactiveForm() {
+   this.loginForm = this.fb.group({
+     Username: ['',
+       [
+         Validators.required,
+         Validators.minLength(4)
+
+       ]],
+     Password: ['', [Validators.required]],
+   });
+ }
 }
 

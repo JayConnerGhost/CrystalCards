@@ -1,5 +1,8 @@
 
-  <mat-card >
+<div class="welcome-container">
+  <h1>Welcome</h1>
+</div>
+<mat-card >
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
     <form [formGroup]="loginForm" (ngSubmit)="submitForm()" novalidate>
@@ -32,11 +35,8 @@
             </mat-error>
           </mat-form-field>
         </div>
-
-
-
         <mat-card-actions>
-        <div><button id="registerButton" type="submit" class="btn btn-info btn-block">Register</button></div>
+        <div><button id="loginButton" type="submit" class="btn btn-info btn-block">Login</button></div>
       </mat-card-actions>
     </form>
   </mat-card-content>

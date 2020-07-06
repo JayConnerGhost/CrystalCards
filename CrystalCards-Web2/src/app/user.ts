@@ -1,4 +1,4 @@
-﻿export class User {
+﻿export class user {
   constructor(FirstName: string, SecondName: string, Username: string, Password: string) {
     this.firstName = FirstName;
     this.secondName = SecondName;
@@ -12,3 +12,4 @@
   userName: string;
   password: string;
 }
+
