@@ -5,6 +5,7 @@ import {AuthService} from '../services/auth.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {AlertifyService} from '../services/alertify.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(public fb: FormBuilder,
               public auth: AuthService,
-              private alertifyService: AlertifyService) {
+              private alertifyService: AlertifyService,
+              private router: Router) {
 
   }
 
@@ -44,10 +46,11 @@ export class RegisterComponent implements OnInit {
     this.alertifyService.success('Registration Successful');
    // console.log("succesfully registered");
     this.auth.login(Username, Password).subscribe();
+    this.router.navigate([' ']);
    },
      error => {
      this.alertifyService.error('Registration Failed');
-     console.log(error);
+    // console.log(error);
      });
    }
   /* Handle form errors in Angular 8 */

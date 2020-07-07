@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {AlertifyService} from '../services/alertify.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public fb: FormBuilder,
               public auth: AuthService,
-              private alertifyService: AlertifyService) {
+              private alertifyService: AlertifyService,
+              public router: Router) {
 
   }
   if(input) {
@@ -37,6 +39,8 @@ export class LoginComponent implements OnInit {
     const Password = this.loginForm.get('Password');
     this.auth.login(Username.value, Password.value).subscribe(() => {
       this.alertifyService.success('Login successful');
+      this.router.navigate(['']);
+
     },
       error => {
         this.alertifyService.error('Login Failed');
