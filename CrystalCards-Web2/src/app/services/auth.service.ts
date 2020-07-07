@@ -30,6 +30,14 @@ export class AuthService {
   const path = `${this.config.master_apiURL}/auth/register`;
   return this.http.post(path, u);
   }
+  loggedIn(){
+    const token = localStorage.getItem('token');
+    if (token === undefined){
+      return false;
+    }
+
+    return !this.jwtHelper.isTokenExpired(token);
+  }
 
   public login(Username: string, Password: string) {
     const loginRequest = new LoginRequest(Username, Password);
@@ -42,7 +50,7 @@ export class AuthService {
               localStorage.setItem('token', response.token);
               localStorage.setItem('username', response.username);
               this.decodedToken = this.jwtHelper.decodeToken(response.token);
-              //console.log(this.decodedToken);
+              // console.log(this.decodedToken);
             }
           }
         ));

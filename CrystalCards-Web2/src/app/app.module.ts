@@ -1,6 +1,6 @@
 import { BrowserModule,  } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { ProjectComponent } from './project/project.component';
@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './app.meterial.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {AuthInterceptor} from './AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

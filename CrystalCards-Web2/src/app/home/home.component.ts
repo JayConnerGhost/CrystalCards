@@ -10,6 +10,13 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    }
+
+  loggedIn()
+  {
+    const token = localStorage.getItem('token');
+
+    return !!token;
   }
 
 }
