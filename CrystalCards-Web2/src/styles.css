@@ -1,64 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/alertifyjs/build/css/alertify.min.css";
 @import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* ----------- iPad 1, 2, Mini and Air ----------- */
+html {
+  margin: 0;
+  width:100vw;
+  max-width: 100vw;
+}
 
-/* Portrait and Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 1) {
+body {
+  margin: 0;
+  width:100vw;
+  max-width: 100vw;
+}
+
+
+@media all and (min-width: 960px) {
+  body{
+    font-size: 18px;
+  }
+}
+
+@media all and (max-width: 959px) and (min-width: 600px) {
+  body{
+    font-size: 16px;
+  }
+}
+
+@media all and (max-width: 599px) and (min-width: 320px) {
+  body{
+    font-size: 12px;
+  }
 
 }
 
-/* Portrait */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
+textarea {
+  resize: none;
 }
 
-/* Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
+.formFieldWidth550 .mat-form-field-infix {
+  width: 550px;
 }
 
-/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
-
-/* Portrait and Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42A948;
+  /* green */
 }
 
-/* Portrait */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+.white-text {
+  color: #FFF!important;
 }
 
-/* Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
+.iconButton {
+  border: none;
+  outline: none !important;
 }
+
+.iconButton:focus, active {
+  border: none;
+  outline: none !important;
+}
+
 
 /* ----------- iPad Pro 10.5" ----------- */
 

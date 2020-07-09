@@ -44,13 +44,11 @@ export class RegisterComponent implements OnInit {
     const Password = this.registerForm.get('Password').value;
     this.auth.register(FirstName, SecondName, Username, Password).subscribe(() => {
     this.alertifyService.success('Registration Successful');
-   // console.log("succesfully registered");
     this.auth.login(Username, Password).subscribe();
     this.router.navigate([' ']);
    },
      error => {
      this.alertifyService.error('Registration Failed');
-    // console.log(error);
      });
    }
   /* Handle form errors in Angular 8 */

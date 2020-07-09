@@ -1,4 +1,4 @@
-import { BrowserModule,  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './app.meterial.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {AuthInterceptor} from './AuthInterceptor';
+import {ToolbarComponent} from './toolbar/toolbar.component';
+import { AddCardComponent } from './add-card/add-card.component';
+import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import {AuthInterceptor} from './AuthInterceptor';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    ToolbarComponent,
+    AddCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ import {AuthInterceptor} from './AuthInterceptor';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -36,6 +42,9 @@ import {AuthInterceptor} from './AuthInterceptor';
       useClass: AuthInterceptor,
       multi: true
     }
+  ],
+  entryComponents: [
+    AddCardComponent
   ],
   bootstrap: [AppComponent]
 })

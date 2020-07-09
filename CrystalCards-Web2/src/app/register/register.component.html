@@ -1,79 +1,93 @@
-
-
-
 <mat-card>
- <mat-card-title>Register</mat-card-title>
+  <mat-card-title>Register</mat-card-title>
   <mat-card-content>
-    <form [formGroup]="registerForm" (ngSubmit)="submitForm()" novalidate >
-   <div>
-  <mat-form-field appearance="standard">
-    <mat-label>First Name</mat-label>
-     <input id="FirstName"
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()" novalidate>
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>First Name</mat-label>
+          <input
+            id="FirstName"
             placeholder="First Name"
             formControlName="FirstName"
-            matInput type="text"/>
-    <!-- error -->
-    <mat-error *ngIf="errorHandling('FirstName', 'required')">
-      You must provide a <strong>First Name</strong>
-    </mat-error>
-  </mat-form-field>
- </div>
-<br/>
-<div>
-  <mat-form-field appearance="standard">
-    <mat-label>Second Name</mat-label>
-        <input id="SecondName"
-               placeholder="Second Name"
-               formControlName="SecondName"
-               matInput type="text"/>
-    <!-- error -->
-    <mat-error *ngIf="errorHandling('SecondName', 'required')">
-      You must provide a <strong>Second Name</strong>
-    </mat-error>
-      </mat-form-field>
-    </div>
-<br/>
-<div>
-  <mat-form-field appearance="standard">
-    <mat-label>Username:</mat-label>
-  <input id="Username"
-         placeholder="Username"
-         formControlName="Username"
-         matInput type="text"/>
-    <!-- error -->
-    <mat-error  *ngIf="errorHandling('Username', 'minLength')">
-      You must provide a <strong>Username</strong> that has minimum of 4 characters
-    </mat-error>
+            matInput
+            type="text"
+          />
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('FirstName', 'required')">
+            You must provide a <strong>First Name</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br />
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Second Name</mat-label>
+          <input
+            id="SecondName"
+            placeholder="Second Name"
+            formControlName="SecondName"
+            matInput
+            type="text"
+          />
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('SecondName', 'required')">
+            You must provide a <strong>Second Name</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br />
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Username:</mat-label>
+          <input
+            id="Username"
+            placeholder="Username"
+            formControlName="Username"
+            matInput
+            type="text"
+          />
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('Username', 'minLength')">
+            You must provide a <strong>Username</strong> that has minimum of 4
+            characters
+          </mat-error>
 
-    <mat-error *ngIf="errorHandling('Username', 'required')">
-      You must provide a <strong>Username</strong>
-    </mat-error>
+          <mat-error *ngIf="errorHandling('Username', 'required')">
+            You must provide a <strong>Username</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br />
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Password:</mat-label>
+          <input
+            id="Password"
+            placeholder="Password"
+            formControlName="Password"
+            matInput
+            type="password"
+          />
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('Password', 'required')">
+            You must provide a <strong>Password</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br />
 
-
-</mat-form-field>
-</div>
-<br/>
-<div>
-  <mat-form-field appearance="standard">
-  <mat-label>Password:</mat-label>
-       <input id="Password"
-              placeholder="Password"
-              formControlName="Password"
-              matInput type="password"/>
-    <!-- error -->
-    <mat-error *ngIf="errorHandling('Password', 'required')">
-      You must provide a <strong>Password</strong>
-    </mat-error>
-  </mat-form-field>
-  </div>
-<br/>
-
-<mat-card-actions>
-<div><button id="registerButton" type="submit" class="btn btn-info btn-block"  [disabled]="registerForm.invalid">Register</button></div>
-</mat-card-actions>
-</form>
-</mat-card-content>
-
+      <mat-card-actions>
+        <div>
+          <button
+            id="registerButton"
+            type="submit"
+            class="btn btn-info btn-block"
+            [disabled]="registerForm.invalid"
+          >
+            Register
+          </button>
+        </div>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
 </mat-card>
-
-
