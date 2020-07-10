@@ -14,7 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {AuthInterceptor} from './AuthInterceptor';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import { AddCardComponent } from './add-card/add-card.component';
-import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
