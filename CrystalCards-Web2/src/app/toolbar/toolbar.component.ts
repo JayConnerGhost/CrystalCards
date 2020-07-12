@@ -16,7 +16,7 @@ export class ToolbarComponent implements OnInit {
   addIdea() {
     const dialogRef = this.dialog.open(AddCardComponent,
       {
-        width: '800px',
+        width: '600px',
         panelClass: 'formFieldWidth550'
       });
 

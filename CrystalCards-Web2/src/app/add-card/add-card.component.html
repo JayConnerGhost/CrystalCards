@@ -1,1 +1,56 @@
-<p>add-card works!</p>
+<div id="wrapper">
+  <form [formGroup]="addCardForm" (ngSubmit)="submitForm()" #f novalidate>
+    <mat-dialog-content>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Title</mat-label>
+        <input
+          id="Title"
+          placeholder="Title"
+          formControlName="Title"
+          matInput
+          type="text"
+        />
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('Title', 'required')">
+          You must provide a <strong>Title</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <br />
+
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Description</mat-label>
+        <textarea
+          id="Description"
+          placeholder="Description"
+          formControlName="Description"
+          matInput
+          wrap="hard"
+          type="text"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="2">
+        </textarea>
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('Description', 'required')">
+          You must provide a <strong>Description</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <br />
+    </mat-dialog-content>
+    <mat-dialog-actions fxLayoutAlign="end">
+      <button mat-raised-button type="submit"  class="" id="submitButton" [disabled]="addCardForm.invalid">
+        <mat-icon>save</mat-icon>
+      </button>
+
+      <button mat-raised-button type="button" class="" id="closeDialogButton" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-dialog-actions>
+  </form>
+
+</div>
+
+
