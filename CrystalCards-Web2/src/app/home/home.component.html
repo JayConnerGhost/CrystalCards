@@ -1,10 +1,7 @@
 
 
 <div class="container mt-5">
-  <div class="welcome-container">
-    <h1>Welcome</h1>
-  </div>
-  <div id="registrationContainer" *ngIf="!loggedIn()">
+   <div id="registrationContainer" *ngIf="!loggedIn()">
     <app-register></app-register>
   <div> or to login Click <a [routerLink]="['login']" >Here</a></div>
   </div>
