@@ -1,3 +1,7 @@
-<div id="card-container" *ngFor="let card of cards">
-
+<div id="card-container" *ngFor="let card of cards" fxLayoutAlign="start center" fxLayout="row" fxLayoutGap="20px">
+    <app-card-token
+      [Title]=card.title
+      [Description]=card.description
+      [Id]=card.id
+    ></app-card-token>
 </div>
