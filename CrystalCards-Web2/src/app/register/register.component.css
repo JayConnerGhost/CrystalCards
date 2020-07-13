@@ -45,3 +45,6 @@ mat-form-field.mat-form-field-should-float label {
 .mat-card-content {
   flex-grow: 1;
 }
+.register-container{
+  margin-top:30px;
+}
