@@ -1,10 +1,14 @@
 .mat-card{
-  height:200px;
-  width:160px;
+  height:300px;
+  width:260px;
   margin-top: 20px;
   margin-right: 0;
-  margin-left: 0;
+  margin-left: 2px;
   margin-bottom: 0;
+  border-bottom:5px solid #707070;
+  border-right: 5px solid #707070;
+  border-top:1px solid #000000;
+  border-left: 1px solid #000000;
 }
 .mat-card-title{
  color:#2F4F4F;
@@ -16,8 +20,10 @@
 
 }
 .mat-card-content{
-  height:60px;
-  scroll:auto;
+  height:200px;
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
 
 }
 .mat-card-actions{
@@ -25,6 +31,6 @@
 }
 .mat-card-footer{
   font-size:0.8em;
-
+ padding-left: 10px;
 }
 
