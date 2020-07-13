@@ -26,4 +26,13 @@ export class CardService {
     return this.httpClient.post<Card>(`${this.configService.master_apiURL}/cards/${userName}`, card);
 
   }
+
+  Get(): Observable<Card> {
+    let userName = null;
+    if (this.authService.loggedIn)
+    {
+      userName = this.authService.getUserName();
+    }
+    return this.httpClient.get<Card>(`${this.configService.master_apiURL}/cards/GetForUserName/${userName}`);
+  }
 }

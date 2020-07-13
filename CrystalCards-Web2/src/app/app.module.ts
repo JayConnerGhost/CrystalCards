@@ -15,6 +15,7 @@ import {AuthInterceptor} from './AuthInterceptor';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CardTokenComponent } from './card-token/card-token.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HomeComponent,
     ToolbarComponent,
     AddCardComponent,
+    CardTokenComponent,
   ],
   imports: [
     BrowserModule,
