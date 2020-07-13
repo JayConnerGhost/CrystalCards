@@ -1,12 +1,12 @@
 
 
-<div class="container mt-5">
-   <div id="registrationContainer" *ngIf="!loggedIn()">
+
+   <div id="registrationContainer" *ngIf="!loggedIn()" class="securityConteiner">
     <app-register></app-register>
   <div> or to login Click <a [routerLink]="['login']" >Here</a></div>
   </div>
 
-  <div id="contentContainer" fxLayoutAlign="center center" class="w-100 h-100 contentContainer" *ngIf="loggedIn()">
-    <app-card-list></app-card-list>
+  <div id="contentContainer"  class="w-100 h-100 contentContainer" *ngIf="loggedIn()">
+    <app-card-list class="w-100 h-100"></app-card-list>
   </div>
- </div>
+
