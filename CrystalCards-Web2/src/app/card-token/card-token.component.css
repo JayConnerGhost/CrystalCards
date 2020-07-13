@@ -1,0 +1,30 @@
+.mat-card{
+  height:200px;
+  width:160px;
+  margin-top: 20px;
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+.mat-card-title{
+ color:#2F4F4F;
+  font-weight:bold;
+  font-size:1.2em;
+
+}
+.met-card-subtitle{
+
+}
+.mat-card-content{
+  height:60px;
+  scroll:auto;
+
+}
+.mat-card-actions{
+
+}
+.mat-card-footer{
+  font-size:0.8em;
+
+}
+
