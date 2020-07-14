@@ -1,7 +1,13 @@
 
 <mat-card>
   <mat-card-title>{{Title}}</mat-card-title>
-  <mat-card-subtitle>Idea</mat-card-subtitle>
+  <mat-card-subtitle>{{Id}}</mat-card-subtitle>
   <mat-card-content>{{Description}}</mat-card-content>
-  <mat-card-actions></mat-card-actions>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+     (click)="openCard(Id)
+      ">Open</button>
+
+  </mat-card-actions>
 </mat-card>

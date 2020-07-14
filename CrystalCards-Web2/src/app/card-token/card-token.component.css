@@ -20,14 +20,14 @@
 
 }
 .mat-card-content{
-  height:200px;
-  max-height: 200px;
+  height:150px;
+  max-height: 150px;
   overflow-x: hidden;
   overflow-y: auto;
 
 }
 .mat-card-actions{
-
+  float:right;
 }
 .mat-card-footer{
   font-size:0.8em;
