@@ -26,6 +26,7 @@
     "@auth0/angular-jwt": "^4.2.0",
     "alertifyjs": "^1.13.1",
     "bootstrap": "^4.5.0",
+    "hammerjs": "^2.0.8",
     "jquery": "^3.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^1.10.0",

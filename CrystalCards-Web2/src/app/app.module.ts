@@ -16,6 +16,7 @@ import {ToolbarComponent} from './toolbar/toolbar.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CardTokenComponent } from './card-token/card-token.component';
+import 'hammerjs';
 
 @NgModule({
   declarations: [

@@ -759,3 +759,8 @@
 2020-07-12 09:40:17.0126 Info Adding target FileTarget(Name=allfile)
 2020-07-12 09:40:17.0799 Info Adding target FileTarget(Name=ownFile-web)
 2020-07-12 09:40:17.1751 Info Found 45 configuration items
+2020-07-14 05:48:36.6503 Info Message Template Auto Format enabled
+2020-07-14 05:48:36.6662 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-14 05:48:36.8530 Info Adding target FileTarget(Name=allfile)
+2020-07-14 05:48:36.9200 Info Adding target FileTarget(Name=ownFile-web)
+2020-07-14 05:48:37.0171 Info Found 45 configuration items
