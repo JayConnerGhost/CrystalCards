@@ -1,0 +1,34 @@
+.mat-dialog-content {
+  height: 75%;
+}
+
+.mat-tab-body-wrapper {
+  flex-grow: 1;
+}
+
+#wrapper {
+  padding: 16px;
+  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /*new*/
+}
+
+
+#tab-group {
+  height: 430px;
+}
+
+#tab-group mat-tab-body {
+  flex-grow: 1;
+}
+
+.wrapper {
+  min-width: 600px;
+  min-height: 400px;
+}
+
+@media only screen and (min-width: 992px) {
+  .mat-dialog-content {
+    height: 75%;
+  }}

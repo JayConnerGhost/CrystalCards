@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CardTokenComponent } from './card-token/card-token.component';
 import 'hammerjs';
 import { EditCardComponent } from './edit-card/edit-card.component';
+import { EditCardIdeaComponent } from './edit-card-idea/edit-card-idea.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { EditCardComponent } from './edit-card/edit-card.component';
     AddCardComponent,
     CardTokenComponent,
     EditCardComponent,
+    EditCardIdeaComponent,
   ],
   imports: [
     BrowserModule,

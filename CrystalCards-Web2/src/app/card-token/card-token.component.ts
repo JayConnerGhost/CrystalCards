@@ -24,7 +24,9 @@ export class CardTokenComponent implements OnInit {
         width: '600px',
         panelClass: 'formFieldWidth550',
         data: {
-            IdeaId: Id
+            IdeaId: Id,
+            Title: this.Title,
+            Description: this.Description
         }
       },
      );

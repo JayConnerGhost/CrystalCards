@@ -1,0 +1,40 @@
+<form [formGroup]="editCardForm" (ngSubmit)="submitForm()" #f novalidate>
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Title</mat-label>
+      <input
+        id="Title"
+        placeholder="Title"
+        formControlName="Title"
+        matInput
+        type="text"
+      />
+      <!-- error -->
+      <mat-error *ngIf="errorHandling('Title', 'required')">
+        You must provide a <strong>Title</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <br />
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Description</mat-label>
+      <textarea
+        id="Description"
+        placeholder="Description"
+        formControlName="Description"
+        matInput
+        wrap="hard"
+        type="text"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="2">
+        </textarea>
+      <!-- error -->
+      <mat-error *ngIf="errorHandling('Description', 'required')">
+        You must provide a <strong>Description</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <br />
+</form>

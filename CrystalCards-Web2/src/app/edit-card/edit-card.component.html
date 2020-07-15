@@ -1,1 +1,31 @@
-<p>edit-card works!</p>
+<mat-tab-group id="tab-group">
+  <mat-tab label="Idea">
+    <app-edit-card-idea></app-edit-card-idea>
+  </mat-tab>
+  <mat-tab label="Pros and Cons">
+
+  </mat-tab>
+  <mat-tab label="Action Points">
+
+  </mat-tab>
+  <mat-tab label="Moodwall">
+
+  </mat-tab>
+  <mat-tab label="Research">
+  </mat-tab>
+
+</mat-tab-group>
+<mat-dialog-actions fxLayoutAlign="end">
+  <button mat-raised-button (click)='close()' class=""
+          matTooltip="Close Editor"
+          id="closeDialogButton"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <button mat-raised-button type="submit" class=""
+          matTooltip="Save Changes"
+  >
+    <mat-icon>save</mat-icon>
+  </button>
+
+</mat-dialog-actions>
