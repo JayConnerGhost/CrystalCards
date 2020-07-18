@@ -764,3 +764,29 @@
 2020-07-14 05:48:36.8530 Info Adding target FileTarget(Name=allfile)
 2020-07-14 05:48:36.9200 Info Adding target FileTarget(Name=ownFile-web)
 2020-07-14 05:48:37.0171 Info Found 45 configuration items
+2020-07-16 06:27:33.9760 Info Message Template Auto Format enabled
+2020-07-16 06:27:33.9964 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-16 06:27:34.1798 Info Adding target FileTarget(Name=allfile)
+2020-07-16 06:27:34.2568 Info Adding target FileTarget(Name=ownFile-web)
+2020-07-16 06:27:34.3541 Info Found 45 configuration items
+2020-07-17 05:37:20.0052 Info Message Template Auto Format enabled
+2020-07-17 05:37:20.0243 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-17 05:37:20.2220 Info Adding target FileTarget(Name=allfile)
+2020-07-17 05:37:20.2876 Info Adding target FileTarget(Name=ownFile-web)
+2020-07-17 05:37:20.3881 Info Found 45 configuration items
+2020-07-18 06:17:09.9318 Info Configuration file change detected! Reloading in 1000ms...
+2020-07-18 06:17:09.9487 Info Configuration file change detected! Reloading in 1000ms...
+2020-07-18 06:17:09.9808 Info Configuration file change detected! Reloading in 1000ms...
+2020-07-18 06:17:11.0040 Info Reloading configuration...
+2020-07-18 06:17:11.0564 Info Configuring from an XML element in C:\projects\CrystalCards\CrystalCards.api\bin\Debug\netcoreapp2.2\netcoreapp2.2\nlog.config...
+2020-07-18 06:17:11.0771 Info Message Template Auto Format enabled
+2020-07-18 06:17:11.1107 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-18 06:17:11.1423 Info Adding target FileTarget(Name=allfile)
+2020-07-18 06:17:11.1520 Info Adding target FileTarget(Name=ownFile-web)
+2020-07-18 06:17:11.1797 Info Closing old configuration.
+2020-07-18 06:17:11.2804 Info Found 45 configuration items
+2020-07-18 06:17:27.9874 Info Message Template Auto Format enabled
+2020-07-18 06:17:28.0170 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-18 06:17:28.2343 Info Adding target FileTarget(Name=allfile)
+2020-07-18 06:17:28.3075 Info Adding target FileTarget(Name=ownFile-web)
+2020-07-18 06:17:28.4225 Info Found 45 configuration items

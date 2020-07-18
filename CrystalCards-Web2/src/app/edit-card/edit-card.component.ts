@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AlertifyService} from '../services/alertify.service';
@@ -17,7 +17,10 @@ export class EditCardComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-
+  Id: number;
+  Title: string;
+  Description: string;
+  editCardForm: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -26,18 +29,35 @@ export class EditCardComponent implements OnInit {
     private alertifyService: AlertifyService,
     private cardService: CardService,
     private signalingService: SignalingService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    console.log("data",this.data.IdeaId);
-    console.log("data",this.data.Title);
-    console.log("data",this.data.Description);
-    //TODO- set up idea card
+    this.Id = this.data.Id;
+    this.Title = this.data.Title;
+    this.Description = this.data.Description;
+    this.reactiveForm();
   }
-  close() {
-    this.dialogRef.close();
+
+  public errorHandling = (control: string, error: string) => {
+    return this.editCardForm.controls[control].hasError(error);
+  }
+
+  public submitForm() {
 
   }
 
+  public close(){
 
   }
+
+  reactiveForm() {
+    this.editCardForm = this.fb.group({
+      Description: [this.Description, [Validators.required]],
+      Title: [this.Title, [Validators.required]],
+    });
+  }
+
+
+}
+

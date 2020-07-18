@@ -1,6 +1,48 @@
+
+<form [formGroup]="editCardForm" (ngSubmit)="submitForm()" #f novalidate>
+  <mat-dialog-content>
 <mat-tab-group id="tab-group">
+
   <mat-tab label="Idea">
-    <app-edit-card-idea></app-edit-card-idea>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Title</mat-label>
+        <input
+          id="Title"
+          placeholder="Title"
+          formControlName="Title"
+          matInput
+          type="text"
+          value="{{Title}}"
+        />
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('Title', 'required')">
+          You must provide a <strong>Title</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <br />
+
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Description</mat-label>
+        <textarea
+          id="Description"
+          placeholder="Description"
+          formControlName="Description"
+          matInput
+          wrap="hard"
+          type="text"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="2">{{Description}}
+        </textarea>
+        <!-- error -->
+        <mat-error *ngIf="errorHandling('Description', 'required')">
+          You must provide a <strong>Description</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <br />
   </mat-tab>
   <mat-tab label="Pros and Cons">
 
@@ -15,6 +57,7 @@
   </mat-tab>
 
 </mat-tab-group>
+</mat-dialog-content>
 <mat-dialog-actions fxLayoutAlign="end">
   <button mat-raised-button (click)='close()' class=""
           matTooltip="Close Editor"
@@ -28,4 +71,7 @@
     <mat-icon>save</mat-icon>
   </button>
 
+
 </mat-dialog-actions>
+</form>
+
