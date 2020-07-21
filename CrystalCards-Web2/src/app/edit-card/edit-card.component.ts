@@ -33,7 +33,6 @@ export class EditCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("pointer ", this.data.Id);
     this.Id = this.data.Id;
     this.Title = this.data.Title;
     this.Description = this.data.Description;
@@ -45,13 +44,15 @@ export class EditCardComponent implements OnInit {
   }
 
   public submitForm() {
-    console.log(this.Id);
-    console.log(this.Title);
-    console.log(this.Description);
+    this.cardService.update(this.Id, this.Title, this.Description, null, null, null).subscribe(() => {
+        this.alertifyService.success('Update Complete');
+    }, error => {
+        this.alertifyService.error('Error occured updating Idea');
+    });
   }
 
   public close(){
-
+    this.dialogRef.close();
   }
 
   reactiveForm() {
