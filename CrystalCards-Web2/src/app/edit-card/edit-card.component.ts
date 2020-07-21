@@ -33,6 +33,7 @@ export class EditCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("pointer ", this.data.Id);
     this.Id = this.data.Id;
     this.Title = this.data.Title;
     this.Description = this.data.Description;
@@ -44,7 +45,9 @@ export class EditCardComponent implements OnInit {
   }
 
   public submitForm() {
-
+    console.log(this.Id);
+    console.log(this.Title);
+    console.log(this.Description);
   }
 
   public close(){
